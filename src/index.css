@@ -12,3 +12,7 @@ body {
   font-family: "Montserrat", sans-serif;
   background: var(--background-color);
 }
+
+.icon-color {
+  color: #21212152;
+}
