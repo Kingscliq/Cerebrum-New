@@ -1,12 +1,13 @@
 import React from "react";
-import { Login } from "../pages/auth/Login";
+import { Login } from "../pages/auth/Login/index";
 import "./App.css";
 
-function App() {
-  return 
-  <div className="App">
-    <Login/>
-  </div>;
-}
+const App = () => {
+  return (
+    <div className="App">
+      <Login />
+    </div>
+  );
+};
 
 export default App;
