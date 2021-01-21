@@ -5,3 +5,17 @@
 .signup-p {
   font-size: 14px;
 }
+
+.signup-section button {
+  background-color: var(--primary-color);
+}
+
+.btn-container button {
+  margin: 14px 0;
+}
+
+.btn-container button.active {
+  background-color: white;
+  color: #000000;
+  border: red;
+}
