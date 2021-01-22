@@ -5,7 +5,8 @@ import { FaEnvelope, FaLock } from "react-icons/fa";
 import { Button } from "../../../components/Button";
 import { useState } from "react";
 import axios from "axios";
-import loader from "../../../components/Loader";
+import {Loader} from "../../../components/Loader";
+import { signIn } from "../../../api";
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -24,22 +25,9 @@ const Login = () => {
 
   // Function to Handle Login Submit
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // console.log(user);
+    // Call Api Function
 
-    const data = {
-      email: user.email,
-      password: user.password,
-    };
-
-    axios
-      .post("https://new-cerebrum.herokuapp.com/api/auth/sign-in", data)
-      .then((res) => {
-        console.log(res.data);
-        const token = res.data.token;
-        localStorage.setItem("token", token);
-      })
-      .catch((err) => console.log("there is an error logging in", err));
+    signIn(e, user, setUser, setLoading);
   };
 
   return (
