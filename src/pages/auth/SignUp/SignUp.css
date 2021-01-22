@@ -1,7 +1,46 @@
 .w-c {
   width: 450px;
-  padding: 30px 55px;
+  padding: 25px 55px;
 }
 .signup-p {
-  font-size: 14px;
+  font-size: 0.79rem;
+}
+
+.signup-section h2 {
+  font-weight: 800;
+}
+.signup-section button {
+  background-color: var(--primary-color);
+  font-weight: 600;
+  outline: none;
+}
+
+.signup-section button:focus {
+  outline: none;
+}
+
+.signup-section p span {
+  color: var(--primary-color);
+}
+
+.btn-container button {
+  margin: 12px 0;
+}
+
+.btn-container button.active {
+  background-color: white;
+  color: #000000;
+  border: none;
+  outline: none !important;
+}
+
+.btn-container button.active:focus {
+  outline: none !important;
+  border: none;
+}
+
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none;
 }
