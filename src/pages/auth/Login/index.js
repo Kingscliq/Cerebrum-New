@@ -1,26 +1,46 @@
 import React from "react";
-import { loginImage } from "../../../assets/images";
+import { loginImg } from "../../../assets/images";
 import { Input } from "../../../components/Input";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import { Button } from "../../../components/Button";
 import { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const value = e.target.value;
-    setUser({ [e.target.name]: value });
+    setUser({ ...user, [e.target.name]: value });
   };
 
+  // Function to Handle Login Submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
+    // console.log(user);
+
+    const data = {
+      email: user.email,
+      password: user.password,
+    };
+
+    axios
+      .post("https://new-cerebrum.herokuapp.com/api/auth/sign-in", data)
+      .then((res) => {
+        //     "email": "cjoemor@gmail.com",
+        // "password": "1234",
+        console.log(res.data);
+        const token = res.data.token;
+        localStorage.setItem("token", token);
+      })
+      .catch((err) => console.log("there is an error logging in", err));
   };
+
   return (
     <main className="vh-100 container-fluid login-section">
       <section className="row h-100">
@@ -45,19 +65,26 @@ const Login = () => {
                 value={user.password}
                 name="password"
               />
-
+              <p className="signup-p">
+                <a href="#" style={{ textDecoration: "none" }}>
+                  Forgot Password
+                </a>
+              </p>
               <Button className="btn btn-primary w-100" text="Login" />
 
               <hr />
               <p className="signup-p">
-                New Member? <a href="#">Sign Up</a>
+                New Member?{" "}
+                <a href="#" style={{ textDecoration: "none" }}>
+                  Sign Up
+                </a>
               </p>
             </form>
           </div>
         </div>
         <div
           className="col-6 bg-danger h-100 signup-image"
-          style={{ background: `url(${loginImage})` }}
+          style={{ background: `url(${loginImg})` }}
         ></div>
       </section>
     </main>
