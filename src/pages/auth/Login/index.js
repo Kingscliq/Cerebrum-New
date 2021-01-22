@@ -13,6 +13,7 @@ const Login = () => {
   });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState("");
+  const [alert, setAlert] = useState(false);
 
   const handleChange = (e) => {
     const value = e.target.value;
