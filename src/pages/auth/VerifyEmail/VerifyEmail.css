@@ -1,0 +1,11 @@
+.verifymail-section button {
+	background: var(--primary-color);
+}
+
+.verifymail-section .verification-timeout {
+	color: var(--primary-color);
+}
+
+.verifymail-section h2 {
+	font-weight: 600;
+}
