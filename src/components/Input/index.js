@@ -3,7 +3,6 @@ import { FaUser } from "react-icons/fa";
 
 function Input({ icon, type, placeholder, value, onChange, name, disabled }) {
   return (
-    // <input type="text" className="form-control my-3" placeholder="Full Name" />
     <div className="input-group mb-3">
       <span
         className="icon-color input-group-text bg-white border-end-0"

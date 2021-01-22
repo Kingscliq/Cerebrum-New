@@ -21,7 +21,7 @@ function SignUp() {
 	const handleClick = (e) => {
 		e.preventDefault();
 		let targetText = e.target.innerText;
-		targetText == "Tutor" ? setNumToogle(0) : setNumToogle(1);
+		targetText === "Tutor" ? setNumToogle(0) : setNumToogle(1);
 		console.log(targetText);
 	};
 
@@ -44,13 +44,13 @@ function SignUp() {
 							<hr className="mt-n5" />
 							<div className="btn-container">
 								<Button
-									className={`btn btn-primary ${numToogle == 0 ? "active" : ""} w-50`}
+									className={`btn btn-primary ${numToogle === 0 ? "active" : ""} w-50`}
 									text="Learner"
 									handleClick={handleClick}
 									disabled={loading}
 								/>
 								<Button
-									className={`btn btn-primary ${numToogle == 1 ? "active" : ""} w-50`}
+									className={`btn btn-primary ${numToogle === 1 ? "active" : ""} w-50`}
 									text="Tutor"
 									handleClick={handleClick}
 									disabled={loading}

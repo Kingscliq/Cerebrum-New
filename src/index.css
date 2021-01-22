@@ -24,3 +24,15 @@ body {
 .signup-p {
 	font-size: 14px;
 }
+
+.w-c {
+  width: 450px;
+  padding: 30px 55px;
+}
+
+.signup-p {
+  font-size: 14px;
+}
+.fw-bold {
+  font-weight: 400;
+}
