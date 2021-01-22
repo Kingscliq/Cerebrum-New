@@ -12,6 +12,11 @@
 .signup-section button {
   background-color: var(--primary-color);
   font-weight: 600;
+  outline: none;
+}
+
+.signup-section button:focus {
+  outline: none;
 }
 
 .signup-section p span {
@@ -25,5 +30,17 @@
 .btn-container button.active {
   background-color: white;
   color: #000000;
-  border: red;
+  border: none;
+  outline: none !important;
+}
+
+.btn-container button.active:focus {
+  outline: none !important;
+  border: none;
+}
+
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none;
 }

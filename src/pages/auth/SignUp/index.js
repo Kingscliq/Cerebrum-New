@@ -5,6 +5,7 @@ import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import "./SignUp.css";
 import { Button } from "../../../components/Button";
 import { signUpReg } from "../../../api";
+import { Loader } from "../../../components/Loader";
 
 function SignUp() {
   const [signUpData, setSignUpData] = useState({
@@ -14,16 +15,18 @@ function SignUp() {
     password: "",
   });
 
+  const [loading, setLoading] = useState(false);
   const [numToogle, setNumToogle] = useState(1);
 
   const handleClick = (e) => {
+    e.preventDefault();
     let targetText = e.target.innerText;
     targetText == "Tutor" ? setNumToogle(0) : setNumToogle(1);
     console.log(targetText);
   };
 
   const handleSubmit = (e) => {
-    signUpReg(e, signUpData, setSignUpData);
+    signUpReg(e, signUpData, setSignUpData, setLoading);
   };
 
   const handleChange = (e) => {
@@ -46,6 +49,7 @@ function SignUp() {
                   } w-50`}
                   text="Learner"
                   handleClick={handleClick}
+                  disabled={loading}
                 />
                 <Button
                   className={`btn btn-primary ${
@@ -53,6 +57,7 @@ function SignUp() {
                   } w-50`}
                   text="Tutor"
                   handleClick={handleClick}
+                  disabled={loading}
                 />
               </div>
               <Input
@@ -62,6 +67,7 @@ function SignUp() {
                 name="firstname"
                 onChange={handleChange}
                 value={signUpData.firstname || ""}
+                disabled={loading}
               />
               <Input
                 type="text"
@@ -70,6 +76,7 @@ function SignUp() {
                 name="lastname"
                 onChange={handleChange}
                 value={signUpData.lastname || ""}
+                disabled={loading}
               />
               <Input
                 type="email"
@@ -78,6 +85,7 @@ function SignUp() {
                 name="email"
                 onChange={handleChange}
                 value={signUpData.email || ""}
+                disabled={loading}
               />
               <Input
                 type="password"
@@ -86,11 +94,17 @@ function SignUp() {
                 name="password"
                 onChange={handleChange}
                 value={signUpData.password || ""}
+                disabled={loading}
               />
               <p className="signup-p">
                 Use 8 or more characters with a mix of letters, number & symbols
               </p>
-              <Button className="btn btn-primary w-100" text="Sign Up" />
+              <Button
+                className="btn btn-primary w-100"
+                text={"Sign Up"}
+                loadingIcon={loading && <Loader />}
+                disabled={loading}
+              />
               <p className="signup-p pt-2">
                 By signing up, you agree to our <span>Terms of Use</span> &
                 <span>Privacy Policy.</span>

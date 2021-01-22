@@ -1,7 +1,7 @@
 import React from "react";
 import { FaUser } from "react-icons/fa";
 
-function Input({ icon, type, placeholder, value, onChange, name }) {
+function Input({ icon, type, placeholder, value, onChange, name, disabled }) {
   return (
     // <input type="text" className="form-control my-3" placeholder="Full Name" />
     <div className="input-group mb-3">
@@ -18,6 +18,7 @@ function Input({ icon, type, placeholder, value, onChange, name }) {
         name={name}
         onChange={onChange}
         value={value}
+        disabled={disabled}
         required
       />
     </div>
