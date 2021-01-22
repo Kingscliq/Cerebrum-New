@@ -5,6 +5,7 @@ import { FaEnvelope, FaLock } from "react-icons/fa";
 import { Button } from "../../../components/Button";
 import { useState } from "react";
 import axios from "axios";
+import loader from "../../../components/Loader";
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -14,6 +15,7 @@ const Login = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState("");
   const [alert, setAlert] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -33,8 +35,6 @@ const Login = () => {
     axios
       .post("https://new-cerebrum.herokuapp.com/api/auth/sign-in", data)
       .then((res) => {
-        //     "email": "cjoemor@gmail.com",
-        // "password": "1234",
         console.log(res.data);
         const token = res.data.token;
         localStorage.setItem("token", token);
@@ -71,7 +71,11 @@ const Login = () => {
                   Forgot Password
                 </a>
               </p>
-              <Button className="btn btn-primary w-100" text="Login" />
+              <Button
+                className="btn btn-primary w-100"
+                text="Login"
+                loadingIcon={loading && <Loader />}
+              />
 
               <hr />
               <p className="signup-p">
