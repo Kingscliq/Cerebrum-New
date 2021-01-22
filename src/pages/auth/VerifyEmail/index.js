@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { verifyImage } from "../../../assets/images";
 import { Button } from "../../../components/Button";
+import { Loader } from "../../../components/Loader";
 import "./VerifyEmail.css";
 
 function VerifyEmail() {
@@ -22,7 +23,7 @@ function VerifyEmail() {
 		return `${minutes}:${padTime(seconds)}`;
 	};
 
-	const [counter, setCounter] = useState(30);
+	const [counter, setCounter] = useState(5);
 	useEffect(() => {
 		let timer;
 		if (counter > 0) {
@@ -47,10 +48,21 @@ function VerifyEmail() {
 							<p className="mt-4 mb-3 signup-p">
 								To complete your sign up, please verify your email. <span className="text-muted">Haven't seen the mail? Click to resend</span>
 							</p>
-							<Button className="btn btn-primary w-100 mb-5" text="Resend Verification Mail" disabled={counter === 0 ? false : true} />
+							<Button
+								className="btn btn-primary w-100 mb-5"
+								text={"Resend Verification Mail"}
+								loadingIcon={counter === 0 ? null : <Loader />}
+								disabled={counter === 0 ? false : true}
+							/>
 							<p className="mt-1 signup-p text-center">
-								Time left <span className="pl-1 pr-1"> : </span>
-								{counter === 0 ? "Time out" : <span className="verification-timeout">{format(counter)}</span>}
+								{counter === 0 ? (
+									"Click Resend"
+								) : (
+									<span className="verification-timeout">
+										Time left <span className="pl-1 pr-1"> : </span>
+										{format(counter)}
+									</span>
+								)}
 							</p>
 						</form>
 					</div>
