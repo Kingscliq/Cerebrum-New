@@ -1,17 +1,25 @@
 .w-c {
   width: 450px;
-  padding: 30px 55px;
+  padding: 25px 55px;
 }
 .signup-p {
-  font-size: 14px;
+  font-size: 0.79rem;
 }
 
+.signup-section h2 {
+  font-weight: 800;
+}
 .signup-section button {
   background-color: var(--primary-color);
+  font-weight: 600;
+}
+
+.signup-section p span {
+  color: var(--primary-color);
 }
 
 .btn-container button {
-  margin: 14px 0;
+  margin: 12px 0;
 }
 
 .btn-container button.active {

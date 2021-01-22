@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { loginImage } from "../../../assets/images";
 import { Input } from "../../../components/Input";
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import "./SignUp.css";
 import { Button } from "../../../components/Button";
+import { signUpReg } from "../../../api";
 
 function SignUp() {
   const [signUpData, setSignUpData] = useState({
@@ -23,17 +23,7 @@ function SignUp() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-
-    let currentState = signUpData;
-    console.log(currentState);
-    setSignUpData({});
-
-    axios
-      .post(`https://cerebrum-v1.herokuapp.com/api/auth/sign-up`, currentState)
-      .then((res) => {
-        console.log(res.data);
-      });
+    signUpReg(e, signUpData, setSignUpData);
   };
 
   const handleChange = (e) => {
@@ -102,10 +92,13 @@ function SignUp() {
               </p>
               <Button className="btn btn-primary w-100" text="Sign Up" />
               <p className="signup-p pt-2">
-                By signing up, you agree to our Terms of Use & Privacy Policy.
+                By signing up, you agree to our <span>Terms of Use</span> &
+                <span>Privacy Policy.</span>
               </p>
               <hr />
-              <p className="signup-p">Already have an account? Log In</p>
+              <p className="signup-p">
+                Already have an account? <span>Log In</span>
+              </p>
             </form>
           </div>
         </div>
