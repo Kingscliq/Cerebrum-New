@@ -21,7 +21,7 @@ function SignUp() {
   const handleClick = (e) => {
     e.preventDefault();
     let targetText = e.target.innerText;
-    targetText == "Tutor" ? setNumToogle(0) : setNumToogle(1);
+    targetText === "Tutor" ? setNumToogle(0) : setNumToogle(1);
     console.log(targetText);
   };
 
