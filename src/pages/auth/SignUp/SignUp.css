@@ -20,6 +20,11 @@
   color: var(--primary-color);
 }
 
+.signup-section p a {
+  text-decoration: none;
+  font-weight: 600;
+}
+
 .btn-container button {
   margin: 12px 0;
 }

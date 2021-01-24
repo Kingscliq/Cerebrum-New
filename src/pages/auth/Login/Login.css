@@ -1,3 +1,13 @@
-.login-section button{
-    background: var(--primary-color);
+.login-section h2 {
+  font-weight: 600;
+}
+
+.login-section .btn {
+  background: var(--primary-color);
+}
+
+.login-section span a {
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
 }

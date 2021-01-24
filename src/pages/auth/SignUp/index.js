@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { signupImage } from "../../../assets/images";
 import { Input } from "../../../components/Input";
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
@@ -111,7 +112,10 @@ function SignUp() {
               </p>
               <hr />
               <p className="signup-p">
-                Already have an account? <span>Log In</span>
+                Already have an account?{" "}
+                <span>
+                  <Link to="/login">Log In</Link>
+                </span>
               </p>
             </form>
           </div>
