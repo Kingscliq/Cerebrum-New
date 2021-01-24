@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { loginImage } from "../../../assets/images";
+import { signupImage } from "../../../assets/images";
 import { Input } from "../../../components/Input";
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import "./SignUp.css";
@@ -26,7 +26,7 @@ function SignUp() {
   };
 
   const handleSubmit = (e) => {
-    signUpReg(e, signUpData, setSignUpData, setLoading);
+    signUpReg(e, signUpData, setLoading);
   };
 
   const handleChange = (e) => {
@@ -37,7 +37,7 @@ function SignUp() {
   return (
     <main className="container-fluid vh-100 signup-section">
       <section className="row h-100">
-        <div className="col-6 d-flex justify-content-center align-items-center">
+        <div className="col-7 d-flex justify-content-center align-items-center">
           <div className="card shadow w-c">
             <form onSubmit={handleSubmit}>
               <h2 className="fs-5">Create Account</h2>
@@ -107,7 +107,7 @@ function SignUp() {
               />
               <p className="signup-p pt-2">
                 By signing up, you agree to our <span>Terms of Use</span> &
-                <span>Privacy Policy.</span>
+                <span> Privacy Policy.</span>
               </p>
               <hr />
               <p className="signup-p">
@@ -117,8 +117,8 @@ function SignUp() {
           </div>
         </div>
         <div
-          className="col-6 bg-danger h-100 signup-image"
-          style={{ background: `url(${loginImage})` }}
+          className="col-5 bg-danger h-100 signup-image"
+          style={{ background: `url(${signupImage})` }}
         ></div>
       </section>
     </main>

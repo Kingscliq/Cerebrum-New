@@ -1,7 +1,6 @@
-import React from "react";
 import axios from "axios";
 
-export const signUpReg = (e, state, stateHandler, setLoadState) => {
+export const signUpReg = (e, state, setLoadState) => {
   e.preventDefault();
 
   setLoadState(true);

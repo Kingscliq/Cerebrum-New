@@ -1,4 +1,5 @@
-import loginImage from "./loginimage.png";
+import signupImage from "./signupimage.png";
 import loaderImage from "./loaderimage.gif";
+import forgotPasswordImg from "./forgotpasswordimage.png";
 
-export { loginImage, loaderImage };
+export { signupImage, loaderImage, forgotPasswordImg };

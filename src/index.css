@@ -16,3 +16,8 @@ body {
 .icon-color {
   color: #21212152;
 }
+
+.w-c {
+  width: 450px;
+  padding: 25px 55px;
+}
