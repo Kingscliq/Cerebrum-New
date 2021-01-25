@@ -78,7 +78,11 @@ const Login = () => {
         </div>
         <div
           className="col-5 h-100 signup-image"
-          style={{ background: `url(${loginImg})` }}
+          style={{
+            background: `url(${loginImg})`,
+            backgroundRepeat: `no-repeat`,
+            backgroundSize: `cover`,
+          }}
         ></div>
       </section>
     </main>

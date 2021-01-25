@@ -121,8 +121,12 @@ function SignUp() {
           </div>
         </div>
         <div
-          className="col-5 bg-danger h-100 signup-image"
-          style={{ background: `url(${signupImage})` }}
+          className="col-5 h-100 signup-image"
+          style={{
+            background: `url(${signupImage})`,
+            backgroundRepeat: `no-repeat`,
+            backgroundSize: `cover`,
+          }}
         ></div>
       </section>
     </main>

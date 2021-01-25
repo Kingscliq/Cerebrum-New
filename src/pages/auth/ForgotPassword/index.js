@@ -30,8 +30,12 @@ function ForgotPassWord() {
           </div>
         </div>
         <div
-          className="col-5 bg-danger h-100 signup-image"
-          style={{ background: `url(${forgotPasswordImg})` }}
+          className="col-5 h-100 signup-image"
+          style={{
+            background: `url(${forgotPasswordImg})`,
+            backgroundRepeat: `no-repeat`,
+            backgroundSize: `cover`,
+          }}
         ></div>
       </section>
     </main>

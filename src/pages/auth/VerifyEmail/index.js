@@ -40,7 +40,7 @@ function VerifyEmail() {
   return (
     <main className="container-fluid vh-100 verifymail-section">
       <section className="row h-100">
-        <div className="col-6 d-flex justify-content-center align-items-center">
+        <div className="col-7 d-flex justify-content-center align-items-center">
           <div className="card shadow w-c">
             <form>
               <h2> Hi Ikeme </h2>
@@ -71,10 +71,11 @@ function VerifyEmail() {
           </div>
         </div>
         <div
-          className="col-6 bg-danger h-100"
+          className="col-5 vh-100"
           style={{
             background: `url(${verifyImage})`,
             backgroundRepeat: `no-repeat`,
+            backgroundSize: `cover`,
           }}
         ></div>
       </section>
