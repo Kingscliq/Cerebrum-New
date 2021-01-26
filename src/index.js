@@ -13,10 +13,10 @@ import { Footer } from "./widgets/Footer";
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      {/* <App /> */}
+      <App />
 
-      <DashboardHeader />
-      <Dashboard />
+      {/* <DashboardHeader /> */}
+      {/* <Dashboard /> */}
       <Footer />
     </BrowserRouter>
   </React.StrictMode>,

@@ -58,7 +58,9 @@ const Dashboard = () => {
             <p>Courses Completed</p>
           </div>
           <div className='card p-4 h-50 shadow'>
-            <h1 style={{ fontSize: "100px", fontWeight: "900" }}>30m</h1>{" "}
+            <h1 style={{ fontSize: "100px", fontWeight: "900" }} className=''>
+              30m
+            </h1>{" "}
             <p>Paid Courses</p>
           </div>
         </div>
