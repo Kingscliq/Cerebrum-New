@@ -14,7 +14,7 @@ function SignUp() {
 		lastName: "",
 		email: "",
 		password: "",
-		role: "tutor",
+		role: "learner",
 	});
 
 	const [loading, setLoading] = useState(false);
@@ -24,7 +24,8 @@ function SignUp() {
 		e.preventDefault();
 		let targetText = e.target.innerText;
 		targetText === "Tutor" ? setNumToogle(0) : setNumToogle(1);
-		console.log(targetText);
+		setSignUpData({ ...signUpData, role: targetText.toLowerCase() });
+		console.log(targetText.toLowerCase());
 	};
 
 	const handleSubmit = (e) => {
@@ -46,13 +47,13 @@ function SignUp() {
 							<hr className="mt-n5" />
 							<div className="btn-container">
 								<Button
-									className={`btn btn-primary ${numToogle === 0 ? "active" : ""} w-50`}
+									className={`btn btn-primary ${numToogle == 0 ? "active" : ""} w-50`}
 									text="Learner"
 									handleClick={handleClick}
 									disabled={loading}
 								/>
 								<Button
-									className={`btn btn-primary ${numToogle === 1 ? "active" : ""} w-50`}
+									className={`btn btn-primary ${numToogle == 1 ? "active" : ""} w-50`}
 									text="Tutor"
 									handleClick={handleClick}
 									disabled={loading}

@@ -1,0 +1,37 @@
+.footer-section {
+  background: var(--secondary-color);
+  color: #ffffff;
+}
+
+.footer-section p {
+  font-size: 0.77rem;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin: 10px;
+  font-size: 0.97rem;
+  font-weight: 600;
+}
+
+.footer-section button {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  border-radius: 8px;
+  margin-top: -15px;
+  margin-left: 20px;
+}
+
+.footer-section input {
+  outline: none !important;
+  border: none;
+}
+
+.footer-section a {
+  color: #ffffff;
+  margin: 0 15px;
+  text-decoration: none;
+}
