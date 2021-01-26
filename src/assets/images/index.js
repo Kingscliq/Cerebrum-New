@@ -1,3 +1,5 @@
+/** @format */
+
 import signupImage from "./signupimage.jpg";
 import verifyImage from "./verifyimage.jpg";
 import loginImg from "./loginimg.jpg";
@@ -6,6 +8,8 @@ import forgotPasswordImg from "./forgotpasswordimage.jpg";
 import logo from "./logo.png";
 import logo2 from "./logo2.png";
 import dashAvater from "./dashavatar.png";
+import dashboardImg from "./dashboard-img.png";
+import dashImg from "./dashimg.png";
 
 export {
   signupImage,
@@ -16,4 +20,6 @@ export {
   logo2,
   logo,
   dashAvater,
+  dashImg,
+  dashboardImg,
 };
