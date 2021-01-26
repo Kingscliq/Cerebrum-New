@@ -1,0 +1,51 @@
+.addcourse-page h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.addcourse-page .btn-primary {
+  background: var(--primary-color);
+}
+
+.addcourse-page .card {
+  border-radius: 15px;
+}
+
+.addcourse-page .courses-form-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #cccccc;
+  margin-bottom: 20px;
+}
+
+.courses-form-header h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.courses-form-header button {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #bdbbbb;
+  margin-top: -10px;
+}
+
+.addcourse-b {
+  width: 500px;
+  height: 400px;
+  background: #bdbbbb;
+  color: #ffffff;
+  border-radius: 15px;
+}
+
+.addcourse-b p {
+  font-size: 1.2rem;
+}
+
+.addcourse-b span {
+  font-size: 4rem;
+}
