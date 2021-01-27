@@ -70,7 +70,7 @@ const Login = () => {
               <p className="signup-p">
                 New Member?{" "}
                 <span>
-                  <Link to="/">Sign Up</Link>
+                  <Link to="/signup">Sign Up</Link>
                 </span>
               </p>
             </form>
