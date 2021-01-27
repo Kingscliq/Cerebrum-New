@@ -5,7 +5,7 @@ import { dashboardImg, dashImg } from "../../../assets/images";
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
 
-const Dashboard = () => {
+const TDashboard = () => {
   // const [authennticated, setAuthneticated];
   return (
     <>
@@ -22,6 +22,9 @@ const Dashboard = () => {
                   Lorem ipsum, or lipsum as it is sometimes known, is dummy text
                   used in laying out print, graphic or web designs.
                 </article>
+                <div className='d-flex flex-wrap justify-content-start my-3'>
+                  <button className='btn btn-primary'>Add Course</button>
+                </div>
               </div>
               <div className='col-4'>
                 <img
@@ -54,12 +57,12 @@ const Dashboard = () => {
             </div>
           </div>
           <div className='col-md-6 metrics d-flex flex-wrap flex-column'>
-            <div className='card p-4 h-60 shadow mb-3 col-offset-6'>
-              <div className='row'>
+            <div className='card p-4 h-60 shadow mb-3'>
+              <div className='row mx-auto'>
                 <div className='col-md-6'>
                   <div>
                     <h1
-                      style={{ fontSize: "60px", fontWeight: "900" }}
+                      style={{ fontSize: "50px", fontWeight: "900" }}
                       className='text-primary'
                     >
                       300K
@@ -81,12 +84,12 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-            <div className='card p-4 h-60 shadow mb-3 col-offset-6'>
-              <div className='row'>
+            <div className='card p-4 h-60 shadow mb-3'>
+              <div className='row mx-auto'>
                 <div className='col-md-6'>
                   <div>
                     <h1
-                      style={{ fontSize: "60px", fontWeight: "900" }}
+                      style={{ fontSize: "50px", fontWeight: "900" }}
                       className='text-primary'
                     >
                       300K
@@ -122,12 +125,9 @@ const Dashboard = () => {
             </div>
           </div>
         </section>
-        <div className='d-flex flex-wrap justify-content-end py-5'>
-          <button className='btn btn-outline-primary'>Add Course</button>
-        </div>
       </section>
       <Footer />
     </>
   );
 };
-export { Dashboard };
+export { TDashboard };

@@ -14,10 +14,6 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <App />
-
-      {/* <DashboardHeader /> */}
-      {/* <Dashboard /> */}
-      <Footer />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

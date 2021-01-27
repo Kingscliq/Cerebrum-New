@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { signupImage } from "../../../assets/images";
@@ -10,10 +12,11 @@ import { Loader } from "../../../components/Loader";
 
 function SignUp() {
   const [signUpData, setSignUpData] = useState({
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
+    role: "learner",
   });
 
   const [loading, setLoading] = useState(false);
@@ -23,7 +26,8 @@ function SignUp() {
     e.preventDefault();
     let targetText = e.target.innerText;
     targetText === "Tutor" ? setNumToogle(0) : setNumToogle(1);
-    console.log(targetText);
+    setSignUpData({ ...signUpData, role: targetText.toLowerCase() });
+    console.log(targetText.toLowerCase());
   };
 
   const handleSubmit = (e) => {
@@ -36,92 +40,92 @@ function SignUp() {
   };
 
   return (
-    <main className="container-fluid vh-100 signup-section">
-      <section className="row h-100">
-        <div className="col-7 d-flex justify-content-center align-items-center">
-          <div className="card shadow w-c">
+    <main className='container-fluid vh-100 signup-section'>
+      <section className='row h-100'>
+        <div className='col-7 d-flex justify-content-center align-items-center'>
+          <div className='card shadow w-c'>
             <form onSubmit={handleSubmit}>
-              <h2 className="fs-5">Create Account</h2>
-              <hr className="mt-n5" />
-              <div className="btn-container">
+              <h2 className='fs-5'>Create Account</h2>
+              <hr className='mt-n5' />
+              <div className='btn-container'>
                 <Button
                   className={`btn btn-primary ${
-                    numToogle == 0 ? "active" : ""
+                    numToogle === 0 ? "active" : ""
                   } w-50`}
-                  text="Learner"
+                  text='Learner'
                   handleClick={handleClick}
                   disabled={loading}
                 />
                 <Button
                   className={`btn btn-primary ${
-                    numToogle == 1 ? "active" : ""
+                    numToogle === 1 ? "active" : ""
                   } w-50`}
-                  text="Tutor"
+                  text='Tutor'
                   handleClick={handleClick}
                   disabled={loading}
                 />
               </div>
               <Input
-                type="text"
+                type='text'
                 icon={<FaUser />}
-                placeholder="First Name"
-                name="firstname"
+                placeholder='First Name'
+                name='firstName'
                 onChange={handleChange}
-                value={signUpData.firstname || ""}
+                value={signUpData.firstName || ""}
                 disabled={loading}
               />
               <Input
-                type="text"
+                type='text'
                 icon={<FaUser />}
-                placeholder="Last Name"
-                name="lastname"
+                placeholder='Last Name'
+                name='lastName'
                 onChange={handleChange}
-                value={signUpData.lastname || ""}
+                value={signUpData.lastName || ""}
                 disabled={loading}
               />
               <Input
-                type="email"
+                type='email'
                 icon={<FaEnvelope />}
-                placeholder="Email"
-                name="email"
+                placeholder='Email'
+                name='email'
                 onChange={handleChange}
                 value={signUpData.email || ""}
                 disabled={loading}
               />
               <Input
-                type="password"
+                type='password'
                 icon={<FaLock />}
-                placeholder="Password"
-                name="password"
+                placeholder='Password'
+                name='password'
                 onChange={handleChange}
                 value={signUpData.password || ""}
                 disabled={loading}
               />
-              <p className="signup-p">
+              <p className='signup-p'>
                 Use 8 or more characters with a mix of letters, number & symbols
               </p>
               <Button
-                className="btn btn-primary w-100"
+                className='btn btn-primary w-100'
                 text={"Sign Up"}
                 loadingIcon={loading && <Loader />}
                 disabled={loading}
               />
-              <p className="signup-p pt-2">
+              <p className='signup-p pt-2'>
                 By signing up, you agree to our <span>Terms of Use</span> &
                 <span> Privacy Policy.</span>
               </p>
               <hr />
-              <p className="signup-p">
+              <p className='signup-p'>
                 Already have an account?{" "}
                 <span>
-                  <Link to="/login">Log In</Link>
+                  <Link to='/login'>Log In</Link>
                 </span>
               </p>
             </form>
           </div>
         </div>
         <div
-          className="col-5 h-100 signup-image"
+          className='col-5 h-100 signup-image'
           style={{
             background: `url(${signupImage})`,
             backgroundRepeat: `no-repeat`,

@@ -16,7 +16,7 @@ function DashboardHeader() {
         <div className='dash-nav-items d-flex'>
           <h5>Courses</h5>
           <Input placeholder='Search' icon={<FaSearch />} />
-          <span>
+          <span> 
             <FaRegBell />
           </span>
           <div className='dash-user-icon'>

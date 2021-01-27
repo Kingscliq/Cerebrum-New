@@ -1,3 +1,5 @@
+/** @format */
+
 import axios from "axios";
 
 export const signUpReg = (e, state, setLoadState) => {
@@ -12,6 +14,10 @@ export const signUpReg = (e, state, setLoadState) => {
     .then((res) => {
       console.log(res.data);
       setLoadState(false);
+
+      const url = `/verifyemail?email=${currentState.email}&name=${currentState.firstName}`;
+
+      window.location.assign(url);
     })
     .catch(() => {
       console.log("Error Occured");
@@ -20,7 +26,7 @@ export const signUpReg = (e, state, setLoadState) => {
 };
 
 /// Login Api
-export const signIn = (e, user, setUser, setLoadState) => {
+export const signIn = (e, user, setUser, setLoadState, msg) => {
   e.preventDefault();
   setLoadState(true);
   const data = {
@@ -37,7 +43,32 @@ export const signIn = (e, user, setUser, setLoadState) => {
       setLoadState(false);
     })
     .catch((err) => {
-      console.log("there is an error logging in", err);
-      setLoadState(false);
+      if (err.response.status === 400) {
+        msg.error === "Invalid username or Password";
+      } else {
+        msg.success = "Login Successful";
+
+        history.push("/dashboard");
+      }
+    });
+};
+
+//email verification
+export const emailVerification = (e, email, setEmail) => {
+  e.preventDefault();
+  const data = {
+    email: email,
+  };
+
+  axios
+    .post(
+      `https://new-cerebrum.herokuapp.com/api/auth/request-email-verification?email=${data.email}`,
+      data
+    )
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log("there is an error sending verification email", err);
     });
 };
