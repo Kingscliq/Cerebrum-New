@@ -1,0 +1,58 @@
+.main-view-img {
+	height: 413px;
+	width: 650px;
+	/* background: url("../../../assets/images/watchimage.png"); */
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.mini-view-img {
+	height: 98px;
+	width: 161px;
+}
+
+.circle {
+	height: 20px;
+	width: 20px;
+}
+
+.watchcourse-form {
+	width: 90%;
+	margin: auto;
+}
+
+.watchcourse-aside {
+	height: 880px;
+}
+
+.add-border-bottom {
+	border-bottom: 4px solid var(--primary-color);
+}
+.add-aside-background {
+	background: #1421ff 8%;
+}
+
+.watchcourse-textarea {
+	border: 1px solid#a5a0a0;
+}
+
+.watchcourse-textarea::placeholder {
+	padding: 30px;
+	margin: 40px;
+}
+
+.watchcourse-cancel-btn {
+	color: var(--primary-color);
+	border: 1px solid var(--primary-color);
+	border-radius: 12px;
+	width: 84px;
+	height: 40px;
+}
+
+.watchcourse-send-btn {
+	background: var(--primary-color);
+	color: var(--background-color);
+	border-radius: 12px;
+	width: 84px;
+	height: 40px;
+}
