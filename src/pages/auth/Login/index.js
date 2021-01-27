@@ -1,7 +1,7 @@
 /** @format */
 
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { loginImg } from "../../../assets/images";
 import { Input } from "../../../components/Input";
 import { FaEnvelope, FaLock } from "react-icons/fa";
@@ -10,14 +10,16 @@ import { useState } from "react";
 import { Loader } from "../../../components/Loader";
 import { signIn } from "../../../api";
 import "./Login.css";
+import axios from "axios";
+// import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [msg, setmsg] = useState({ sucess: "", msg: "" });
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [msg, setmsg] = useState({ success: "", msg: "" });
   const [alert, setAlert] = useState(false);
   const [loading, setLoading] = useState(false);
 

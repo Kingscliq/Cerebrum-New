@@ -1,6 +1,7 @@
 /** @format */
 
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 export const signUpReg = (e, state, setLoadState) => {
   e.preventDefault();
@@ -26,7 +27,7 @@ export const signUpReg = (e, state, setLoadState) => {
 };
 
 /// Login Api
-export const signIn = (e, user, setUser, setLoadState, msg) => {
+export const signIn = (e, user, setUser, setLoadState, msg, setLoggedIn) => {
   e.preventDefault();
   setLoadState(true);
   const data = {
@@ -38,17 +39,18 @@ export const signIn = (e, user, setUser, setLoadState, msg) => {
     .post("https://new-cerebrum.herokuapp.com/api/auth/sign-in", data)
     .then((res) => {
       console.log(res.data);
-      const token = res.data.token;
-      localStorage.setItem("token", token);
+
+      const userDetails = JSON.stringify(res.data);
+      localStorage.setItem("userDetails", userDetails);
       setLoadState(false);
+
+      console.log(userDetails);
     })
     .catch((err) => {
       if (err.response.status === 400) {
-        msg.error === "Invalid username or Password";
+        msg.error = "Invalid username or Password";
       } else {
         msg.success = "Login Successful";
-
-        history.push("/dashboard");
       }
     });
 };

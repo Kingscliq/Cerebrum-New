@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import {
+  dashAvater,
   dashboardImg,
   dashImg,
   ellipsesvg1,
@@ -10,19 +11,19 @@ import {
 import { CourseList } from "../../../components/CourseList";
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
+import "./TDashboard.css";
 
 const TDashboard = () => {
-  // const [authennticated, setAuthneticated];
   return (
     <>
       <DashboardHeader />
-      <section className='container'>
+      <section className='container tdashboard'>
         <div className='container container-fluid mt-5'>
           <div className='row card p-5 shadow'>
             <div className='col-12 d-flex align-items-center'>
               <div className='col-8 m-5 justify-content-between'>
                 <header>
-                  <h1>Welcome Isabella</h1>
+                  <h1 className='font-bold'>Welcome Isabella</h1>
                 </header>
                 <article>
                   Lorem ipsum, or lipsum as it is sometimes known, is dummy text
@@ -41,10 +42,44 @@ const TDashboard = () => {
             </div>
           </div>
         </div>
-        <section className='row my-4'>
+        <section className='row my-4 mt-5'>
           <div className='col-md-6 card py-5 shadow'>
             <div className='row align-items-center'>
-              <CourseList />
+              <CourseList
+                courseName=' Code 101: Codeology'
+                courseDesc='Course +'
+                courseImg={dashAvater}
+              />
+              <CourseList
+                courseName=' Code 101: Codeology'
+                courseDesc='Course +'
+                courseImg={dashAvater}
+              />
+              <CourseList
+                courseName=' Code 101: Codeology'
+                courseDesc='Course +'
+                courseImg={dashAvater}
+              />
+              <CourseList
+                courseName=' Code 101: Codeology'
+                courseDesc='Course +'
+                courseImg={dashAvater}
+              />
+              <CourseList
+                courseName=' Code 101: Codeology'
+                courseDesc='Course +'
+                courseImg={dashAvater}
+              />
+              <CourseList
+                courseName=' Code 101: Codeology'
+                courseDesc='Course +'
+                courseImg={dashAvater}
+              />
+              <CourseList
+                courseName=' Code 101: Codeology'
+                courseDesc='Course +'
+                courseImg={dashAvater}
+              />
             </div>
           </div>
           <div className='col-md-6 metrics d-flex flex-wrap flex-column'>
@@ -53,65 +88,33 @@ const TDashboard = () => {
                 <div className='col-md-6'>
                   <div>
                     <h1
-                      style={{ fontSize: "50px", fontWeight: "900" }}
+                      style={{ fontSize: "50px", fontWeight: "600" }}
                       className='text-primary'
                     >
-                      300K
+                      300k
                     </h1>
                     <p>Courses Completed</p>
                   </div>
                 </div>
                 <div className='col-md-6'>
-                  {/* <div
-                    className='border-primary border rounded-circle'
-                    style={{
-                      height: "150px",
-                      width: "150px",
-                      borderWeight: "3px",
-                    }}
-                  >
-                    &nbsp;
-                  </div> */}
                   <img src={ellipsesvg1} alt='ellipse svg images' />
                 </div>
               </div>
             </div>
-            <div className='card p-4 h-60 shadow mb-3'>
+            <div className='card p-4 h-60 shadow'>
               <div className='row mx-auto'>
                 <div className='col-md-6'>
                   <div>
                     <h1
-                      style={{ fontSize: "50px", fontWeight: "900" }}
+                      style={{ fontSize: "50px", fontWeight: "600" }}
                       className='text-primary'
                     >
-                      300K
+                      30m
                     </h1>
                     <p>Courses Completed</p>
                   </div>
                 </div>
                 <div className='col-md-6'>
-                  {/* <div
-                    className='border-primary border rounded-circle'
-                    style={{
-                      height: "150px",
-                      width: "150px",
-                      // borderWidth: "3px",
-                    }}
-                  >
-                    &nbsp;
-                  </div>
-                  <div
-                    className='border-primary border-left rounded-circle'
-                    style={{
-                      height: "150px",
-                      width: "150px",
-                      // borderWidth: "10px",
-                      display: "absolute",
-                      marginTop: "-150px",
-                    }}
-                  >
-                    &nbsp;
-                  </div> */}
                   <img src={ellipsesvg2} alt='ellipse svg images' />
                 </div>
               </div>

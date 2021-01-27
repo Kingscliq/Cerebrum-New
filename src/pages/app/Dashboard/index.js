@@ -1,6 +1,7 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
+import "./Dashboard.css";
 import {
   dashboardImg,
   dashImg,
@@ -9,9 +10,34 @@ import {
 } from "../../../assets/images";
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
+import axios from "axios";
+import { signIn } from "../../../api";
 
 const Dashboard = () => {
-  // const [authennticated, setAuthneticated];
+  const data = localStorage.getItem("userDetails");
+  const user = JSON.parse(data);
+  const config = {
+    headers: {
+      Authorization: "Bearer " + user.token,
+    },
+  };
+
+  // const [user, setUser] = useState([]);
+
+  const handleLogin = () => {
+    const userId = localStorage.getItem("userDetails").uid;
+    axios
+      .get(`https://new-cerebrum.herokuapp.com/api/user/${userId}`, config)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err.response.data));
+  };
+
+  // signIn(user);
+
+  useEffect(() => {
+    handleLogin();
+  }, []);
+
   return (
     <>
       <DashboardHeader />
@@ -21,7 +47,7 @@ const Dashboard = () => {
             <div className='col-12 d-flex align-items-center'>
               <div className='col-8 m-5 justify-content-between'>
                 <header>
-                  <h1>Welcome Isabella</h1>
+                  <h1 className='font-bold'>Welcome Isabella</h1>
                 </header>
                 <article>
                   Lorem ipsum, or lipsum as it is sometimes known, is dummy text
@@ -44,7 +70,7 @@ const Dashboard = () => {
                 <img src={dashboardImg} alt='' />
               </div>
               <div className='col-md-6'>
-                <h1>Code 101: Codeology</h1>
+                <h1 className='font-bold'>Code 101: Codeology</h1>
                 <p>By Kingsley</p>
                 <p>
                   Lorem ipsum, or lipsum as it is sometimes known, is dummy text
@@ -64,53 +90,33 @@ const Dashboard = () => {
                 <div className='col-md-6'>
                   <div>
                     <h1
-                      style={{ fontSize: "60px", fontWeight: "900" }}
+                      style={{ fontSize: "60px", fontWeight: "600" }}
                       className='text-primary'
                     >
-                      300K
+                      300k
                     </h1>
                     <p>Courses Completed</p>
                   </div>
                 </div>
                 <div className='col-md-6'>
-                  {/* <div
-                    className='border-primary border rounded-circle'
-                    style={{
-                      height: "150px",
-                      width: "150px",
-                      borderWeight: "3px",
-                    }}
-                  >
-                    &nbsp;
-                  </div> */}
                   <img src={ellipsesvg2} alt='ellipse svg images' />
                 </div>
               </div>
             </div>
-            <div className='card p-4 h-60 shadow mb-3 col-offset-6'>
+            <div className='card p-4 h-60 shadow col-offset-6'>
               <div className='row'>
                 <div className='col-md-6'>
                   <div>
                     <h1
-                      style={{ fontSize: "60px", fontWeight: "900" }}
+                      style={{ fontSize: "60px", fontWeight: "600" }}
                       className='text-primary'
                     >
-                      300K
+                      30m
                     </h1>
                     <p>Courses Completed</p>
                   </div>
                 </div>
                 <div className='col-md-6'>
-                  {/* <div
-                    className='border-primary border rounded-circle'
-                    style={{
-                      height: "150px",
-                      width: "150px",
-                      // borderWidth: "3px",
-                    }}
-                  >
-                    &nbsp;
-                  </div> */}
                   <img src={ellipsesvg1} alt='ellipse svg images' />
                 </div>
               </div>
