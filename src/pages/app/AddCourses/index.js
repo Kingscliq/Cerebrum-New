@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Input } from "../../../components/Input";
+import React, { useState, useEffect } from "react";
+import { AddCourseInput } from "../../../components/AddCourseInput";
 import { IconContext } from "react-icons";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
@@ -7,14 +7,63 @@ import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
 import "./AddCourses.css";
 import { Button } from "../../../components/Button";
+import { getCategories } from "../../../api";
+
 function AddCourses() {
   const [toggle, setToggle] = useState({ one: true, two: false, three: false });
+
+  const [categories, setCategories] = useState([]);
+
+  const [form1, setForm1] = useState({
+    name: "",
+    description: "",
+    price: "",
+    category: "",
+    img: "",
+  });
+
+  const [form2, setForm2] = useState({
+    module: "",
+  });
+
+  const [form3, setForm3] = useState({
+    lessonName: "",
+    lessonVideo: "",
+    lessonDescription: "",
+  });
 
   const handleClick = (event) => {
     event.preventDefault();
     const name = event.target.className.baseVal || event.target.name;
     setToggle({ ...toggle, [name]: !toggle[name] });
   };
+
+  const handleChange = (event) => {
+    if (event.target.files) {
+      let currentImg = event.target.name;
+      setForm1({ ...form1, [currentImg]: event.target.files[0] });
+    } else {
+      let currentInput = event.target.name;
+      setForm1({ ...form1, [currentInput]: event.target.value });
+    }
+  };
+
+  const handleChange2 = (event) => {
+    let currentInput = event.target.name;
+    setForm2({ ...form2, [currentInput]: event.target.value });
+  };
+
+  const handleChange3 = (event) => {
+    if (event.target.files) {
+      let currentImg = event.target.name;
+      setForm1({ ...form3, [currentImg]: event.target.files[0] });
+    } else {
+      let currentInput = event.target.name;
+      setForm3({ ...form3, [currentInput]: event.target.value });
+    }
+  };
+  useEffect(() => getCategories(setCategories), []);
+
   return (
     <>
       <DashboardHeader />
@@ -22,9 +71,9 @@ function AddCourses() {
         <h1>Add Course</h1>
         <section className="card shadow py-5 px-4 mb-5">
           <div className="row col-12">
-            <div className="col-6">
+            <div className="col-sm-12 col-md-6">
               <div className="addcourse-a">
-                <form>
+                <section>
                   <div className="courses-form-header">
                     <h2 className="py-4">Course Details</h2>
                     <button name="one" onClick={handleClick}>
@@ -38,20 +87,54 @@ function AddCourses() {
                     </button>
                   </div>
                   {toggle["one"] && (
-                    <div>
+                    <form>
                       <label>Name of Course</label>
-                      <Input placeholder="Type here" />
+                      <AddCourseInput
+                        placeholder="Enter course name"
+                        name="name"
+                        onChange={handleChange}
+                      />
                       <label>Course Description</label>
-                      <Input placeholder="Type here" />
+                      <textarea
+                        className="form-control mb-3"
+                        name="description"
+                        onChange={handleChange}
+                        placeholder="Enter course description..."
+                        rows="7"
+                      ></textarea>
                       <label>Category</label>
-                      <Input placeholder="Type here" />
+                      <select
+                        name="category"
+                        onChange={handleChange}
+                        className="form-select mb-3"
+                        aria-label="Default select example"
+                      >
+                        <option>Select course category</option>
+                        {categories.map((item) => (
+                          <option key={item._id} value={item.name}>
+                            {item.name}
+                          </option>
+                        ))}
+                      </select>
+                      <label>Cover Image</label>
+                      <AddCourseInput
+                        placeholder="Upload Image"
+                        type="file"
+                        name="img"
+                        onChange={handleChange}
+                      />
                       <label>Price</label>
-                      <Input placeholder="Type here" />
+                      <AddCourseInput
+                        type="text"
+                        placeholder="Enter course price"
+                        name="price"
+                        onChange={handleChange}
+                      />
                       <Button className="btn btn-primary" text="Save" />
-                    </div>
+                    </form>
                   )}
-                </form>
-                <form>
+                </section>
+                <section>
                   <div className="courses-form-header">
                     <h2 className="py-4">Module</h2>
                     <button name="two" onClick={handleClick}>
@@ -65,16 +148,21 @@ function AddCourses() {
                     </button>
                   </div>
                   {toggle["two"] && (
-                    <div>
-                      <label>Module 1</label>
-                      <Input placeholder="Type here" />
+                    <form>
+                      <label>Module</label>
+                      <AddCourseInput
+                        name="module"
+                        type="text"
+                        placeholder="Enter module name"
+                        onChange={handleChange2}
+                      />
                       <Button className="btn btn-primary" text="Save" />
-                    </div>
+                    </form>
                   )}
-                </form>
-                <form>
+                </section>
+                <section>
                   <div className="courses-form-header">
-                    <h2 className="py-4">Lessons</h2>
+                    <h2 className="py-4">Lesson</h2>
                     <button name="three" onClick={handleClick}>
                       <IconContext.Provider
                         value={{
@@ -86,20 +174,39 @@ function AddCourses() {
                     </button>
                   </div>
                   {toggle["three"] && (
-                    <div>
+                    <form>
                       <label>Lesson Name</label>
-                      <Input />
+                      <AddCourseInput
+                        placeholder="Enter lesson name"
+                        type="text"
+                        name="lessonName"
+                        onChange={handleChange3}
+                      />
                       <label>Lesson Video</label>
-                      <Input />
+                      <AddCourseInput
+                        placeholder="Upload Video"
+                        type="file"
+                        name="lessonVideo"
+                        onChange={handleChange3}
+                      />
                       <label>Lesson Description</label>
-                      <Input placeholder="Type here" />
-                      <Button className="btn btn-primary" text="Publish" />
-                    </div>
+                      <textarea
+                        className="form-control mb-3"
+                        placeholder="Enter lesson description"
+                        rows="7"
+                        name="lessonDescription"
+                        onChange={handleChange3}
+                      ></textarea>
+                      <Button
+                        className="btn btn-primary"
+                        text="Publish Course"
+                      />
+                    </form>
                   )}
-                </form>
+                </section>
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-sm-12 col-md-6">
               <div className="mt-4 addcourse-b col-5 d-flex flex-column justify-content-center align-items-center">
                 <span>
                   <AiOutlinePlusCircle />

@@ -19,6 +19,12 @@ export const signUpReg = (e, state, setLoadState) => {
     });
 };
 
+export const getCategories = (stateFunction) => {
+  axios(`https://cerebrum-v1.herokuapp.com/api/category`).then((res) => {
+    stateFunction(res.data.data);
+  });
+};
+
 /// Login Api
 export const signIn = (e, user, setUser, setLoadState) => {
   e.preventDefault();
