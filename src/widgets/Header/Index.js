@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { logo } from "../../assets/images";
 import { Button } from "../../components/Button";
 import "./Header.css";
@@ -23,8 +23,14 @@ function Header() {
               <NavLink to="/">FAQ</NavLink>
             </li>
           </ul>
-          <Button className="btn btn-outline-primary border-3" text="Log In" />
-          <Button className="btn btn-primary border-3 " text="Sign Up" />
+          <Button
+            className="btn btn-outline-primary border-2"
+            text={<Link to="/login">Login</Link>}
+          />
+          <Button
+            className="btn btn-primary border-2"
+            text={<Link to="/signup">Sign Up</Link>}
+          />
         </div>
       </nav>
     </header>

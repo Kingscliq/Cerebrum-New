@@ -23,6 +23,14 @@
   border-radius: 10px;
 }
 
+.header-items-con .btn-primary a {
+  color: white;
+}
+
+.header-items-con .btn-outline-primary a {
+  color: var(--primary-color);
+}
+
 .header-items-con .btn:first-of-type {
   color: var(--primary-color) !important;
 }
