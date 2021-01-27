@@ -10,7 +10,8 @@ import logo2 from "./logo2.png";
 import dashAvater from "./dashavatar.png";
 import dashboardImg from "./dashboard-img.png";
 import dashImg from "./dashimg.png";
-
+import ellipsesvg1 from "./ellipsesvg1.svg";
+import ellipsesvg2 from "./ellipsesvg2.svg";
 export {
   signupImage,
   forgotPasswordImg,
@@ -22,4 +23,6 @@ export {
   dashAvater,
   dashImg,
   dashboardImg,
+  ellipsesvg1,
+  ellipsesvg2,
 };

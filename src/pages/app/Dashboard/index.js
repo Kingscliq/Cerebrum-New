@@ -1,7 +1,12 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
-import { dashboardImg, dashImg } from "../../../assets/images";
+import {
+  dashboardImg,
+  dashImg,
+  ellipsesvg1,
+  ellipsesvg2,
+} from "../../../assets/images";
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
 
@@ -68,7 +73,7 @@ const Dashboard = () => {
                   </div>
                 </div>
                 <div className='col-md-6'>
-                  <div
+                  {/* <div
                     className='border-primary border rounded-circle'
                     style={{
                       height: "150px",
@@ -77,7 +82,8 @@ const Dashboard = () => {
                     }}
                   >
                     &nbsp;
-                  </div>
+                  </div> */}
+                  <img src={ellipsesvg2} alt='ellipse svg images' />
                 </div>
               </div>
             </div>
@@ -95,7 +101,7 @@ const Dashboard = () => {
                   </div>
                 </div>
                 <div className='col-md-6'>
-                  <div
+                  {/* <div
                     className='border-primary border rounded-circle'
                     style={{
                       height: "150px",
@@ -104,19 +110,8 @@ const Dashboard = () => {
                     }}
                   >
                     &nbsp;
-                  </div>
-                  <div
-                    className='border-primary border-left rounded-circle'
-                    style={{
-                      height: "150px",
-                      width: "150px",
-                      // borderWidth: "10px",
-                      display: "absolute",
-                      marginTop: "-150px",
-                    }}
-                  >
-                    &nbsp;
-                  </div>
+                  </div> */}
+                  <img src={ellipsesvg1} alt='ellipse svg images' />
                 </div>
               </div>
             </div>

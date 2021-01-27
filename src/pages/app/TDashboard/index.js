@@ -1,7 +1,13 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
-import { dashboardImg, dashImg } from "../../../assets/images";
+import {
+  dashboardImg,
+  dashImg,
+  ellipsesvg1,
+  ellipsesvg2,
+} from "../../../assets/images";
+import { CourseList } from "../../../components/CourseList";
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
 
@@ -36,29 +42,14 @@ const TDashboard = () => {
           </div>
         </div>
         <section className='row my-4'>
-          <div className='col-md-6 card p-5 shadow'>
+          <div className='col-md-6 card py-5 shadow'>
             <div className='row align-items-center'>
-              <div className='col-md-6'>
-                <img src={dashboardImg} alt='' />
-              </div>
-              <div className='col-md-6'>
-                <h1>Code 101: Codeology</h1>
-                <p>By Kingsley</p>
-                <p>
-                  Lorem ipsum, or lipsum as it is sometimes known, is dummy text
-                  used in laying out print, graphic or web designs.
-                </p>
-                <p>
-                  <button className='btn btn-warning text-light text-bold'>
-                    Continue Course
-                  </button>
-                </p>
-              </div>
+              <CourseList />
             </div>
           </div>
           <div className='col-md-6 metrics d-flex flex-wrap flex-column'>
-            <div className='card p-4 h-60 shadow mb-3'>
-              <div className='row mx-auto'>
+            <div className='card py-4 h-60 shadow mb-3'>
+              <div className='row mx-auto justify-items-between'>
                 <div className='col-md-6'>
                   <div>
                     <h1
@@ -71,7 +62,7 @@ const TDashboard = () => {
                   </div>
                 </div>
                 <div className='col-md-6'>
-                  <div
+                  {/* <div
                     className='border-primary border rounded-circle'
                     style={{
                       height: "150px",
@@ -80,7 +71,8 @@ const TDashboard = () => {
                     }}
                   >
                     &nbsp;
-                  </div>
+                  </div> */}
+                  <img src={ellipsesvg1} alt='ellipse svg images' />
                 </div>
               </div>
             </div>
@@ -98,7 +90,7 @@ const TDashboard = () => {
                   </div>
                 </div>
                 <div className='col-md-6'>
-                  <div
+                  {/* <div
                     className='border-primary border rounded-circle'
                     style={{
                       height: "150px",
@@ -119,7 +111,8 @@ const TDashboard = () => {
                     }}
                   >
                     &nbsp;
-                  </div>
+                  </div> */}
+                  <img src={ellipsesvg2} alt='ellipse svg images' />
                 </div>
               </div>
             </div>
