@@ -12,6 +12,11 @@
   margin: 0 15px;
 }
 
+.header-items-con a {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
 .header-items-con .btn {
   border-color: var(--primary-color);
   font-weight: 600;

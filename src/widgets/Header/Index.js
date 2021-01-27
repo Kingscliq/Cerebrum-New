@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { logo } from "../../assets/images";
 import { Button } from "../../components/Button";
 import "./Header.css";
@@ -12,9 +13,15 @@ function Header() {
         </div>
         <div className="header-items-con d-flex align-items-center">
           <ul className="d-flex">
-            <li>About</li>
-            <li>Courses</li>
-            <li>FAQ</li>
+            <li>
+              <NavLink to="/">About</NavLink>
+            </li>
+            <li>
+              <NavLink to="/">Courses</NavLink>
+            </li>
+            <li>
+              <NavLink to="/">FAQ</NavLink>
+            </li>
           </ul>
           <Button className="btn btn-outline-primary border-3" text="Log In" />
           <Button className="btn btn-primary border-3 " text="Sign Up" />
