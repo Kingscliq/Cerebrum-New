@@ -5,11 +5,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 // import { AddCourses } from "./pages/app/AddCourses";
 import App from "./components/App";
+import { Header } from "./widgets/Header/Index";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <Header />
+      {/* <App /> */}
       {/* <AddCourses /> */}
     </BrowserRouter>
   </React.StrictMode>,

@@ -1,0 +1,28 @@
+.home-header-section {
+  background: #ffffff;
+}
+
+.home-header-section ul {
+  list-style: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 30px;
+}
+.home-header-section li {
+  margin: 0 15px;
+}
+
+.header-items-con .btn {
+  border-color: var(--primary-color);
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+.header-items-con .btn:first-of-type {
+  color: var(--primary-color) !important;
+}
+
+.header-items-con .btn:last-of-type {
+  background: var(--primary-color);
+  margin-left: 20px;
+}
