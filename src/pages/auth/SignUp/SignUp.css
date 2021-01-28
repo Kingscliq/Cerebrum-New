@@ -11,6 +11,9 @@
   font-weight: 600;
   outline: none;
 }
+.signup-section .input-group {
+  margin-bottom: 10px;
+}
 
 .signup-section button:focus {
   outline: none;

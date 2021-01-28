@@ -15,8 +15,8 @@ import { EmailVerify } from "./pages/auth/EmailVerify";
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      {/* <App /> */}
-      <AddCourses />
+      <App />
+      {/* <AddCourses /> */}
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
