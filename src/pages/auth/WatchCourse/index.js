@@ -1,6 +1,6 @@
 import React from "react";
 import ReactPlayer from "react-player";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ActiveCircle, Circle } from "../../../assets/images";
 import { Button } from "../../../components/Button";
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
@@ -20,11 +20,12 @@ function WatchCourse() {
 		console.log(targetText);
 	};
 
-	function check() {
-		alert(`halleluiyah`);
-	}
+	useEffect(() => {
+		getCourses(courses, setCourses);
+	}, []);
 
-	getCourses(courses, setCourses);
+	console.log(courses);
+	// console.log(courses[0].course_id);
 
 	return (
 		<>
@@ -99,142 +100,19 @@ function WatchCourse() {
 
 					<section className="m-4 col-4 p-1 shadow-lg watchcourse-aside overflow-auto">
 						<aside className="my-3">
-							<div onClick={check} className="d-flex justify-content-between align-items-center px-3 py-4">
-								<div className="mini-view-img active">
-									<ReactPlayer
-										className="react-player mini-view-img"
-										url="https://res.cloudinary.com/codeangelic/video/upload/v1611738487/cerebrum/lessons/ce7tmefwhlbaxc0udku0.mp4"
-										width="100%"
-										height="100%"
-									/>
-								</div>
+							{courses.map((lesson) => (
+								<div key={lesson._id} className="lessons-hover d-flex justify-content-between align-items-center px-3 py-4">
+									<div className="mini-view-img">
+										<ReactPlayer className="react-player mini-view-img" url={lesson.video_url} width="100%" height="100%" />
+									</div>
 
-								<p className="signup-p">
-									<strong>The Story of Art </strong>
-									<br /> Module 1: Basics
-								</p>
-								<img src={ActiveCircle} className="circle" alt="circle" />
-							</div>
-							<div onClick={check} className="d-flex justify-content-between align-items-center px-3 py-4">
-								<div className="mini-view-img">
-									<ReactPlayer
-										className="react-player mini-view-img"
-										url="https://res.cloudinary.com/codeangelic/video/upload/v1611738487/cerebrum/lessons/ce7tmefwhlbaxc0udku0.mp4"
-										width="100%"
-										height="100%"
-									/>
+									<p className="signup-p col-4">
+										<strong> {lesson.name} </strong>
+										<br /> {lesson.description}
+									</p>
+									<img src={ActiveCircle} className="circle" alt="circle" />
 								</div>
-								<p className="signup-p">
-									<strong>The Story of Art </strong>
-									<br /> Module 1: Basics
-								</p>
-								<img src={Circle} className="circle" alt="circle" />
-							</div>
-							<div onClick={check} className="d-flex justify-content-between align-items-center px-3 py-4">
-								<div className="mini-view-img">
-									<ReactPlayer
-										className="react-player mini-view-img"
-										url="https://res.cloudinary.com/codeangelic/video/upload/v1611738487/cerebrum/lessons/ce7tmefwhlbaxc0udku0.mp4"
-										width="100%"
-										height="100%"
-									/>
-								</div>
-								<p className="signup-p">
-									<strong>The Story of Art </strong>
-									<br /> Module 1: Basics
-								</p>
-								<img src={Circle} className="circle" alt="circle" />
-							</div>
-							<div className="d-flex justify-content-between align-items-center px-3 py-4">
-								<div className="mini-view-img">
-									<ReactPlayer
-										className="react-player mini-view-img"
-										url="https://res.cloudinary.com/codeangelic/video/upload/v1611738487/cerebrum/lessons/ce7tmefwhlbaxc0udku0.mp4"
-										width="100%"
-										height="100%"
-									/>
-								</div>
-								<p className="signup-p">
-									<strong>The Story of Art </strong>
-									<br /> Module 1: Basics
-								</p>
-								<img src={Circle} className="circle" alt="circle" />
-							</div>
-							<div className="d-flex justify-content-between align-items-center px-3 py-4">
-								<div className="mini-view-img">
-									<ReactPlayer
-										className="react-player mini-view-img"
-										url="https://res.cloudinary.com/codeangelic/video/upload/v1611738487/cerebrum/lessons/ce7tmefwhlbaxc0udku0.mp4"
-										width="100%"
-										height="100%"
-									/>
-								</div>
-								<p className="signup-p">
-									<strong>The Story of Art </strong>
-									<br /> Module 1: Basics
-								</p>
-								<img src={Circle} className="circle" alt="circle" />
-							</div>
-							<div className="d-flex justify-content-between align-items-center px-3 py-4">
-								<div className="mini-view-img">
-									<ReactPlayer
-										className="react-player mini-view-img"
-										url="https://res.cloudinary.com/codeangelic/video/upload/v1611738487/cerebrum/lessons/ce7tmefwhlbaxc0udku0.mp4"
-										width="100%"
-										height="100%"
-									/>
-								</div>
-								<p className="signup-p">
-									<strong>The Story of Art </strong>
-									<br /> Module 1: Basics
-								</p>
-								<img src={Circle} className="circle" alt="circle" />
-							</div>
-							<div className="d-flex justify-content-between align-items-center px-3 py-4">
-								<div className="mini-view-img">
-									<ReactPlayer
-										className="react-player mini-view-img"
-										url="https://res.cloudinary.com/codeangelic/video/upload/v1611738487/cerebrum/lessons/ce7tmefwhlbaxc0udku0.mp4"
-										width="100%"
-										height="100%"
-									/>
-								</div>
-								<p className="signup-p">
-									<strong>The Story of Art </strong>
-									<br /> Module 1: Basics
-								</p>
-								<img src={Circle} className="circle" alt="circle" />
-							</div>
-							<div className="d-flex justify-content-between align-items-center px-3 py-4">
-								<div className="mini-view-img">
-									<ReactPlayer
-										className="react-player mini-view-img"
-										url="https://res.cloudinary.com/codeangelic/video/upload/v1611738487/cerebrum/lessons/ce7tmefwhlbaxc0udku0.mp4"
-										width="100%"
-										height="100%"
-									/>
-								</div>
-								<p className="signup-p">
-									<strong>The Story of Art </strong>
-									<br /> Module 1: Basics
-								</p>
-								<img src={Circle} className="circle" alt="circle" />
-							</div>
-							<div className="d-flex justify-content-between align-items-center px-3 py-4">
-								<div className="mini-view-img">
-									<ReactPlayer
-										className="react-player mini-view-img"
-										url="https://res.cloudinary.com/codeangelic/video/upload/v1611738487/cerebrum/lessons/ce7tmefwhlbaxc0udku0.mp4"
-										width="100%"
-										height="100%"
-									/>
-								</div>
-								<p className="signup-p">
-									<strong>The Story of Art </strong>
-									<br /> Module 1: Basics
-								</p>
-								<img src={Circle} className="circle" alt="circle" />
-							</div>
+							))}
 						</aside>
 					</section>
 				</section>

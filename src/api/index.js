@@ -44,21 +44,16 @@ export const signIn = (e, user, setUser, setLoadState) => {
 
 //Courses Api
 export const getCourses = (courses, setCourses) => {
-	// e.preventDefault();
-	// setLoadState(true);
-	const data = [courses];
-	// const courseId = 12345;
+	const data = courses;
+	const courseId = 12345;
 
 	axios
-		.get(`https://new-cerebrum.herokuapp.com/api/course/12345`, data)
+		.get(`https://cerebrum-v1.herokuapp.com/api/course/${courseId}`, data)
 		.then((res) => {
-			console.log(res.data);
-			setCourses(data);
-
-			// setLoadState(false);
+			courses = res.data.data;
+			setCourses(res.data.data);
 		})
 		.catch((err) => {
 			console.log("There is an error loading files", err.response.data);
-			// setLoadState(false);
 		});
 };
