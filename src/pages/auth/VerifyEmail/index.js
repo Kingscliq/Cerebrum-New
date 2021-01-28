@@ -1,13 +1,15 @@
+/** @format */
+
 import React from "react";
 import { useState, useEffect } from "react";
 import { verifyImage } from "../../../assets/images";
 import { Button } from "../../../components/Button";
 import { Loader } from "../../../components/Loader";
+// import { emailVerification } from "../../../api";
 import "./VerifyEmail.css";
+import axios from "axios";
 
 function VerifyEmail() {
-  // Prepend `0` for one digit numbers. For that the number has to be
-  // converted to string, as numbers don't have length method
   const padTime = (time) => {
     return String(time).length === 1 ? `0${time}` : `${time}`;
   };
@@ -23,7 +25,9 @@ function VerifyEmail() {
     return `${minutes}:${padTime(seconds)}`;
   };
 
-  const [counter, setCounter] = useState(5);
+  const [counter, setCounter] = useState(15);
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   useEffect(() => {
     let timer;
     if (counter > 0) {
@@ -37,32 +41,61 @@ function VerifyEmail() {
     };
   }, [counter]);
 
-  return (
-    <main className="container-fluid vh-100 verifymail-section">
-      <section className="row h-100">
-        <div className="col-7 d-flex justify-content-center align-items-center">
-          <div className="card shadow w-c">
-            <form>
-              <h2> Hi Ikeme </h2>
+  // Email verification Api
+  useEffect(() => {
+    let url_string = window.location.href;
+    let url = new URL(url_string);
+    setName(url.searchParams.get("name"));
+    setEmail(url.searchParams.get("email"));
+  }, []);
 
-              <p className="mt-4 mb-3 signup-p">
-                To complete your sign up, please verify your email.{" "}
-                <span className="text-muted">
-                  Haven't seen the mail? Click to resend
+  const resendEmail = (e) => {
+    e.preventDefault();
+
+    axios
+      .post(
+        `https://cerebrum-v1.herokuapp.com/api/auth/request-email-verification/?email=${email}`
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err.response.data));
+  };
+
+  return (
+    <main className='container-fluid vh-100 verifymail-section'>
+      <section className='row h-100'>
+        <div className='col-7 d-flex justify-content-center align-items-center'>
+          <div className='card shadow w-c'>
+            <form>
+              <h3> Congratulations {name} </h3>
+
+              <p className='mt-4 mb-3 signup-p'>
+                Your registration was successful, but we need to verify your
+                email before you can access your account. <br />
+                <br />
+                Kindly check your email @ {email} and click on the verifiction
+                link to complete your registration. <br />
+              </p>
+              <hr />
+              <p className='signup-p'>
+                <span className='text-muted'>
+                  Haven't seen the mail? Click the resend button
                 </span>
               </p>
               <Button
-                className="btn btn-primary w-100 mb-5"
+                className='btn btn-primary w-100 mb-5'
                 text={"Resend Verification Mail"}
                 loadingIcon={counter === 0 ? null : <Loader />}
                 disabled={counter === 0 ? false : true}
+                onClick={resendEmail}
               />
-              <p className="mt-1 signup-p text-center">
+              <p className='mt-1 signup-p text-center'>
                 {counter === 0 ? (
                   "Click Resend"
                 ) : (
-                  <span className="verification-timeout">
-                    Time left <span className="pl-1 pr-1"> : </span>
+                  <span className='verification-timeout'>
+                    Time left <span className='pl-1 pr-1'> : </span>
                     {format(counter)}
                   </span>
                 )}
@@ -71,7 +104,7 @@ function VerifyEmail() {
           </div>
         </div>
         <div
-          className="col-5 vh-100"
+          className='col-5 vh-100'
           style={{
             background: `url(${verifyImage})`,
             backgroundRepeat: `no-repeat`,

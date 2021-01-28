@@ -1,17 +1,19 @@
+/** @format */
+
 import React from "react";
 
 function Input({ icon, type, placeholder, value, onChange, name, disabled }) {
   return (
-    <div className="input-group mb-0">
+    <div className='input-group mb-0'>
       <span
-        className="icon-color input-group-text bg-white border-end-0"
-        id="basic-addon1"
+        className='icon-color input-group-text bg-white border-end-0'
+        id='basic-addon1'
       >
         {icon}
       </span>
       <input
         type={type}
-        className="form-control border-start-0 p-2"
+        className='form-control border-start-0 p-2'
         placeholder={placeholder}
         name={name}
         onChange={onChange}
