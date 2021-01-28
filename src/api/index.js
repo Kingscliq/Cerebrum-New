@@ -27,9 +27,9 @@ export const signUpReg = (e, state, setLoadState) => {
 };
 
 /// Login Api
-export const signIn = (e, user, setUser, setLoadState, msg, setMsg) => {
+export const signIn = (e, user, setUser, setLoading) => {
   e.preventDefault();
-  setLoadState(true);
+  setLoading(true);
   const data = {
     email: user.email,
     password: user.password,
@@ -45,7 +45,7 @@ export const signIn = (e, user, setUser, setLoadState, msg, setMsg) => {
       setLoadState(false);
 
       console.log(userDetails);
-      window.open("/", "_self");
+      window.open("/tdashboard", "_self");
     })
     .catch((err) => {
       console.log(err.response.data);

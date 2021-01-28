@@ -15,8 +15,6 @@ import { signIn } from "../../../api";
 import { FaWindows } from "react-icons/fa";
 
 const Dashboard = () => {
-  // const [user, setUser] = useState([]);
-
   ///kjksdhcjv;lj;l
   const handleLogin = () => {
     const data = localStorage.getItem("userDetails");
@@ -67,6 +65,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+        {/* side-section for tutors*/}
         <section className='row my-4'>
           <div className='col-md-6 card p-5 shadow'>
             <div className='row align-items-center'>
@@ -88,6 +87,7 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
+          {/* METRICS */}
           <div className='col-md-6 metrics d-flex flex-wrap flex-column'>
             <div className='card p-4 h-60 shadow mb-3 col-offset-6'>
               <div className='row'>

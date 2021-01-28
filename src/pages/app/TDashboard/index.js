@@ -12,8 +12,37 @@ import { CourseList } from "../../../components/CourseList";
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
 import "./TDashboard.css";
+import axios from "axios";
+
+// Api Call to get Authorized User
+
+const authUser = () => {
+  useEffect(() => {
+    authUser();
+  }, []);
+
+  const data = localStorage.getItem("userDetails");
+  const user = JSON.parse(data);
+  const token = user.data.token;
+  const config = {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  };
+  const userId = user.data.uid;
+  axios
+    .get(`https://cerebrum-v1.herokuapp.com/api/users/${userId}`, config)
+    .then((res) => console.log(res.data))
+    .catch((err) => {
+      if (err.response.status === "401") {
+        window.open("/login", "_self");
+      }
+    });
+};
 
 const TDashboard = () => {
+  const [user, setUser] = useState("");
+
   return (
     <>
       <DashboardHeader />
