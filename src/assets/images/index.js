@@ -6,6 +6,10 @@ import forgotPasswordImg from "./forgotpasswordimage.jpg";
 import logo from "./logo.png";
 import logo2 from "./logo2.png";
 import dashAvater from "./dashavatar.png";
+import watchImage from "./watchimage.png";
+import Play from "./play.png";
+import ActiveCircle from "./active-circle.png";
+import Circle from "./circle.png";
 import dashboardImage from "./dashboardimage.png";
 
 export {
@@ -18,4 +22,6 @@ export {
   logo,
   dashAvater,
   dashboardImage,
+  ActiveCircle,
+  Circle,
 };
