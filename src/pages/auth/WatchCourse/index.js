@@ -10,8 +10,8 @@ import "./WatchCourse.css";
 
 function WatchCourse() {
 	const [numToggle, setNumToggle] = useState(1);
-
 	const [courses, setCourses] = useState([]);
+	const [watchLesson, setWatchLesson] = useState();
 
 	const handleClick = (e) => {
 		e.preventDefault();
@@ -25,7 +25,6 @@ function WatchCourse() {
 	}, []);
 
 	console.log(courses);
-	// console.log(courses[0].course_id);
 
 	return (
 		<>
