@@ -11,7 +11,6 @@ import { Loader } from "../../../components/Loader";
 import { signIn } from "../../../api";
 import "./Login.css";
 import axios from "axios";
-// import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -22,6 +21,21 @@ const Login = () => {
   const [msg, setMsg] = useState({ success: "", error: "" });
   const [alert, setAlert] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [statusAlert, setStatusAlert] = useState("");
+
+  let url_string = window.location.href;
+  let url = new URL(url_string);
+  let verify_msg = url.searchParams.get("msg");
+
+  const displayAlert = () => {
+    let statusAlert;
+    if (verify_msg === "success") {
+      statusAlert = "Your Email has been Successfully Verified";
+    } else if (verify_msg === "verify") {
+      statusAlert =
+        "Email has already been verified, You can login to your Dashboard";
+    }
+  };
 
   const handleChange = (e) => {
     const value = e.target.value;

@@ -12,6 +12,7 @@ import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
 import axios from "axios";
 import { signIn } from "../../../api";
+import { FaWindows } from "react-icons/fa";
 
 const Dashboard = () => {
   // const [user, setUser] = useState([]);
@@ -28,9 +29,13 @@ const Dashboard = () => {
     };
     const userId = user.data.uid;
     axios
-      .get(`https://new-cerebrum.herokuapp.com/api/users/${userId}`, config)
+      .get(`https://cerebrum-v1.herokuapp.com/api/users/${userId}`, config)
       .then((res) => console.log(res.data))
-      .catch((err) => console.log(err.response.data));
+      .catch((err) => {
+        if (err.response.status === "401") {
+          window.open("/login", "_self");
+        }
+      });
   };
 
   useEffect(() => {

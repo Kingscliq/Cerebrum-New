@@ -36,7 +36,7 @@ export const signIn = (e, user, setUser, setLoadState, msg, setMsg) => {
   };
 
   axios
-    .post("https://new-cerebrum.herokuapp.com/api/auth/sign-in", data)
+    .post("https://cerebrum-v1.herokuapp.com/api/auth/sign-in", data)
     .then((res) => {
       console.log(res.data);
 
@@ -45,12 +45,15 @@ export const signIn = (e, user, setUser, setLoadState, msg, setMsg) => {
       setLoadState(false);
 
       console.log(userDetails);
+      window.open("/", "_self");
     })
     .catch((err) => {
-      if (err.response.status === 400) {
-        msg.error = "Invalid username or Password";
-      } else {
-        msg.success = "Login Successful";
+      console.log(err.response.data);
+      if (
+        err.response.data.message ===
+        "Email not verified, kindly check your email for verification link"
+      ) {
+        window.open(`/verifyemail?email=${data.email}`, "_self");
       }
     });
 };
@@ -64,7 +67,7 @@ export const emailVerification = (e, email, setEmail) => {
 
   axios
     .post(
-      `https://new-cerebrum.herokuapp.com/api/auth/request-email-verification?email=${data.email}`,
+      `https://cerebrum-v1.herokuapp.com/api/auth/request-email-verification?email=${data.email}`,
       data
     )
     .then((res) => {

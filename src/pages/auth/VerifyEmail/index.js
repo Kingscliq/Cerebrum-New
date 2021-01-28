@@ -26,6 +26,8 @@ function VerifyEmail() {
   };
 
   const [counter, setCounter] = useState(15);
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   useEffect(() => {
     let timer;
     if (counter > 0) {
@@ -39,23 +41,17 @@ function VerifyEmail() {
     };
   }, [counter]);
 
-  let url_string = window.location.href;
-  let url = new URL(url_string);
-  let name = url.searchParams.get("name");
-  const email = url.searchParams.get("email");
+  // Email verification Api
+  useEffect(() => {
+    let url_string = window.location.href;
+    let url = new URL(url_string);
+    setName(url.searchParams.get("name"));
+    setEmail(url.searchParams.get("email"));
+  }, []);
 
-  // const handleSubmit = (e) => {
-  // 	// Call Api Function
-  // emailVerification(e, email, setEmail);
+  const resendEmail = (e) => {
+    e.preventDefault();
 
-  // 	console.log(url_string);
-
-  // 	setEmail(url_params_email);
-  // 	console.log(email);
-
-  // 	console.log(name);
-  // };
-  const resendEmail = () => {
     axios
       .post(
         `https://cerebrum-v1.herokuapp.com/api/auth/request-email-verification/?email=${email}`
@@ -92,7 +88,6 @@ function VerifyEmail() {
                 text={"Resend Verification Mail"}
                 loadingIcon={counter === 0 ? null : <Loader />}
                 disabled={counter === 0 ? false : true}
-                type='submit'
                 onClick={resendEmail}
               />
               <p className='mt-1 signup-p text-center'>

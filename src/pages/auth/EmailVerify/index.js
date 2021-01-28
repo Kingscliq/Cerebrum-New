@@ -16,9 +16,15 @@ const EmailVerify = () => {
         `https://cerebrum-v1.herokuapp.com/api/auth/verify-email/?uid=${uid}&verifyToken=${verifyToken}`
       )
       .then((res) => {
-        console.log(res.data);
+        if (res.data.message === "Email verified successfully") {
+          window.open("/login?msg=success", "_self");
+        }
       })
-      .catch((err) => console.log(err.response.data));
+      .catch((err) => {
+        if (err.response.data.message === "Email is already verified") {
+          window.open("/login?msg=verified", "_self");
+        }
+      });
   }, []);
 
   return <div>&nbsp;</div>;
