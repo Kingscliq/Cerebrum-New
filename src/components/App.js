@@ -8,6 +8,7 @@ import { SignUp } from "../pages/auth/SignUp";
 import { VerifyEmail } from "../pages/auth/VerifyEmail";
 import { Dashboard } from "../pages/app/Dashboard";
 import { TDashboard } from "../pages/app/TDashboard";
+import { WatchCourse } from "../pages/auth/WatchCourse";
 import "./App.css";
 import { EmailVerify } from "../pages/auth/EmailVerify";
 
@@ -22,6 +23,9 @@ function App() {
         <Route path='/' exact component={Dashboard} />
         <Route path='/tdashboard' exact component={TDashboard} />
         <Route path='/verify-email' component={EmailVerify} />
+        <Route path='/watchcourse' component={WatchCourse} />
+        <Route path='/login' component={Login} />
+        <Route path='/forgotpassword' component={ForgotPassWord} />
       </Switch>
     </div>
   );

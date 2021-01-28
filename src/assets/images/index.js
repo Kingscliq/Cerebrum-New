@@ -12,6 +12,12 @@ import dashboardImg from "./dashboard-img.png";
 import dashImg from "./dashimg.png";
 import ellipsesvg1 from "./ellipsesvg1.svg";
 import ellipsesvg2 from "./ellipsesvg2.svg";
+import watchImage from "./watchimage.png";
+import Play from "./play.png";
+import ActiveCircle from "./active-circle.png";
+import Circle from "./circle.png";
+import dashboardImage from "./dashboardimage.png";
+
 export {
   signupImage,
   forgotPasswordImg,
@@ -25,4 +31,7 @@ export {
   dashboardImg,
   ellipsesvg1,
   ellipsesvg2,
+  dashboardImage,
+  ActiveCircle,
+  Circle,
 };
