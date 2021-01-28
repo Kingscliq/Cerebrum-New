@@ -19,7 +19,7 @@ const Login = () => {
     password: "",
   });
   const [loggedIn, setLoggedIn] = useState(false);
-  const [msg, setmsg] = useState({ success: "", msg: "" });
+  const [msg, setMsg] = useState({ success: "", error: "" });
   const [alert, setAlert] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -32,7 +32,8 @@ const Login = () => {
   const handleSubmit = (e) => {
     // Call Api Function
 
-    signIn(e, user, setUser, setLoading, msg);
+    signIn(e, user, setUser, setLoading, msg, setMsg);
+    console.log(msg.success);
   };
 
   return (
@@ -40,6 +41,7 @@ const Login = () => {
       <section className='row h-100'>
         <div className='col-7 d-flex justify-content-center align-items-center'>
           <div className='card shadow w-c'>
+            <div className={`alert`}></div>
             <form onSubmit={handleSubmit}>
               <h2 className='text-left'>Log In</h2>
               <hr className='mt-n5' />

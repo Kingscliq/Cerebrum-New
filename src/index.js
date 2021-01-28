@@ -9,6 +9,7 @@ import App from "./components/App";
 import { Dashboard } from "./pages/app/Dashboard";
 import { DashboardHeader } from "./widgets/DashboardHeader";
 import { Footer } from "./widgets/Footer";
+import { EmailVerify } from "./pages/auth/EmailVerify";
 
 ReactDOM.render(
   <React.StrictMode>

@@ -14,25 +14,24 @@ import axios from "axios";
 import { signIn } from "../../../api";
 
 const Dashboard = () => {
-  const data = localStorage.getItem("userDetails");
-  const user = JSON.parse(data);
-  const config = {
-    headers: {
-      Authorization: "Bearer " + user.token,
-    },
-  };
-
   // const [user, setUser] = useState([]);
 
+  ///kjksdhcjv;lj;l
   const handleLogin = () => {
-    const userId = localStorage.getItem("userDetails").uid;
+    const data = localStorage.getItem("userDetails");
+    const user = JSON.parse(data);
+    const token = user.data.token;
+    const config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    const userId = user.data.uid;
     axios
-      .get(`https://new-cerebrum.herokuapp.com/api/user/${userId}`, config)
-      .then((res) => console.log(res))
+      .get(`https://new-cerebrum.herokuapp.com/api/users/${userId}`, config)
+      .then((res) => console.log(res.data))
       .catch((err) => console.log(err.response.data));
   };
-
-  // signIn(user);
 
   useEffect(() => {
     handleLogin();

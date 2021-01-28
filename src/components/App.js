@@ -9,6 +9,7 @@ import { VerifyEmail } from "../pages/auth/VerifyEmail";
 import { Dashboard } from "../pages/app/Dashboard";
 import { TDashboard } from "../pages/app/TDashboard";
 import "./App.css";
+import { EmailVerify } from "../pages/auth/EmailVerify";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path='/signup' exact component={SignUp} />
         <Route path='/' exact component={Dashboard} />
         <Route path='/tdashboard' exact component={TDashboard} />
+        <Route path='/verify-email' component={EmailVerify} />
       </Switch>
     </div>
   );

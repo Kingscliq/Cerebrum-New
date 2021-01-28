@@ -7,6 +7,7 @@ import { Button } from "../../../components/Button";
 import { Loader } from "../../../components/Loader";
 // import { emailVerification } from "../../../api";
 import "./VerifyEmail.css";
+import axios from "axios";
 
 function VerifyEmail() {
   const padTime = (time) => {
@@ -24,7 +25,7 @@ function VerifyEmail() {
     return `${minutes}:${padTime(seconds)}`;
   };
 
-  const [counter, setCounter] = useState(5);
+  const [counter, setCounter] = useState(15);
   useEffect(() => {
     let timer;
     if (counter > 0) {
@@ -38,13 +39,10 @@ function VerifyEmail() {
     };
   }, [counter]);
 
-  // const [email, setEmail] = useState("");
-  // const [name, setName] = useState("");
-  // let url_string = window.location.href;
-  // let url = new URL(url_string);
-  // let url_params_email = url.searchParams.get("email");
-  // const url_params_name = url.searchParams.get("name");
-  // setName(url_params_name);
+  let url_string = window.location.href;
+  let url = new URL(url_string);
+  let name = url.searchParams.get("name");
+  const email = url.searchParams.get("email");
 
   // const handleSubmit = (e) => {
   // 	// Call Api Function
@@ -57,6 +55,16 @@ function VerifyEmail() {
 
   // 	console.log(name);
   // };
+  const resendEmail = () => {
+    axios
+      .post(
+        `https://cerebrum-v1.herokuapp.com/api/auth/request-email-verification/?email=${email}`
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err.response.data));
+  };
 
   return (
     <main className='container-fluid vh-100 verifymail-section'>
@@ -64,14 +72,14 @@ function VerifyEmail() {
         <div className='col-7 d-flex justify-content-center align-items-center'>
           <div className='card shadow w-c'>
             <form>
-              <h3> Congratulations {} </h3>
+              <h3> Congratulations {name} </h3>
 
               <p className='mt-4 mb-3 signup-p'>
                 Your registration was successful, but we need to verify your
                 email before you can access your account. <br />
                 <br />
-                Kindly check your email and click on the verifiction link to
-                complete your registration. <br />
+                Kindly check your email @ {email} and click on the verifiction
+                link to complete your registration. <br />
               </p>
               <hr />
               <p className='signup-p'>
@@ -85,6 +93,7 @@ function VerifyEmail() {
                 loadingIcon={counter === 0 ? null : <Loader />}
                 disabled={counter === 0 ? false : true}
                 type='submit'
+                onClick={resendEmail}
               />
               <p className='mt-1 signup-p text-center'>
                 {counter === 0 ? (

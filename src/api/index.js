@@ -27,7 +27,7 @@ export const signUpReg = (e, state, setLoadState) => {
 };
 
 /// Login Api
-export const signIn = (e, user, setUser, setLoadState, msg, setLoggedIn) => {
+export const signIn = (e, user, setUser, setLoadState, msg, setMsg) => {
   e.preventDefault();
   setLoadState(true);
   const data = {
