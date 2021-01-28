@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./Dashboard.css";
 import {
   dashboardImg,
@@ -11,8 +11,6 @@ import {
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
 import axios from "axios";
-import { signIn } from "../../../api";
-import { FaWindows } from "react-icons/fa";
 
 const Dashboard = () => {
   ///kjksdhcjv;lj;l
@@ -27,7 +25,7 @@ const Dashboard = () => {
     };
     const userId = user.data.uid;
     axios
-      .get(`https://cerebrum-v1.herokuapp.com/api/users/${userId}`, config)
+      .get(`https://cerebrum-v1.herokuapp.com/api/user/${userId}`, config)
       .then((res) => console.log(res.data))
       .catch((err) => {
         if (err.response.status === "401") {
@@ -60,6 +58,7 @@ const Dashboard = () => {
                 <img
                   src={dashImg}
                   className='img-responsive bg-warning rounded-circle shadow img-fluid'
+                  alt='Cerebrum'
                 />
               </div>
             </div>

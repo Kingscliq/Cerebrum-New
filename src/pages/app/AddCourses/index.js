@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AddCourseInput } from "../../../components/AddCourseInput";
+import axios from "axios";
 import { IconContext } from "react-icons";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
@@ -16,6 +17,7 @@ function AddCourses() {
   const [categories, setCategories] = useState([]);
 
   const [form1, setForm1] = useState({
+    tutor_id: JSON.parse(localStorage.getItem("userDetails")).data.uid,
     name: "",
     description: "",
     price: "",
@@ -88,7 +90,16 @@ function AddCourses() {
                     </button>
                   </div>
                   {toggle["one"] && (
-                    <form>
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        axios
+                          .post(
+                            "https://cerebrum-v1.herokuapp.com/api/tutor/course/create"
+                          )
+                          .then((res) => console.log(res));
+                      }}
+                    >
                       <label>Name of Course</label>
                       <AddCourseInput
                         placeholder="Enter course name"
@@ -131,7 +142,16 @@ function AddCourses() {
                         name="price"
                         onChange={handleChange}
                       />
-                      <Button className="btn btn-primary" text="Save" />
+                      <Button
+                        className="btn btn-primary"
+                        text="Save"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const userId = localStorage.getItem("userDetails")
+                            .data.uid;
+                          console.log(userId);
+                        }}
+                      />
                     </form>
                   )}
                 </section>
