@@ -8,6 +8,7 @@ import { Footer } from "../../../widgets/Footer";
 import "./AddCourses.css";
 import { Button } from "../../../components/Button";
 import { getCategories } from "../../../api";
+import { dashboardImage } from "../../../assets/images";
 
 function AddCourses() {
   const [toggle, setToggle] = useState({ one: true, two: false, three: false });
@@ -207,12 +208,14 @@ function AddCourses() {
               </div>
             </div>
             <div className="col-sm-12 col-md-6">
-              <div className="mt-4 addcourse-b col-5 d-flex flex-column justify-content-center align-items-center">
-                <span>
-                  <AiOutlinePlusCircle />
-                </span>
-                <p>Add Cover Image</p>
-              </div>
+              <div
+                className="mt-4 addcourse-b col-5"
+                style={{
+                  background: `url(${dashboardImage})`,
+                  backgroundRepeat: `no-repeat`,
+                  backgroundSize: `contain`,
+                }}
+              ></div>
             </div>
           </div>
         </section>

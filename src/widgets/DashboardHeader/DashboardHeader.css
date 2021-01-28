@@ -1,8 +1,9 @@
-.dash-nav-items {
+/* .dash-nav-items {
   margin-top: 9px;
-}
+} */
 .dash-nav-items > * {
   margin: 0 10px;
+  color: #9e9e9e;
 }
 
 .dash-nav-items input {
@@ -12,5 +13,12 @@
 .dash-nav-items h5 {
   font-size: 0.99rem;
   font-weight: 600;
-  margin-top: 5px;
+}
+
+.dash-nav-items #dash-bell {
+  font-size: 1.59rem;
+}
+
+.dash-nav-items #dash-toggle {
+  font-size: 1.299rem;
 }

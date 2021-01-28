@@ -6,6 +6,7 @@ import forgotPasswordImg from "./forgotpasswordimage.jpg";
 import logo from "./logo.png";
 import logo2 from "./logo2.png";
 import dashAvater from "./dashavatar.png";
+import dashboardImage from "./dashboardimage.png";
 
 export {
   signupImage,
@@ -16,4 +17,5 @@ export {
   logo2,
   logo,
   dashAvater,
+  dashboardImage,
 };
