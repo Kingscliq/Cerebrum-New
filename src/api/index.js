@@ -19,6 +19,12 @@ export const signUpReg = (e, state, setLoadState) => {
 		});
 };
 
+export const getCategories = (stateFunction) => {
+	axios(`https://cerebrum-v1.herokuapp.com/api/category`).then((res) => {
+		stateFunction(res.data.data);
+	});
+};
+
 /// Login Api
 export const signIn = (e, user, setUser, setLoadState) => {
 	e.preventDefault();
@@ -45,15 +51,15 @@ export const signIn = (e, user, setUser, setLoadState) => {
 //Courses Api
 export const getCourses = (courses, setCourses) => {
 	const data = courses;
-	const courseId = 12345;
+	const course_id = "6012ea1b057ae600157c2902";
 
 	axios
-		.get(`https://cerebrum-v1.herokuapp.com/api/course/${courseId}`, data)
+		.get(`https://cerebrum-v1.herokuapp.com/api/course/view/${course_id}`, data)
 		.then((res) => {
 			courses = res.data.data;
 			setCourses(res.data.data);
 		})
 		.catch((err) => {
-			console.log("There is an error loading files", err.response.data);
+			console.log("There is an error loading files", err.response);
 		});
 };

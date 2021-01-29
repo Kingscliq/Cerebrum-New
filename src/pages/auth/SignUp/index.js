@@ -10,10 +10,11 @@ import { Loader } from "../../../components/Loader";
 
 function SignUp() {
   const [signUpData, setSignUpData] = useState({
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
+    role: "learner",
   });
 
   const [loading, setLoading] = useState(false);
@@ -23,7 +24,8 @@ function SignUp() {
     e.preventDefault();
     let targetText = e.target.innerText;
     targetText === "Tutor" ? setNumToogle(0) : setNumToogle(1);
-    console.log(targetText);
+    setSignUpData({ ...signUpData, role: targetText.toLowerCase() });
+    console.log(targetText.toLowerCase());
   };
 
   const handleSubmit = (e) => {
@@ -65,18 +67,18 @@ function SignUp() {
                 type="text"
                 icon={<FaUser />}
                 placeholder="First Name"
-                name="firstname"
+                name="firstName"
                 onChange={handleChange}
-                value={signUpData.firstname || ""}
+                value={signUpData.firstName || ""}
                 disabled={loading}
               />
               <Input
                 type="text"
                 icon={<FaUser />}
                 placeholder="Last Name"
-                name="lastname"
+                name="lastName"
                 onChange={handleChange}
-                value={signUpData.lastname || ""}
+                value={signUpData.lastName || ""}
                 disabled={loading}
               />
               <Input

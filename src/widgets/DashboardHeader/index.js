@@ -1,5 +1,6 @@
 import React from "react";
 import { FaSearch, FaRegBell } from "react-icons/fa";
+import { RiArrowDownSLine } from "react-icons/ri";
 import { dashAvater, logo } from "../../assets/images";
 import { Input } from "../../components/Input";
 import "./DashboardHeader.css";
@@ -11,14 +12,17 @@ function DashboardHeader() {
         <div className="dash-nav-logo">
           <img src={logo} alt="logo" />
         </div>
-        <div className="dash-nav-items d-flex">
+        <div className="dash-nav-items d-flex align-items-center">
           <h5>Courses</h5>
-          <Input placeholder="Search" icon={<FaSearch />} />
-          <span>
+          <Input className="mb-5" placeholder="Search" icon={<FaSearch />} />
+          <span id="dash-bell">
             <FaRegBell />
           </span>
-          <div className="dash-user-icon">
+          <div className="dash-user-icon d-flex">
             <img src={dashAvater} alt="dash-avatar" />
+            <span id="dash-toggle">
+              <RiArrowDownSLine />
+            </span>
           </div>
         </div>
       </nav>

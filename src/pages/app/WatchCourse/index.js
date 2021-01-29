@@ -1,7 +1,7 @@
 import React from "react";
 import ReactPlayer from "react-player";
 import { useState, useEffect } from "react";
-import { ActiveCircle, Circle } from "../../../assets/images";
+import { ActiveCircle } from "../../../assets/images";
 import { Button } from "../../../components/Button";
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
@@ -11,7 +11,7 @@ import "./WatchCourse.css";
 function WatchCourse() {
 	const [numToggle, setNumToggle] = useState(1);
 	const [courses, setCourses] = useState([]);
-	const [watchLesson, setWatchLesson] = useState();
+	const [currentlyPlaying, setcurrentlyPlaying] = useState("");
 
 	const handleClick = (e) => {
 		e.preventDefault();
@@ -22,9 +22,28 @@ function WatchCourse() {
 
 	useEffect(() => {
 		getCourses(courses, setCourses);
+		// setCourses(courses);
 	}, []);
 
-	console.log(courses);
+	// console.log(courses);
+
+	const handleCurrentlyPlaying = (e) => {
+		const key = e.target.key;
+		key === courses._id ? (
+			console.log(courses)
+		) : (
+			<div className="main-view-img d-flex justify-content-center align-items-center">
+				<ReactPlayer
+					className="react-player"
+					url={`https://res.cloudinary.com/codeangelic/video/upload/v1611738487/cerebrum/lessons/ce7tmefwhlbaxc0udku0.mp4`}
+					playing={true}
+					controls={true}
+					width="100%"
+					height="100%"
+				/>
+			</div>
+		);
+	};
 
 	return (
 		<>
@@ -32,12 +51,12 @@ function WatchCourse() {
 			<main className="container pb-5">
 				<h1 className="fw-bold"> The Story of Art </h1>
 				<p> by Lil Kim </p>
-				<section className="d-flex">
-					<section className="m-1 col-7">
+				<section className="d-lg-flex flex-lg-row flex-md-column flex-sm-column justify-content-between">
+					<section className="col-lg-7 col-md-12 col-sm-12">
 						<div className="main-view-img d-flex justify-content-center align-items-center">
 							<ReactPlayer
 								className="react-player"
-								url="https://res.cloudinary.com/codeangelic/video/upload/v1611738487/cerebrum/lessons/ce7tmefwhlbaxc0udku0.mp4"
+								url={`https://res.cloudinary.com/codeangelic/video/upload/v1611738487/cerebrum/lessons/ce7tmefwhlbaxc0udku0.mp4`}
 								playing={true}
 								controls={true}
 								width="100%"
@@ -97,10 +116,13 @@ function WatchCourse() {
 						</div>
 					</section>
 
-					<section className="m-4 col-4 p-1 shadow-lg watchcourse-aside overflow-auto">
+					<section className="m-sm-0 col-lg-4 col-md-12 col-sm-12 p-1 shadow-lg watchcourse-aside overflow-auto">
 						<aside className="my-3">
 							{courses.map((lesson) => (
-								<div key={lesson._id} className="lessons-hover d-flex justify-content-between align-items-center px-3 py-4">
+								<div
+									onClick={handleCurrentlyPlaying}
+									key={lesson._id}
+									className="lessons-hover d-flex justify-content-between align-items-center px-3 py-4">
 									<div className="mini-view-img">
 										<ReactPlayer className="react-player mini-view-img" url={lesson.video_url} width="100%" height="100%" />
 									</div>
