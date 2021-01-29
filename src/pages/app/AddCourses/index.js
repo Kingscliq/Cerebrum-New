@@ -16,6 +16,8 @@ function AddCourses() {
 
   const [categories, setCategories] = useState([]);
 
+  const [courseImage, setCourseImage] = useState("");
+
   const [form1, setForm1] = useState({
     tutor_id: JSON.parse(localStorage.getItem("userDetails")).data.uid,
     name: "",
@@ -26,7 +28,8 @@ function AddCourses() {
   });
 
   const [form2, setForm2] = useState({
-    module: "",
+    course_id: "",
+    name: "",
   });
 
   const [form3, setForm3] = useState({
@@ -93,12 +96,35 @@ function AddCourses() {
                     <form
                       onSubmit={(e) => {
                         e.preventDefault();
+                        let formData = new FormData();
+                        formData.append("img", form1.img);
+                        formData.append("description", form1.description);
+                        formData.append("price", form1.price);
+                        formData.append("category", form1.category);
+                        formData.append("name", form1.name);
+                        formData.append("tutor_id", form1.tutor_id);
+                        console.log(formData);
                         axios
                           .post(
-                            "https://cerebrum-v1.herokuapp.com/api/tutor/course/create"
+                            "https://cerebrum-v1.herokuapp.com/api/tutor/course/create",
+                            formData,
+                            {
+                              headers: {
+                                "Content-Type": "multipart/form-data",
+                              },
+                            }
                           )
-                          .then((res) => console.log(res));
+                          .then((res) => {
+                            console.log(res.data.data);
+                            setCourseImage(res.data.data.image_url);
+                            setForm2({
+                              ...form2,
+                              course_id: res.data.data._id,
+                            });
+                          })
+                          .catch((err) => console.log(form1.tutor_id));
                       }}
+                      enctype="multipart/form-data"
                     >
                       <label>Name of Course</label>
                       <AddCourseInput
@@ -169,10 +195,21 @@ function AddCourses() {
                     </button>
                   </div>
                   {toggle["two"] && (
-                    <form>
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        console.log(form2);
+                        axios
+                          .post(
+                            "https://cerebrum-v1.herokuapp.com/api/tutor/module/create",
+                            form2
+                          )
+                          .then((res) => console.log(res));
+                      }}
+                    >
                       <label>Module</label>
                       <AddCourseInput
-                        name="module"
+                        name="name"
                         type="text"
                         placeholder="Enter module name"
                         onChange={handleChange2}
@@ -228,14 +265,9 @@ function AddCourses() {
               </div>
             </div>
             <div className="col-sm-12 col-md-6">
-              <div
-                className="mt-4 addcourse-b col-5"
-                style={{
-                  background: `url(${dashboardImage})`,
-                  backgroundRepeat: `no-repeat`,
-                  backgroundSize: `contain`,
-                }}
-              ></div>
+              <div className="mt-4 addcourse-b col-5">
+                <img src={courseImage || dashboardImage} alt="No Image" />
+              </div>
             </div>
           </div>
         </section>

@@ -20,7 +20,7 @@ function App() {
         <Route path="/verifyemail" component={VerifyEmail} />
         <Route path="/signup" exact component={SignUp} />
         <Route path="/dashboard/tutor/addcourse" exact component={AddCourses} />
-        <Route path="/" exact component={Dashboard} />
+        <Route path="/" exact component={Landin} />
         <Route path="/tdashboard" exact component={TDashboard} />
         <Route path="/verify-email" component={EmailVerify} />
         <Route path="/watchcourse" component={WatchCourse} />

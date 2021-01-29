@@ -44,16 +44,16 @@ export const signIn = (e, user, setUser, setLoadState, msg, setMsg) => {
       setLoadState(false);
 
       console.log(userDetails);
-      window.open("/dashboard", "_self");
+      window.open("/tdashboard", "_self");
     })
     .catch((err) => {
       console.log(err.response.data.message);
-      //   if (
-      //     err.response.data.message ===
-      //     "Email not verified, kindly check your email for verification link"
-      //   ) {
-      //     window.open(`/verifyemail?email=${data.email}`, "_self");
-      //   }
+      if (
+        err.response.data.message ===
+        "Email not verified, kindly check your email for verification link"
+      ) {
+        window.open(`/verifyemail?email=${data.email}`, "_self");
+      }
     });
 };
 //Courses Api

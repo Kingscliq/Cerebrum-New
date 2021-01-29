@@ -37,13 +37,17 @@
 }
 
 .addcourse-b {
-  width: 500px;
+  width: 100%;
   height: 400px;
-  background: #bdbbbb;
   color: #ffffff;
   border-radius: 15px;
 }
 
+.addcourse-b img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
 .addcourse-b p {
   font-size: 1.2rem;
 }
