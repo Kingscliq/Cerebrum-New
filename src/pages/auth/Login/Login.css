@@ -11,3 +11,7 @@
   font-weight: 600;
   text-decoration: none;
 }
+
+.login-section .input-group {
+  margin-bottom: 10px;
+}

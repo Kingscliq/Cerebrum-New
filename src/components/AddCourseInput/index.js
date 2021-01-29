@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 
 function AddCourseInput({
@@ -9,10 +11,10 @@ function AddCourseInput({
   disabled,
 }) {
   return (
-    <div className="input-group mb-3">
+    <div className='input-group mb-3'>
       <input
         type={type}
-        className="form-control border-start-1 p-2"
+        className='form-control border-start-1 p-2'
         placeholder={placeholder}
         name={name}
         onChange={onChange}

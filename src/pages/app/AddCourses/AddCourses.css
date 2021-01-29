@@ -1,3 +1,5 @@
+/** @format */
+
 .addcourse-page h1 {
   font-size: 1.8rem;
   font-weight: 600;
@@ -35,8 +37,10 @@
 }
 
 .addcourse-b {
-  width: 100%;
+  width: 500px;
   height: 400px;
+  background: #bdbbbb;
+  color: #ffffff;
   border-radius: 15px;
 }
 

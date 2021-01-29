@@ -1,3 +1,5 @@
+/** @format */
+
 import signupImage from "./signupimage.jpg";
 import verifyImage from "./verifyimage.jpg";
 import loginImg from "./loginimg.jpg";
@@ -6,13 +8,23 @@ import forgotPasswordImg from "./forgotpasswordimage.jpg";
 import logo from "./logo.png";
 import logo2 from "./logo2.png";
 import dashAvater from "./dashavatar.png";
+<<<<<<< HEAD
 import dummyVideoImage from "./dummyvideoimage.png";
 // import Play from "./play.png";
+=======
+import dashboardImg from "./dashboard-img.png";
+import dashImg from "./dashimg.png";
+import ellipsesvg1 from "./ellipsesvg1.svg";
+import ellipsesvg2 from "./ellipsesvg2.svg";
+import watchImage from "./watchimage.png";
+import Play from "./play.png";
+>>>>>>> 4dd6ce1c2d8bd94e8b6be2e57a403d860ccdf7fa
 import ActiveCircle from "./active-circle.png";
 import Circle from "./circle.png";
 import dashboardImage from "./dashboardimage.png";
 
 export {
+<<<<<<< HEAD
 	signupImage,
 	forgotPasswordImg,
 	verifyImage,
@@ -25,4 +37,21 @@ export {
 	ActiveCircle,
 	Circle,
 	dummyVideoImage,
+=======
+  signupImage,
+  forgotPasswordImg,
+  verifyImage,
+  loaderImage,
+  loginImg,
+  logo2,
+  logo,
+  dashAvater,
+  dashImg,
+  dashboardImg,
+  ellipsesvg1,
+  ellipsesvg2,
+  dashboardImage,
+  ActiveCircle,
+  Circle,
+>>>>>>> 4dd6ce1c2d8bd94e8b6be2e57a403d860ccdf7fa
 };

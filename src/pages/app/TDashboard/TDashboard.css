@@ -1,0 +1,14 @@
+/** @format */
+.tdashboard .btn {
+}
+
+/** @format */
+
+.font-bold {
+  font-weight: 600;
+}
+
+.tdashboard .card {
+  border-radius: 15px;
+  padding: 9px;
+}

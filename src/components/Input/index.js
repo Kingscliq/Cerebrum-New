@@ -1,8 +1,10 @@
+/** @format */
+
 import React from "react";
 
 function Input({ icon, type, placeholder, value, onChange, name, disabled }) {
   return (
-    <div className="input-group mb-0">
+    <div className="input-group">
       <span
         className="icon-color input-group-text bg-white border-end-0"
         id="basic-addon1"
