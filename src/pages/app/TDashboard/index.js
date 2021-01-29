@@ -16,10 +16,11 @@ import axios from "axios";
 
 // Api Call to get Authorized User
 
-const TDashboard = () => {
+const TDashboard = (props) => {
   const [user, setUser] = useState([]);
   const [role, setRole] = useState();
   const [loggedIn, setLoggedIn] = useState(false);
+  const [dashimage, setDashimage] = useState("");
 
   useEffect(() => {
     const data = localStorage.getItem("userDetails");
@@ -28,8 +29,6 @@ const TDashboard = () => {
     }
     const user = JSON.parse(data);
     const token = user.data.token;
-    // const abortController = new AbortController();
-    // const signal = abortController.signal;
     const config = {
       headers: {
         Authorization: "Bearer " + token,
@@ -43,7 +42,7 @@ const TDashboard = () => {
         // console.log(res.data.status);
         setUser(res.data.data);
         setRole(res.data.data.role);
-        // setLoggedIn(true);
+        setDashimage(res.data.data.image_url);
       })
       .catch((err) => {
         console.log(err.response.msg);
@@ -56,7 +55,7 @@ const TDashboard = () => {
   // }
   return (
     <>
-      <DashboardHeader />
+      <DashboardHeader dashimage={props.dashimage} />
       <section className='container tdashboard'>
         <div className='container container-fluid mt-5'>
           <div className='row card p-5 shadow'>

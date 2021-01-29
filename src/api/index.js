@@ -34,15 +34,7 @@ export const getCategories = (stateFunction) => {
 };
 
 /// Login Api
-export const signIn = (
-  e,
-  user,
-  setUser,
-  setLoadState,
-  setError,
-  error,
-  props
-) => {
+export const signIn = (e, user, setUser, setLoadState, setError, error) => {
   e.preventDefault();
   setLoadState(true);
   const data = {

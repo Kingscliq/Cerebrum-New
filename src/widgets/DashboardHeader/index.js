@@ -7,7 +7,8 @@ import { dashAvater, logo } from "../../assets/images";
 import { Input } from "../../components/Input";
 import "./DashboardHeader.css";
 
-function DashboardHeader() {
+function DashboardHeader(props) {
+  const dashimage = props.dashimage;
   return (
     <header className='py-4'>
       <nav className='dash-nav-container container d-flex justify-content-between'>
@@ -21,7 +22,7 @@ function DashboardHeader() {
             <FaRegBell />
           </span>
           <div className='dash-user-icon d-flex'>
-            <img src={dashAvater} alt='dash-avatar' />
+            <img src={dashimage} alt='dash-avatar' />
             <span id='dash-toggle'>
               <RiArrowDownSLine />
             </span>
