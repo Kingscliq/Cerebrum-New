@@ -22,6 +22,14 @@
   font-weight: 600;
   border-radius: 10px;
 }
+.header-items-con .btn:hover {
+  background: var(--primary-color);
+  color: #ffffff;
+}
+.header-items-con .btn a:hover {
+  background: var(--primary-color);
+  color: #ffffff;
+}
 
 .header-items-con .btn-primary a {
   color: white;

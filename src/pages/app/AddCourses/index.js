@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { AddCourseInput } from "../../../components/AddCourseInput";
 import axios from "axios";
 import { IconContext } from "react-icons";
-import { AiOutlinePlusCircle } from "react-icons/ai";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
@@ -10,6 +9,7 @@ import "./AddCourses.css";
 import { Button } from "../../../components/Button";
 import { getCategories } from "../../../api";
 import { dashboardImage } from "../../../assets/images";
+import { Loader } from "../../../components/Loader";
 
 function AddCourses() {
   const [toggle, setToggle] = useState({ one: true, two: false, three: false });
@@ -17,6 +17,8 @@ function AddCourses() {
   const [categories, setCategories] = useState([]);
 
   const [courseImage, setCourseImage] = useState("");
+
+  const [loading, setLoading] = useState(false);
 
   const [form1, setForm1] = useState({
     tutor_id: JSON.parse(localStorage.getItem("userDetails")).data.uid,
@@ -33,9 +35,11 @@ function AddCourses() {
   });
 
   const [form3, setForm3] = useState({
-    lessonName: "",
-    lessonVideo: "",
-    lessonDescription: "",
+    course_id: "",
+    module_id: "",
+    name: "",
+    img: "",
+    description: "",
   });
 
   const handleClick = (event) => {
@@ -61,8 +65,8 @@ function AddCourses() {
 
   const handleChange3 = (event) => {
     if (event.target.files) {
-      let currentImg = event.target.name;
-      setForm1({ ...form3, [currentImg]: event.target.files[0] });
+      let currentVideo = event.target.name;
+      setForm3({ ...form3, [currentVideo]: event.target.files[0] });
     } else {
       let currentInput = event.target.name;
       setForm3({ ...form3, [currentInput]: event.target.value });
@@ -94,8 +98,9 @@ function AddCourses() {
                   </div>
                   {toggle["one"] && (
                     <form
-                      onSubmit={(e) => {
+                      onSubmit={async (e) => {
                         e.preventDefault();
+                        setLoading(true);
                         let formData = new FormData();
                         formData.append("img", form1.img);
                         formData.append("description", form1.description);
@@ -121,6 +126,7 @@ function AddCourses() {
                               ...form2,
                               course_id: res.data.data._id,
                             });
+                            setLoading(false);
                           })
                           .catch((err) => console.log(form1.tutor_id));
                       }}
@@ -131,6 +137,7 @@ function AddCourses() {
                         placeholder="Enter course name"
                         name="name"
                         onChange={handleChange}
+                        disabled={loading}
                       />
                       <label>Course Description</label>
                       <textarea
@@ -139,6 +146,7 @@ function AddCourses() {
                         onChange={handleChange}
                         placeholder="Enter course description..."
                         rows="7"
+                        disabled={loading}
                       ></textarea>
                       <label>Category</label>
                       <select
@@ -146,6 +154,7 @@ function AddCourses() {
                         onChange={handleChange}
                         className="form-select mb-3"
                         aria-label="Default select example"
+                        disabled={loading}
                       >
                         <option>Select course category</option>
                         {categories.map((item) => (
@@ -160,6 +169,7 @@ function AddCourses() {
                         type="file"
                         name="img"
                         onChange={handleChange}
+                        disabled={loading}
                       />
                       <label>Price</label>
                       <AddCourseInput
@@ -167,10 +177,12 @@ function AddCourses() {
                         placeholder="Enter course price"
                         name="price"
                         onChange={handleChange}
+                        disabled={loading}
                       />
                       <Button
                         className="btn btn-primary"
                         text="Save"
+                        loadingIcon={loading && <Loader />}
                         onClick={(e) => {
                           e.preventDefault();
                           const userId = localStorage.getItem("userDetails")
@@ -198,13 +210,21 @@ function AddCourses() {
                     <form
                       onSubmit={(e) => {
                         e.preventDefault();
+                        setLoading(true);
                         console.log(form2);
                         axios
                           .post(
                             "https://cerebrum-v1.herokuapp.com/api/tutor/module/create",
                             form2
                           )
-                          .then((res) => console.log(res));
+                          .then((res) => {
+                            setForm3({
+                              ...form3,
+                              course_id: form2.course_id,
+                              module_id: res.data.data._id,
+                            });
+                            setLoading(false);
+                          });
                       }}
                     >
                       <label>Module</label>
@@ -213,8 +233,13 @@ function AddCourses() {
                         type="text"
                         placeholder="Enter module name"
                         onChange={handleChange2}
+                        disabled={loading}
                       />
-                      <Button className="btn btn-primary" text="Save" />
+                      <Button
+                        className="btn btn-primary"
+                        loadingIcon={loading && <Loader />}
+                        text="Save"
+                      />
                     </form>
                   )}
                 </section>
@@ -232,19 +257,45 @@ function AddCourses() {
                     </button>
                   </div>
                   {toggle["three"] && (
-                    <form>
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        let formData = new FormData();
+                        formData.append("img", form3.img);
+                        formData.append("description", form3.description);
+                        formData.append("name", form3.name);
+                        formData.append("course_id", form3.course_id);
+                        formData.append("module_id", form3.module_id);
+                        console.log(formData);
+                        axios
+                          .post(
+                            "https://cerebrum-v1.herokuapp.com/api/tutor/lesson/create",
+                            formData,
+                            {
+                              headers: {
+                                "Content-Type": "multipart/form-data",
+                              },
+                            }
+                          )
+                          .then((res) => {
+                            console.log(res);
+                          })
+                          .catch((err) => console.log(form1, form2, form3));
+                      }}
+                      enctype="multipart/form-data"
+                    >
                       <label>Lesson Name</label>
                       <AddCourseInput
                         placeholder="Enter lesson name"
                         type="text"
-                        name="lessonName"
+                        name="name"
                         onChange={handleChange3}
                       />
                       <label>Lesson Video</label>
                       <AddCourseInput
                         placeholder="Upload Video"
                         type="file"
-                        name="lessonVideo"
+                        name="img"
                         onChange={handleChange3}
                       />
                       <label>Lesson Description</label>
@@ -252,7 +303,7 @@ function AddCourses() {
                         className="form-control mb-3"
                         placeholder="Enter lesson description"
                         rows="7"
-                        name="lessonDescription"
+                        name="description"
                         onChange={handleChange3}
                       ></textarea>
                       <Button

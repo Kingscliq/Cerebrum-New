@@ -21,7 +21,7 @@ function App() {
         <Route path="/forgotpassword" component={ForgotPassWord} />
         <Route path="/verifyemail" component={VerifyEmail} />
         <Route path="/dashboard/tutor/addcourse" exact component={AddCourses} />
-        <Route path="/tdashboard" exact component={TDashboard} />
+        <Route path="/tdashboard" component={TDashboard} />
         <Route path="/verify-email" component={EmailVerify} />
         <Route path="/watchcourse" component={WatchCourse} />
         <Route path="/" exact component={LandingPage} />

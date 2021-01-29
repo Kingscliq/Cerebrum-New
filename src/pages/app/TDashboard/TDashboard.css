@@ -12,3 +12,14 @@
   border-radius: 15px;
   padding: 9px;
 }
+
+.tdashboard .btn {
+  background: #ffffff;
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+}
+.tdashboard .btn a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}

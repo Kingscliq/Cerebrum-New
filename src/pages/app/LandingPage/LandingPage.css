@@ -7,6 +7,9 @@
   width: 40%;
   border-radius: 8px;
 }
+.landing-page-a .btn:hover {
+  background: #ffffff;
+}
 
 .landing-page-a .btn:first-of-type {
   background: var(--primary-color);
