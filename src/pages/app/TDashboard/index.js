@@ -22,6 +22,7 @@ const TDashboard = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   // const [dashimage, setDashimage] = useState("");
   const [courses, setCourses] = useState([]);
+  const [courseCount, setCourseCount] = useState(0);
 
   useEffect(() => {
     const data = localStorage.getItem("userDetails");
