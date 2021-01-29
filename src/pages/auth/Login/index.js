@@ -51,53 +51,53 @@ const Login = () => {
   };
 
   return (
-    <main className='vh-100 container-fluid login-section'>
-      <section className='row h-100'>
-        <div className='col-7 d-flex justify-content-center align-items-center'>
-          <div className='card shadow w-c'>
+    <main className="vh-100 container-fluid login-section">
+      <section className="row h-100">
+        <div className="col-7 d-flex justify-content-center align-items-center">
+          <div className="card shadow w-c">
             <div className={`alert`}></div>
             <form onSubmit={handleSubmit}>
-              <h2 className='text-left'>Log In</h2>
-              <hr className='mt-n5' />
+              <h2 className="text-left">Log In</h2>
+              <hr className="mt-n5" />
               <Input
-                type='email'
+                type="email"
                 icon={<FaEnvelope />}
-                placeholder='Enter Email'
+                placeholder="Enter Email"
                 onChange={handleChange}
                 value={user.email}
-                name='email'
+                name="email"
               />
               <Input
-                type='password'
+                type="password"
                 icon={<FaLock />}
-                placeholder='Enter Password'
+                placeholder="Enter Password"
                 onChange={handleChange}
                 value={user.password}
-                name='password'
+                name="password"
               />
-              <p className='signup-p'>
+              <p className="signup-p">
                 <span>
-                  <Link to='/forgotpassword'>Forgot Password</Link>
+                  <Link to="/forgotpassword">Forgot Password</Link>
                 </span>
               </p>
               <Button
-                className='btn btn-primary w-100'
-                text='Login'
+                className="btn btn-primary w-100"
+                text="Login"
                 loadingIcon={loading && <Loader />}
               />
 
               <hr />
-              <p className='signup-p'>
+              <p className="signup-p">
                 New Member?{" "}
                 <span>
-                  <Link to='/'>Sign Up</Link>
+                  <Link to="/signup">Sign Up</Link>
                 </span>
               </p>
             </form>
           </div>
         </div>
         <div
-          className='col-5 h-100 signup-image'
+          className="col-5 h-100 signup-image"
           style={{
             background: `url(${loginImg})`,
             backgroundRepeat: `no-repeat`,
