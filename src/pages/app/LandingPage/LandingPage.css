@@ -4,7 +4,9 @@
 
 .landing-page-a .btn {
   font-weight: 600;
-  width: 40%;
+  width: 32%;
+  padding: 10px;
+  font-size: 0.84rem;
   border-radius: 8px;
 }
 .landing-page-a .btn:hover {
@@ -31,14 +33,21 @@
 .landing-page-d .btn {
   background: var(--primary-color);
   border-color: var(--primary-color);
-  width: 50%;
+  width: 45%;
   font-weight: 600;
+  font-size: 0.84rem;
+  padding: 10px;
   border-radius: 8px;
+}
+
+.landing-page-a {
+  height: 600px;
 }
 
 .landing-page-c {
   height: 670px;
 }
+
 .landing-page-d {
   height: 500px;
 }

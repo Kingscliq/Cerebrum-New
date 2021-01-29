@@ -20,26 +20,25 @@ import { Logout } from "../pages/app/Logout";
 
 function App() {
   return (
-    <div className='App'>
+    <div className="App">
       <Switch>
-        <Route path='/login' component={Login} />
-        <Route path='/forgotpassword' component={ForgotPassWord} />
-        <Route path='/verifyemail' component={VerifyEmail} />
-        <Route path='/signup' exact component={SignUp} />
-        <Route path='/dashboard/tutor/addcourse' exact component={AddCourses} />
-        <Route exact path='/tdashboard' component={TDashboard} />
-        <Route path='/verify-email' component={EmailVerify} />
-        <Route path='/watchcourse' component={WatchCourse} />
-        <Route path='/forgotpassword' component={ForgotPassWord} />
-        <Route path='/login' component={Login} />
-        <Route path='/signup' component={SignUp} />
-        <Route path='/forgotpassword' component={ForgotPassWord} />
-
-        <Route path='/watchcourse' component={WatchCourse} />
-        <Route path='/' exact component={LandingPage} />
-        <Route path='/tutoraddcourse' component={TutorAddCourse} />
-        <Route path='/courses' component={Courses} />
-        <Route path='/logout' component={Logout} />
+        <Route path="/login" component={Login} />
+        <Route path="/forgotpassword" component={ForgotPassWord} />
+        <Route path="/verifyemail" component={VerifyEmail} />
+        <Route path="/signup" exact component={SignUp} />
+        <Route path="/dashboard/tutor/addcourse" exact component={AddCourses} />
+        <Route exact path="/tdashboard" component={TDashboard} />
+        <Route path="/verify-email" component={EmailVerify} />
+        <Route path="/watchcourse" component={WatchCourse} />
+        <Route path="/forgotpassword" component={ForgotPassWord} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={SignUp} />
+        <Route path="/forgotpassword" component={ForgotPassWord} />
+        <Route path="/watchcourse" component={WatchCourse} />
+        <Route path="/" exact component={LandingPage} />
+        <Route path="/tutoraddcourse" component={TutorAddCourse} />
+        <Route path="/courses" component={Courses} />
+        <Route path="/logout" component={Logout} />
       </Switch>
     </div>
   );
