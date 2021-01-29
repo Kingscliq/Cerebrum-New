@@ -8,7 +8,7 @@ function TutorAddCourse() {
 	return (
 		<>
 			<DashboardHeader />
-			<main className="container my-4 vh-100 d-flex flex-column">
+			<main className="container my-5 d-flex flex-column">
 				<section className="col-12">
 					<article className="d-flex justify-content-between mb-3">
 						<div className="courses-dummy-image col-4 m-2 d-flex border">
@@ -17,7 +17,7 @@ function TutorAddCourse() {
 					</article>
 				</section>
 
-				<div className="align-self-end">
+				<div className="align-self-end mt-5">
 					<Button className={"btn btn-primary"} text={"Add Course"} />
 				</div>
 			</main>
