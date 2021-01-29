@@ -1,5 +1,5 @@
 /** @format */
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import {
   dashAvater,
@@ -19,11 +19,17 @@ import axios from "axios";
 const TDashboard = () => {
   const [user, setUser] = useState([]);
   const [role, setRole] = useState();
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     const data = localStorage.getItem("userDetails");
+    if (!data) {
+      window.open("/login", "_self");
+    }
     const user = JSON.parse(data);
     const token = user.data.token;
+    // const abortController = new AbortController();
+    // const signal = abortController.signal;
     const config = {
       headers: {
         Authorization: "Bearer " + token,
@@ -33,17 +39,21 @@ const TDashboard = () => {
     axios
       .get(`https://cerebrum-v1.herokuapp.com/api/user/${userId}`, config)
       .then((res) => {
-        console.log(res.data);
+        console.log("res value", res.data);
+        // console.log(res.data.status);
         setUser(res.data.data);
         setRole(res.data.data.role);
+        // setLoggedIn(true);
       })
       .catch((err) => {
-        if (err.response.status === "401") {
-          window.open("/login", "_self");
-        }
+        console.log(err.response.msg);
+        window.open("/login", "_self");
       });
   }, []);
-
+  // if (loggedIn === true) {
+  //   // <Redirect to='/login?msg=notLoggedin' />;
+  //   window.open("/login", " _self");
+  // }
   return (
     <>
       <DashboardHeader />
@@ -91,7 +101,7 @@ const TDashboard = () => {
                 </div>
                 <div className='col-md-6'>
                   <h1 className='font-bold'>Code 101: Codeology</h1>
-                  <p>By Kingsley</p>
+                  <p>By {user.lastName}</p>
                   <p>
                     Lorem ipsum, or lipsum as it is sometimes known, is dummy
                     text used in laying out print, graphic or web designs.
@@ -188,5 +198,8 @@ const TDashboard = () => {
       <Footer />
     </>
   );
+  // } else {
+  // return <Redirect to='/login' />;
+  // }
 };
 export { TDashboard };

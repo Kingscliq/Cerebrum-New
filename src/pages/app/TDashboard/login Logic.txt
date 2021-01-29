@@ -1,0 +1,6 @@
+on the dashboard page, if isLogged in is true
+     redirect the user to the login page
+     else
+     render the dashboard page
+
+

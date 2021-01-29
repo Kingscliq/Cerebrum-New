@@ -73,7 +73,7 @@ const Dashboard = () => {
               </div>
               <div className='col-md-6'>
                 <h1 className='font-bold'>Code 101: Codeology</h1>
-                <p>By Kingsley</p>
+                <p>By {}</p>
                 <p>
                   Lorem ipsum, or lipsum as it is sometimes known, is dummy text
                   used in laying out print, graphic or web designs.
