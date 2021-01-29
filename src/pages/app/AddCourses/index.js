@@ -258,8 +258,9 @@ function AddCourses() {
                   </div>
                   {toggle["three"] && (
                     <form
-                      onSubmit={(e) => {
+                      onSubmit={async (e) => {
                         e.preventDefault();
+                        setLoading(true);
                         let formData = new FormData();
                         formData.append("img", form3.img);
                         formData.append("description", form3.description);
@@ -279,6 +280,7 @@ function AddCourses() {
                           )
                           .then((res) => {
                             console.log(res);
+                            setLoading(false);
                           })
                           .catch((err) => console.log(form1, form2, form3));
                       }}
@@ -289,6 +291,7 @@ function AddCourses() {
                         placeholder="Enter lesson name"
                         type="text"
                         name="name"
+                        disabled={loading}
                         onChange={handleChange3}
                       />
                       <label>Lesson Video</label>
@@ -296,6 +299,7 @@ function AddCourses() {
                         placeholder="Upload Video"
                         type="file"
                         name="img"
+                        disabled={loading}
                         onChange={handleChange3}
                       />
                       <label>Lesson Description</label>
@@ -304,11 +308,13 @@ function AddCourses() {
                         placeholder="Enter lesson description"
                         rows="7"
                         name="description"
+                        loading={loading}
                         onChange={handleChange3}
                       ></textarea>
                       <Button
                         className="btn btn-primary"
                         text="Publish Course"
+                        loadingIcon={loading && <Loader />}
                       />
                     </form>
                   )}
