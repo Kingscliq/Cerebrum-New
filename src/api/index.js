@@ -1,3 +1,5 @@
+/** @format */
+
 import axios from "axios";
 
 export const signUpReg = (e, state, setLoadState) => {
@@ -26,7 +28,7 @@ export const getCategories = (stateFunction) => {
 };
 
 /// Login Api
-export const signIn = (e, user, setUser, setLoadState, msg, setMsg) => {
+export const signIn = (e, user, setUser, setLoadState) => {
   e.preventDefault();
   setLoadState(true);
   const data = {

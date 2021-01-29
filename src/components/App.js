@@ -7,10 +7,12 @@ import { SignUp } from "../pages/auth/SignUp";
 import { VerifyEmail } from "../pages/auth/VerifyEmail";
 import { Dashboard } from "../pages/app/Dashboard";
 import { TDashboard } from "../pages/app/TDashboard";
-import { WatchCourse } from "../pages/auth/WatchCourse";
+import { WatchCourse } from "../pages/app/WatchCourse";
 import "./App.css";
 import { EmailVerify } from "../pages/auth/EmailVerify";
 import { AddCourses } from "../pages/app/AddCourses";
+import { Courses } from "../pages/app/Courses";
+import { TutorAddCourse } from "../pages/app/TutorAddCourse";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
         <Route path="/verify-email" component={EmailVerify} />
         <Route path="/watchcourse" component={WatchCourse} />
         <Route path="/" exact component={LandingPage} />
+        <Route path="/tutoraddcourse" component={TutorAddCourse} />
+        <Route path="/courses" component={Courses} />
       </Switch>
     </div>
   );

@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./Dashboard.css";
 import {
   dashboardImg,
@@ -11,12 +11,8 @@ import {
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
 import axios from "axios";
-import { signIn } from "../../../api";
-import { FaWindows } from "react-icons/fa";
 
 const Dashboard = () => {
-  // const [user, setUser] = useState([]);
-
   ///kjksdhcjv;lj;l
   const handleLogin = () => {
     const data = localStorage.getItem("userDetails");
@@ -29,7 +25,7 @@ const Dashboard = () => {
     };
     const userId = user.data.uid;
     axios
-      .get(`https://cerebrum-v1.herokuapp.com/api/users/${userId}`, config)
+      .get(`https://cerebrum-v1.herokuapp.com/api/user/${userId}`, config)
       .then((res) => console.log(res.data))
       .catch((err) => {
         if (err.response.status === "401") {
@@ -62,11 +58,13 @@ const Dashboard = () => {
                 <img
                   src={dashImg}
                   className='img-responsive bg-warning rounded-circle shadow img-fluid'
+                  alt='Cerebrum'
                 />
               </div>
             </div>
           </div>
         </div>
+        {/* side-section for tutors*/}
         <section className='row my-4'>
           <div className='col-md-6 card p-5 shadow'>
             <div className='row align-items-center'>
@@ -88,6 +86,7 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
+          {/* METRICS */}
           <div className='col-md-6 metrics d-flex flex-wrap flex-column'>
             <div className='card p-4 h-60 shadow mb-3 col-offset-6'>
               <div className='row'>

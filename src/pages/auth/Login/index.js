@@ -25,17 +25,24 @@ const Login = () => {
 
   let url_string = window.location.href;
   let url = new URL(url_string);
-  let verify_msg = url.searchParams.get("msg");
+  // let verify_msg = url.searchParams.get("msg");
 
-  const displayAlert = () => {
-    let statusAlert;
-    if (verify_msg === "success") {
-      statusAlert = "Your Email has been Successfully Verified";
-    } else if (verify_msg === "verify") {
-      statusAlert =
-        "Email has already been verified, You can login to your Dashboard";
-    }
-  };
+  // const displayAlert = () => {
+  //   let statusAlert;
+  //   if (verify_msg === "success") {
+  //     statusAlert = "Your Email has been Successfully Verified";
+  //   } else if (verify_msg === "verify") {
+  //     statusAlert =
+  //       "Email has already been verified, You can login to your Dashboard";
+  //   }
+  // };
+  // let statusAlert;
+  // if (verify_msg === "success") {
+  //   statusAlert = "Your Email has been Successfully Verified";
+  // } else if (verify_msg === "verify") {
+  //   statusAlert =
+  //     "Email has already been verified, You can login to your Dashboard";
+  // }
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -46,7 +53,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     // Call Api Function
 
-    signIn(e, user, setUser, setLoading, msg, setMsg);
+    signIn(e, user, setUser, setLoading);
     console.log(msg.success);
   };
 
