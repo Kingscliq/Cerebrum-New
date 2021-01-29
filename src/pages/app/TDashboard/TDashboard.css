@@ -23,3 +23,12 @@
   text-decoration: none;
   font-weight: 600;
 }
+
+.tdashboard .btn-warning {
+  background: #f8ab39;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 10px 30px;
+  outline: none;
+  border: none;
+}

@@ -95,14 +95,27 @@ const TDashboard = () => {
                       </button>
                     </>
                   ) : (
-                    <button className='btn btn-primary'>
-                      <Link
-                        to='/courses'
-                        // style={{ color: "#f4f4f4", textDecoration: "none" }}
+                    <>
+                      <button className='btn btn-primary'>
+                        <Link
+                          to='/courses'
+                          // style={{ color: "#f4f4f4", textDecoration: "none" }}
+                        >
+                          Buy Course
+                        </Link>
+                      </button>
+                      <button
+                        className='btn btn-primary'
+                        style={{ marginLeft: "20px" }}
                       >
-                        Buy Course
-                      </Link>
-                    </button>
+                        <Link
+                          to='/logout'
+                          // style={{ color: "#f4f4f4", textDecoration: "none" }}
+                        >
+                          Logout
+                        </Link>
+                      </button>
+                    </>
                   )}
                 </div>
               </div>
@@ -131,7 +144,7 @@ const TDashboard = () => {
                     text used in laying out print, graphic or web designs.
                   </p>
                   <p>
-                    <button className='btn btn-primary text-bold'>
+                    <button className='btn-warning text-light'>
                       Continue Course
                     </button>
                   </p>
