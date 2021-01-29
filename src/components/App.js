@@ -16,6 +16,7 @@ import { AddCourses } from "../pages/app/AddCourses";
 import { signIn } from "../api/index";
 import { Courses } from "../pages/app/Courses";
 import { TutorAddCourse } from "../pages/app/TutorAddCourse";
+import { Logout } from "../pages/app/Logout";
 
 function App() {
   return (
@@ -26,7 +27,6 @@ function App() {
         <Route path='/verifyemail' component={VerifyEmail} />
         <Route path='/signup' exact component={SignUp} />
         <Route path='/dashboard/tutor/addcourse' exact component={AddCourses} />
-        <Route path='/' exact component={Dashboard} />
         <Route exact path='/tdashboard' component={TDashboard} />
         <Route path='/verify-email' component={EmailVerify} />
         <Route path='/watchcourse' component={WatchCourse} />
@@ -39,6 +39,7 @@ function App() {
         <Route path='/' exact component={LandingPage} />
         <Route path='/tutoraddcourse' component={TutorAddCourse} />
         <Route path='/courses' component={Courses} />
+        <Route path='/logout' component={Logout} />
       </Switch>
     </div>
   );

@@ -20,7 +20,8 @@ const TDashboard = () => {
   const [user, setUser] = useState([]);
   const [role, setRole] = useState();
   const [loggedIn, setLoggedIn] = useState(false);
-  const [dashimage, setDashimage] = useState("");
+  // const [dashimage, setDashimage] = useState("");
+  const [courses, setCourses] = useState([]);
 
   useEffect(() => {
     const data = localStorage.getItem("userDetails");
@@ -42,8 +43,8 @@ const TDashboard = () => {
         // console.log(res.data.status);
         setUser(res.data.data);
         setRole(res.data.data.role);
-        setDashimage(res.data.data.image_url);
-        console.log(dashimage);
+        // setDashimage(res.data.data.image_url);
+        // console.log(dashimage);
       })
       .catch((err) => {
         console.log(err.response.msg);
@@ -51,9 +52,13 @@ const TDashboard = () => {
       });
   }, []);
 
+  useEffect(() => {
+    const res = axios.get("https://cerebrum-v1.herokuapp.com/api/user/");
+  });
+
   return (
     <>
-      <DashboardHeader dashimage={dashimage} />
+      <DashboardHeader />
       <section className='container tdashboard'>
         <div className='container container-fluid mt-5'>
           <div className='row card p-5 shadow'>
@@ -63,20 +68,42 @@ const TDashboard = () => {
                   <h1 className='font-bold'>Welcome {user.firstName}</h1>
                 </header>
                 <article>
-                  Lorem ipsum, or lipsum as it is sometimes known, is dummy text
-                  used in laying out print, graphic or web designs.
+                  Welcome to your cerebrum Dashboard. Cerebrum provides you with
+                  boundless access to courses
                 </article>
                 <div className='d-flex flex-wrap justify-content-start my-3'>
                   {role === "tutor" ? (
+                    <>
+                      <button className='btn btn-primary'>
+                        <Link
+                          to='/dashboard/tutor/addcourse'
+                          // style={{ color: "#f4f4f4", textDecoration: "none" }}
+                        >
+                          Add Course
+                        </Link>
+                      </button>
+                      <button
+                        className='btn btn-primary'
+                        style={{ marginLeft: "20px" }}
+                      >
+                        <Link
+                          to='/logout'
+                          // style={{ color: "#f4f4f4", textDecoration: "none" }}
+                        >
+                          Logout
+                        </Link>
+                      </button>
+                    </>
+                  ) : (
                     <button className='btn btn-primary'>
                       <Link
-                        to='/dashboard/tutor/addcourse'
-                        style={{ color: "#f4f4f4", textDecoration: "none" }}
+                        to='/courses'
+                        // style={{ color: "#f4f4f4", textDecoration: "none" }}
                       >
-                        Add Course
+                        Buy Course
                       </Link>
                     </button>
-                  ) : null}
+                  )}
                 </div>
               </div>
               <div className='col-4'>
@@ -104,7 +131,7 @@ const TDashboard = () => {
                     text used in laying out print, graphic or web designs.
                   </p>
                   <p>
-                    <button className='btn btn-warning text-light text-bold'>
+                    <button className='btn btn-primary text-bold'>
                       Continue Course
                     </button>
                   </p>
