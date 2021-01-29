@@ -1,69 +1,57 @@
 /** @format */
 
 .main-view-img {
-<<<<<<< HEAD:src/pages/app/WatchCourse/WatchCourse.css
 	height: 413px;
-=======
-  height: 413px;
-  width: 650px;
-  /* background: url("../../../assets/images/watchimage.png"); */
-  background-repeat: no-repeat;
-  background-size: contain;
->>>>>>> 4dd6ce1c2d8bd94e8b6be2e57a403d860ccdf7fa:src/pages/auth/WatchCourse/WatchCourse.css
 }
 
 .mini-view-img {
-  height: 98px;
-  width: 161px;
+	height: 98px;
+	width: 161px;
 }
 
 .circle {
-  height: 20px;
-  width: 20px;
+	height: 20px;
+	width: 20px;
 }
 
 .watchcourse-form {
-  width: 90%;
-  margin: auto;
+	width: 90%;
+	margin: auto;
 }
 
 .watchcourse-aside {
-  height: 880px;
+	height: 880px;
 }
 
 .add-border-bottom {
-  border-bottom: 4px solid var(--primary-color);
+	border-bottom: 4px solid var(--primary-color);
 }
-<<<<<<< HEAD:src/pages/app/WatchCourse/WatchCourse.css
+
 .lessons-hover:hover {
 	background: #c5c6e4;
-=======
-.add-aside-background {
-  background: #1421ff 8%;
->>>>>>> 4dd6ce1c2d8bd94e8b6be2e57a403d860ccdf7fa:src/pages/auth/WatchCourse/WatchCourse.css
 }
 
 .watchcourse-textarea {
-  border: 1px solid#a5a0a0;
+	border: 1px solid#a5a0a0;
 }
 
 .watchcourse-textarea::placeholder {
-  padding: 30px;
-  margin: 40px;
+	padding: 30px;
+	margin: 40px;
 }
 
 .watchcourse-cancel-btn {
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color);
-  border-radius: 12px;
-  width: 84px;
-  height: 40px;
+	color: var(--primary-color);
+	border: 1px solid var(--primary-color);
+	border-radius: 12px;
+	width: 84px;
+	height: 40px;
 }
 
 .watchcourse-send-btn {
-  background: var(--primary-color);
-  color: var(--background-color);
-  border-radius: 12px;
-  width: 84px;
-  height: 40px;
+	background: var(--primary-color);
+	color: var(--background-color);
+	border-radius: 12px;
+	width: 84px;
+	height: 40px;
 }
