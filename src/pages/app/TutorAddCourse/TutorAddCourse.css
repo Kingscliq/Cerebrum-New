@@ -1,0 +1,8 @@
+.courses-dummy-image {
+	height: 270px;
+	width: 245.78570556640625px;
+	border-radius: 12px;
+	background-image: url(../../../assets/images/dummyvideoimage.png);
+	background-size: 100% 80%;
+	background-repeat: no-repeat;
+}

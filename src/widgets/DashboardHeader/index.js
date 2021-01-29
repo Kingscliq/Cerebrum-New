@@ -22,7 +22,13 @@ function DashboardHeader(props) {
             <FaRegBell />
           </span>
           <div className='dash-user-icon d-flex'>
-            <img src={dashimage} alt='dash-avatar' />
+            <img
+              src={dashimage}
+              alt='dash-avatar'
+              className='dashimage'
+              height='30'
+              width='30'
+            />
             <span id='dash-toggle'>
               <RiArrowDownSLine />
             </span>

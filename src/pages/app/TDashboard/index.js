@@ -16,7 +16,7 @@ import axios from "axios";
 
 // Api Call to get Authorized User
 
-const TDashboard = (props) => {
+const TDashboard = () => {
   const [user, setUser] = useState([]);
   const [role, setRole] = useState();
   const [loggedIn, setLoggedIn] = useState(false);
@@ -43,19 +43,17 @@ const TDashboard = (props) => {
         setUser(res.data.data);
         setRole(res.data.data.role);
         setDashimage(res.data.data.image_url);
+        console.log(dashimage);
       })
       .catch((err) => {
         console.log(err.response.msg);
         window.open("/login", "_self");
       });
   }, []);
-  // if (loggedIn === true) {
-  //   // <Redirect to='/login?msg=notLoggedin' />;
-  //   window.open("/login", " _self");
-  // }
+
   return (
     <>
-      <DashboardHeader dashimage={props.dashimage} />
+      <DashboardHeader dashimage={dashimage} />
       <section className='container tdashboard'>
         <div className='container container-fluid mt-5'>
           <div className='row card p-5 shadow'>
@@ -163,7 +161,7 @@ const TDashboard = (props) => {
                       style={{ fontSize: "50px", fontWeight: "600" }}
                       className='text-primary'
                     >
-                      00k
+                      0
                     </h1>
                     <p>Courses Enrolled</p>
                   </div>
@@ -181,7 +179,7 @@ const TDashboard = (props) => {
                       style={{ fontSize: "50px", fontWeight: "600" }}
                       className='text-primary'
                     >
-                      00m
+                      0
                     </h1>
                     <p>Courses Completed</p>
                   </div>

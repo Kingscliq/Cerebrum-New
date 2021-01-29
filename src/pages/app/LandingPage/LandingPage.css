@@ -1,0 +1,70 @@
+.landing-page-a h1 span {
+  color: var(--primary-color);
+}
+
+.landing-page-a .btn {
+  font-weight: 600;
+  width: 40%;
+  border-radius: 8px;
+}
+.landing-page-a .btn:hover {
+  background: #ffffff;
+}
+
+.landing-page-a .btn:first-of-type {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.landing-page-a .btn:last-of-type {
+  margin-left: 30px;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.landing-page-b h1 {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.landing-page-c .btn,
+.landing-page-d .btn {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  width: 50%;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.landing-page-c {
+  height: 670px;
+}
+.landing-page-d {
+  height: 500px;
+}
+
+.land-img-con-c {
+  background: #ffd9144d;
+  height: 450px;
+  width: 450px;
+  border-radius: 100%;
+}
+.land-img-con-d {
+  background: #1421ff4d;
+  height: 430px;
+  width: 430px;
+  border-radius: 100%;
+  text-align: center;
+}
+
+.landing-page-c img {
+  width: 500px;
+  height: 600px;
+  object-fit: contain;
+}
+
+.landing-page-d img {
+  width: 410px;
+  height: 580px;
+  object-fit: contain;
+}

@@ -62,6 +62,12 @@ export const signIn = (e, user, setUser, setLoadState, setError, error) => {
         window.open("/login", "_self");
         setError("Opps! there is a problem with our server");
       }
+      if (
+        err.response.data.message ===
+        "Email not verified, kindly check your email for verification link"
+      ) {
+        window.open(`/verifyemail?email=${data.email}`, "_self");
+      }
       // console.log(err.response.message);
       // console.log(err.response.data.message);
 
