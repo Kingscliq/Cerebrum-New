@@ -1,5 +1,5 @@
 /** @format */
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import {
   dashAvater,
@@ -19,9 +19,16 @@ import axios from "axios";
 const TDashboard = () => {
   const [user, setUser] = useState([]);
   const [role, setRole] = useState();
+  const [loggedIn, setLoggedIn] = useState(false);
+  // const [dashimage, setDashimage] = useState("");
+  const [courses, setCourses] = useState([]);
+  const [courseCount, setCourseCount] = useState(0);
 
   useEffect(() => {
     const data = localStorage.getItem("userDetails");
+    if (!data) {
+      window.open("/login", "_self");
+    }
     const user = JSON.parse(data);
     const token = user.data.token;
     const config = {
@@ -33,16 +40,22 @@ const TDashboard = () => {
     axios
       .get(`https://cerebrum-v1.herokuapp.com/api/user/${userId}`, config)
       .then((res) => {
-        console.log(res.data);
+        console.log("res value", res.data);
+        // console.log(res.data.status);
         setUser(res.data.data);
         setRole(res.data.data.role);
+        // setDashimage(res.data.data.image_url);
+        // console.log(dashimage);
       })
       .catch((err) => {
-        if (err.response.status === "401") {
-          window.open("/login", "_self");
-        }
+        console.log(err.response.msg);
+        window.open("/login", "_self");
       });
   }, []);
+
+  useEffect(() => {
+    const res = axios.get("https://cerebrum-v1.herokuapp.com/api/user/");
+  });
 
   return (
     <>
@@ -56,20 +69,55 @@ const TDashboard = () => {
                   <h1 className='font-bold'>Welcome {user.firstName}</h1>
                 </header>
                 <article>
-                  Lorem ipsum, or lipsum as it is sometimes known, is dummy text
-                  used in laying out print, graphic or web designs.
+                  Welcome to your cerebrum Dashboard. Cerebrum provides you with
+                  boundless access to courses
                 </article>
                 <div className='d-flex flex-wrap justify-content-start my-3'>
                   {role === "tutor" ? (
-                    <button className='btn btn-primary'>
-                      <Link
-                        to='/dashboard/tutor/addcourse'
-                        style={{ color: "#f4f4f4", textDecoration: "none" }}
+                    <>
+                      <button className='btn btn-primary'>
+                        <Link
+                          to='/dashboard/tutor/addcourse'
+                          // style={{ color: "#f4f4f4", textDecoration: "none" }}
+                        >
+                          Add Course
+                        </Link>
+                      </button>
+                      <button
+                        className='btn btn-primary'
+                        style={{ marginLeft: "20px" }}
                       >
-                        Add Course
-                      </Link>
-                    </button>
-                  ) : null}
+                        <Link
+                          to='/logout'
+                          // style={{ color: "#f4f4f4", textDecoration: "none" }}
+                        >
+                          Logout
+                        </Link>
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button className='btn btn-primary'>
+                        <Link
+                          to='/courses'
+                          // style={{ color: "#f4f4f4", textDecoration: "none" }}
+                        >
+                          Buy Course
+                        </Link>
+                      </button>
+                      <button
+                        className='btn btn-primary'
+                        style={{ marginLeft: "20px" }}
+                      >
+                        <Link
+                          to='/logout'
+                          // style={{ color: "#f4f4f4", textDecoration: "none" }}
+                        >
+                          Logout
+                        </Link>
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
               <div className='col-4'>
@@ -91,13 +139,13 @@ const TDashboard = () => {
                 </div>
                 <div className='col-md-6'>
                   <h1 className='font-bold'>Code 101: Codeology</h1>
-                  <p>By Kingsley</p>
+                  <p>By {user.lastName}</p>
                   <p>
                     Lorem ipsum, or lipsum as it is sometimes known, is dummy
                     text used in laying out print, graphic or web designs.
                   </p>
                   <p>
-                    <button className='btn btn-warning text-light text-bold'>
+                    <button className='btn-warning text-light'>
                       Continue Course
                     </button>
                   </p>
@@ -154,7 +202,7 @@ const TDashboard = () => {
                       style={{ fontSize: "50px", fontWeight: "600" }}
                       className='text-primary'
                     >
-                      00k
+                      0
                     </h1>
                     <p>Courses Enrolled</p>
                   </div>
@@ -172,7 +220,7 @@ const TDashboard = () => {
                       style={{ fontSize: "50px", fontWeight: "600" }}
                       className='text-primary'
                     >
-                      00m
+                      0
                     </h1>
                     <p>Courses Completed</p>
                   </div>
@@ -188,5 +236,8 @@ const TDashboard = () => {
       <Footer />
     </>
   );
+  // } else {
+  // return <Redirect to='/login' />;
+  // }
 };
 export { TDashboard };

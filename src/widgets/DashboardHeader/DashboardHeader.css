@@ -8,7 +8,7 @@
 
 .dash-nav-items > * {
   margin: 0 10px;
-  color: #9e9e9e;
+  color: #b1acac;
 }
 
 .dash-nav-items input {
@@ -26,4 +26,7 @@
 
 .dash-nav-items #dash-toggle {
   font-size: 1.299rem;
+}
+.dashimage {
+  border-radius: 50%;
 }
