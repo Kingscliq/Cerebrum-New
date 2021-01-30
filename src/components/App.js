@@ -12,6 +12,7 @@ import { EmailVerify } from "../pages/auth/EmailVerify";
 import { AddCourses } from "../pages/app/AddCourses";
 import { Courses } from "../pages/app/Courses";
 import { TutorAddCourse } from "../pages/app/TutorAddCourse";
+import { ViewCourseModal } from "../widgets/ViewCourseModal";
 
 function App() {
 	return (
@@ -30,6 +31,7 @@ function App() {
 				<Route path="/forgotpassword" component={ForgotPassWord} />
 				<Route path="/courses" component={Courses} />
 				<Route path="/tutoraddcourse" component={TutorAddCourse} />
+				<Route path="/viewcoursemodal" component={ViewCourseModal} />
 			</Switch>
 		</div>
 	);

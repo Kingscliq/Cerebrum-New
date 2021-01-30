@@ -58,10 +58,10 @@ export const signIn = (e, user, setUser, setLoadState) => {
 			//   }
 		});
 };
+
 //Courses Api
-export const getCourses = (courses, setCourses) => {
+export const getCourses = (courses, setCourses, course_id) => {
 	const data = courses;
-	const course_id = "6012ea1b057ae600157c2902";
 
 	axios
 		.get(`https://cerebrum-v1.herokuapp.com/api/course/view/${course_id}`, data)
@@ -71,5 +71,37 @@ export const getCourses = (courses, setCourses) => {
 		})
 		.catch((err) => {
 			console.log("There is an error loading files", err.response);
+		});
+};
+
+//All Courses Api
+export const getAllCourses = (allCourses, setAllCourses) => {
+	const data = allCourses;
+
+	axios
+		.get(`https://cerebrum-v1.herokuapp.com/api/course/`, data)
+		.then((res) => {
+			allCourses = res.data.data;
+			setAllCourses(res.data.data);
+			// console.log(allCourses);
+		})
+		.catch((err) => {
+			console.log("There is an error loading files", err.response);
+		});
+};
+
+//All Course Categories Api
+export const getAllCategories = (allCategories, setAllCategories) => {
+	const data = allCategories;
+
+	axios
+		.get(`https://cerebrum-v1.herokuapp.com/api/category/`, data)
+		.then((res) => {
+			allCategories = res.data.data;
+			setAllCategories(res.data.data);
+			// console.log(allCategories);
+		})
+		.catch((err) => {
+			console.log("There is an error loading categories", err.response);
 		});
 };
