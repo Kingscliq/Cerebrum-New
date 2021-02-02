@@ -1,4 +1,7 @@
+/** @format */
+
 import axios from "axios";
+import { withRouter } from "react-router-dom";
 
 export const signUpReg = (e, state, setLoadState) => {
   e.preventDefault();
@@ -11,7 +14,12 @@ export const signUpReg = (e, state, setLoadState) => {
     .post(`https://cerebrum-v1.herokuapp.com/api/auth/sign-up`, currentState)
     .then((res) => {
       console.log(res.data);
+
       setLoadState(false);
+      window.open(
+        `verifyemail?email=${currentState.email}&name=${currentState.firstName}`,
+        "_self"
+      );
     })
     .catch(() => {
       console.log("Error Occured");
@@ -26,7 +34,7 @@ export const getCategories = (stateFunction) => {
 };
 
 /// Login Api
-export const signIn = (e, user, setUser, setLoadState, msg, setMsg) => {
+export const signIn = (e, user, setUser, setLoadState, setError, error) => {
   e.preventDefault();
   setLoadState(true);
   const data = {
@@ -44,18 +52,31 @@ export const signIn = (e, user, setUser, setLoadState, msg, setMsg) => {
       setLoadState(false);
 
       console.log(userDetails);
+      // console.log("proppps", props);
+      // props.history.push("/tdashboard");
       window.open("/tdashboard", "_self");
     })
     .catch((err) => {
-      console.log(err.response.data.message);
+      console.log("err", err);
+      if (err.response === undefined) {
+        window.open("/login", "_self");
+        setError("Opps! there is a problem with our server");
+      }
       if (
         err.response.data.message ===
         "Email not verified, kindly check your email for verification link"
       ) {
         window.open(`/verifyemail?email=${data.email}`, "_self");
       }
+      // console.log(err.response.message);
+      // console.log(err.response.data.message);
+
+      setLoadState(false);
     });
 };
+// console.log(withRouter)
+// withRouter(signIn);
+
 //Courses Api
 export const getCourses = (courses, setCourses) => {
   // e.preventDefault();

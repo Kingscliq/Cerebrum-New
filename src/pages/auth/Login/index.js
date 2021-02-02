@@ -10,32 +10,30 @@ import { useState } from "react";
 import { Loader } from "../../../components/Loader";
 import { signIn } from "../../../api";
 import "./Login.css";
-import axios from "axios";
 
 const Login = () => {
+  // console.log("propoooooooops", props);
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
   const [loggedIn, setLoggedIn] = useState(false);
-  const [msg, setMsg] = useState({ success: "", error: "" });
+  const [error, setError] = useState("");
   const [alert, setAlert] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [statusAlert, setStatusAlert] = useState("");
+  // const [statusAlert, setStatusAlert] = useState(null);
 
   let url_string = window.location.href;
   let url = new URL(url_string);
   let verify_msg = url.searchParams.get("msg");
 
-  const displayAlert = () => {
-    let statusAlert;
-    if (verify_msg === "success") {
-      statusAlert = "Your Email has been Successfully Verified";
-    } else if (verify_msg === "verify") {
-      statusAlert =
-        "Email has already been verified, You can login to your Dashboard";
-    }
-  };
+  let statusAlert;
+  if (verify_msg === "success") {
+    statusAlert = "Your Email has been Successfully Verified";
+  } else if (verify_msg === "verify") {
+    statusAlert =
+      "Email has already been verified, You can login to your Dashboard";
+  }
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -46,58 +44,62 @@ const Login = () => {
   const handleSubmit = (e) => {
     // Call Api Function
 
-    signIn(e, user, setUser, setLoading, msg, setMsg);
-    console.log(msg.success);
+    signIn(e, user, setUser, setLoading, setError, error);
   };
 
   return (
-    <main className="vh-100 container-fluid login-section">
-      <section className="row h-100">
-        <div className="col-7 d-flex justify-content-center align-items-center">
-          <div className="card shadow w-c">
-            <div className={`alert`}></div>
+    <main className='vh-100 container-fluid login-section'>
+      <section className='row h-100'>
+        <div className='col-7 d-flex justify-content-center align-items-center'>
+          <div className='card shadow w-c'>
+            {error === "invalid username or password" ? (
+              <div className='alert alert-danger'>{error}</div>
+            ) : null}
+            {statusAlert ? (
+              <div className={`alert alert-success`}>{statusAlert}</div>
+            ) : null}
             <form onSubmit={handleSubmit}>
-              <h2 className="text-left">Log In</h2>
-              <hr className="mt-n5" />
+              <h2 className='text-left'>Log In</h2>
+              <hr className='mt-n5' />
               <Input
-                type="email"
+                type='email'
                 icon={<FaEnvelope />}
-                placeholder="Enter Email"
+                placeholder='Enter Email'
                 onChange={handleChange}
                 value={user.email}
-                name="email"
+                name='email'
               />
               <Input
-                type="password"
+                type='password'
                 icon={<FaLock />}
-                placeholder="Enter Password"
+                placeholder='Enter Password'
                 onChange={handleChange}
                 value={user.password}
-                name="password"
+                name='password'
               />
-              <p className="signup-p">
+              <p className='signup-p'>
                 <span>
-                  <Link to="/forgotpassword">Forgot Password</Link>
+                  <Link to='/forgotpassword'>Forgot Password</Link>
                 </span>
               </p>
               <Button
-                className="btn btn-primary w-100"
-                text="Login"
+                className='btn btn-primary w-100'
+                text='Login'
                 loadingIcon={loading && <Loader />}
               />
 
               <hr />
-              <p className="signup-p">
+              <p className='signup-p'>
                 New Member?{" "}
                 <span>
-                  <Link to="/signup">Sign Up</Link>
+                  <Link to='/signup'>Sign Up</Link>
                 </span>
               </p>
             </form>
           </div>
         </div>
         <div
-          className="col-5 h-100 signup-image"
+          className='col-5 h-100 signup-image'
           style={{
             background: `url(${loginImg})`,
             backgroundRepeat: `no-repeat`,

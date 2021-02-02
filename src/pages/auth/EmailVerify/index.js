@@ -21,9 +21,9 @@ const EmailVerify = () => {
         }
       })
       .catch((err) => {
-        if (err.response.data.message === "Email is already verified") {
-          window.open("/login?msg=verified", "_self");
-        }
+        // if (err.response.data.message === "Email is already verified") {
+        //   window.open("/login?msg=verified", "_self");
+        console.log(err.response);
       });
   }, []);
 

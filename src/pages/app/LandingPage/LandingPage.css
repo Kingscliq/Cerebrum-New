@@ -1,11 +1,26 @@
+.landing-page-a h1 {
+  font-size: 3rem;
+}
+.landing-page-a p {
+  width: 80%;
+}
 .landing-page-a h1 span {
   color: var(--primary-color);
 }
 
 .landing-page-a .btn {
   font-weight: 600;
-  width: 40%;
+  width: 42%;
+  padding: 10px;
+  font-size: 0.89rem;
   border-radius: 8px;
+}
+.landing-page-a img {
+  width: 100%;
+}
+
+.landing-page-a .btn:hover {
+  background: #ffffff;
 }
 
 .landing-page-a .btn:first-of-type {
@@ -19,6 +34,21 @@
   color: var(--primary-color);
 }
 
+.landing-page-b .card {
+  width: 65% !important;
+  margin-right: 20px;
+  border-radius: 12px;
+  border-top: none;
+}
+
+.landing-page-b .card h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+}
+.landing-page-b .card p {
+  font-weight: 600;
+}
+
 .landing-page-b h1 {
   color: var(--primary-color);
   font-weight: 600;
@@ -28,40 +58,9 @@
 .landing-page-d .btn {
   background: var(--primary-color);
   border-color: var(--primary-color);
-  width: 50%;
+  width: 45%;
   font-weight: 600;
+  font-size: 0.84rem;
+  padding: 10px;
   border-radius: 8px;
-}
-
-.landing-page-c {
-  height: 670px;
-}
-.landing-page-d {
-  height: 500px;
-}
-
-.land-img-con-c {
-  background: #ffd9144d;
-  height: 450px;
-  width: 450px;
-  border-radius: 100%;
-}
-.land-img-con-d {
-  background: #1421ff4d;
-  height: 430px;
-  width: 430px;
-  border-radius: 100%;
-  text-align: center;
-}
-
-.landing-page-c img {
-  width: 500px;
-  height: 600px;
-  object-fit: contain;
-}
-
-.landing-page-d img {
-  width: 410px;
-  height: 580px;
-  object-fit: contain;
 }
