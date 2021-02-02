@@ -50,7 +50,7 @@ const Login = () => {
   return (
     <main className='vh-100 container-fluid login-section'>
       <section className='row h-100'>
-        <div className='col-7 d-flex justify-content-center align-items-center'>
+        <div className='col-md-7 d-flex justify-content-center align-items-center col-sm-12'>
           <div className='card shadow w-c'>
             {error === "invalid username or password" ? (
               <div className='alert alert-danger'>{error}</div>
@@ -99,7 +99,7 @@ const Login = () => {
           </div>
         </div>
         <div
-          className='col-5 h-100 signup-image'
+          className='col-5 h-100 signup-image d-none d-md-block'
           style={{
             background: `url(${loginImg})`,
             backgroundRepeat: `no-repeat`,

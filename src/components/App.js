@@ -13,7 +13,7 @@ import { WatchCourse } from "../pages/app/WatchCourse";
 import "./App.css";
 import { EmailVerify } from "../pages/auth/EmailVerify";
 import { AddCourses } from "../pages/app/AddCourses";
-import { signIn } from "../api/index";
+// import { signIn } from "../api/index";
 import { Courses } from "../pages/app/Courses";
 import { TutorAddCourse } from "../pages/app/TutorAddCourse";
 import { Logout } from "../pages/app/Logout";
@@ -34,7 +34,6 @@ function App() {
         <Route path='/login' component={Login} />
         <Route path='/signup' component={SignUp} />
         <Route path='/forgotpassword' component={ForgotPassWord} />
-
         <Route path='/watchcourse' component={WatchCourse} />
         <Route path='/' exact component={LandingPage} />
         <Route path='/tutoraddcourse' component={TutorAddCourse} />
