@@ -3,11 +3,34 @@
 	padding: 0;
 }
 
-.courses-dummy-image {
-	height: 240px;
-	/* width: 245.78570556640625px; */
+.all-courses-div {
+	width: 30%;
+	margin-bottom: 1rem;
 	border-radius: 12px;
-	background-image: url(../../../assets/images/dummyvideoimage.png);
-	background-size: 100% 80%;
-	background-repeat: no-repeat;
+}
+
+.all-courses-p {
+	width: 80%;
+}
+
+.courses-img {
+	border-top-left-radius: 12px;
+	border-top-right-radius: 12px;
+}
+
+.courses-price-badge {
+	background: #f15223;
+	color: #ffff;
+	font-style: normal !important;
+	font-size: 14px;
+}
+
+.all-courses-category-list:hover,
+.all-courses-link:hover {
+	color: var(--primary-color);
+}
+
+.all-courses-link {
+	text-decoration: none;
+	color: #000000;
 }
