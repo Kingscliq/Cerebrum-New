@@ -4,8 +4,8 @@
 }
 
 .all-courses-div {
-	width: 30%;
-	margin-bottom: 1rem;
+	width: 80%;
+	margin: auto auto 1rem auto;
 	border-radius: 12px;
 }
 
@@ -21,7 +21,6 @@
 .courses-price-badge {
 	background: #f15223;
 	color: #ffff;
-	font-style: normal !important;
 	font-size: 14px;
 }
 
@@ -33,4 +32,52 @@
 .all-courses-link {
 	text-decoration: none;
 	color: #000000;
+}
+
+.menu-icon {
+	float: right;
+}
+
+.all-categories {
+	display: none;
+}
+
+.all-categories-active {
+	opacity: 1;
+	z-index: 2;
+	transition-timing-function: ease-in-out;
+}
+
+.courses-tutor-image-radius {
+	position: absolute;
+	bottom: 60px;
+	right: 0;
+	border: 2px solid var(--primary-color);
+	padding: 3px;
+}
+
+@media only screen and (min-width: 600px) {
+	.all-courses-div {
+		width: 45%;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.all-courses-div {
+		width: 45%;
+	}
+
+	.all-categories {
+		display: block;
+	}
+
+	.menu-icon {
+		display: none;
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	.all-courses-div {
+		width: 30%;
+	}
 }

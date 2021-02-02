@@ -12,7 +12,6 @@ import { CoursePlayer } from "../../../widgets/CoursePlayer";
 function WatchCourse() {
 	const [numToggle, setNumToggle] = useState(1);
 	const [courses, setCourses] = useState([]);
-	const [currentlyPlaying, setcurrentlyPlaying] = useState("");
 	const [coursePreview, setCoursePreview] = useState({});
 	const [singleCourse, setSingleCourse] = useState({});
 
@@ -32,12 +31,6 @@ function WatchCourse() {
 		getCourses(courses, setCourses, course_id);
 	}, []);
 
-	// const getCourse = () => {
-	// 	courses.map((preview) => {
-	// 		console.log(preview._id);
-	// 		setCoursePreview(preview);
-	// 	});
-	// };
 	const course = JSON.stringify(courses);
 
 	const getSingleCourse = (e) => {
