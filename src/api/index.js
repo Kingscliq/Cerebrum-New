@@ -1,7 +1,4 @@
-/** @format */
-
 import axios from "axios";
-import { withRouter } from "react-router-dom";
 
 export const signUpReg = (e, state, setLoadState) => {
 	e.preventDefault();
@@ -68,10 +65,8 @@ export const signIn = (e, user, setUser, setLoadState, setError, error) => {
 			setLoadState(false);
 		});
 };
-// console.log(withRouter)
-// withRouter(signIn);
 
-//Courses Api
+//Watch Course Api
 export const getCourses = (courses, setCourses, course_id) => {
 	const data = courses;
 
@@ -87,19 +82,16 @@ export const getCourses = (courses, setCourses, course_id) => {
 };
 
 //All Courses Api
-export const getAllCourses = (allCourses, setAllCourses) => {
-	const data = allCourses;
+export const getAllCourses = async () => {
+	try {
+		let runRequest = await axios.get(`https://cerebrum-v1.herokuapp.com/api/course/`);
 
-	axios
-		.get(`https://cerebrum-v1.herokuapp.com/api/course/`, data)
-		.then((res) => {
-			allCourses = res.data.data;
-			setAllCourses(res.data.data);
-			// console.log(allCourses);
-		})
-		.catch((err) => {
-			console.log("There is an error loading files", err.response);
-		});
+		let returnedData = await runRequest.data.data;
+
+		return returnedData;
+	} catch (e) {
+		console.log("Error:", e);
+	}
 };
 
 //All Course Categories Api

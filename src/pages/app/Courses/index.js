@@ -1,8 +1,9 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
 import { getAllCourses, getAllCategories } from "../../../api";
+import { BiMenuAltLeft } from "react-icons/bi";
+import { VscChromeClose } from "react-icons/vsc";
 import "./Courses.css";
 
 function Courses() {
@@ -10,29 +11,34 @@ function Courses() {
 	const [allCategories, setAllCategories] = useState([]);
 
 	useEffect(() => {
-		getAllCourses(allCourses, setAllCourses);
-		setAllCourses(allCourses);
+		getAllCourses().then((dataGotten) => {
+			setAllCourses(dataGotten);
+			console.log(dataGotten[0].tutor_id);
+		});
 
 		getAllCategories(allCategories, setAllCategories);
 		setAllCategories(allCategories);
 	}, []);
 
-	const handleClick = () => {
-		alert(`you cicke`);
-	};
+	const [toggle, setToggle] = useState({ clicked: false });
 
-	console.log(allCourses);
+	const handleClick = () => {
+		setToggle({ clicked: !toggle.clicked });
+	};
 
 	return (
 		<>
 			<DashboardHeader />
 			<main className="container my-3 d-flex flex-row justify-content-between">
-				<aside className="col-3">
-					<div className="bg-white mb-2 p-4 rounded">
+				<div className="menu-icon m-2 h1" onClick={handleClick}>
+					{toggle.clicked ? <VscChromeClose /> : <BiMenuAltLeft />}
+				</div>
+				<aside className="col-lg-3 col-md-4">
+					<div className={toggle.clicked ? "all-categories-active bg-white mb-2 p-4 rounded" : `all-categories bg-white mb-2 p-4 rounded`}>
 						<p className="signup-p all-courses-category-list"> All Courses </p>
 						<p className="signup-p all-courses-category-list"> Recommended Courses </p>
 					</div>
-					<div className="bg-white p-4 rounded">
+					<div className={toggle.clicked ? "all-categories-active bg-white p-4 rounded" : "all-categories bg-white p-4 rounded"}>
 						<ul className="courses-list">
 							<h1 className="signup-p fw-bold"> Categories </h1> <hr />
 							{allCategories.map((category) => (
@@ -43,21 +49,33 @@ function Courses() {
 						</ul>
 					</div>
 				</aside>
-				<section className="col-8">
+				<section className="col-lg-8 col-md-7">
 					<section>
-						<article className="col-12 d-flex flex-row flex-wrap mb-3">
-							{allCourses.map((course) => (
-								<div key={course._id} className="bg-white all-courses-div d-flex flex-column border m-2">
-									<img className="courses-img" src={course.image_url} width="100%" height="70%" alt="dispay" />
+						<article className={toggle.clicked ? `d-none` : "col-12 d-flex flex-row flex-wrap mb-3"}>
+							{allCourses.length &&
+								allCourses.map((course) => (
+									<div key={course._id} className="bg-white all-courses-div d-flex flex-column border m-2 position-relative">
+										<img className="courses-img" src={course.image_url} width="100%" height="70%" alt="dispay" />
 
-									<p className="badge position-absolute courses-price-badge">{`N${course.price}`}</p>
-									<div className="w-100">
-										<a className="all-courses-link" href={`/watchcourse/?id=${course._id}`}>
-											<p className="fw-bold signup-p m-4">{course.name}</p>
-										</a>
+										<p className="badge position-absolute courses-price-badge">
+											{course.price === 0 ? (course.price = "FREE") : `N ${course.price}`}
+										</p>
+										<div className="w-100">
+											<div className="bg-white rounded-circle courses-tutor-image-radius" height="55px" width="55px">
+												<img
+													className="rounded-circle"
+													src={course.tutor_id !== undefined ? course.tutor_id.image_url : ""}
+													height="45px"
+													width="45px"
+													alt="tutor pic"
+												/>
+											</div>
+											<a className="all-courses-link" href={`/watchcourse/?id=${course._id}`}>
+												<p className="fw-bold signup-p m-4">{course.name}</p>
+											</a>
+										</div>
 									</div>
-								</div>
-							))}
+								))}
 						</article>
 					</section>
 				</section>
