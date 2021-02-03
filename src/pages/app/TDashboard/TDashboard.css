@@ -10,7 +10,7 @@
 
 .tdashboard .card {
   border-radius: 15px;
-  padding: 9px;
+  padding: 9px 2px;
 }
 
 .tdashboard .btn-outline-primary {
@@ -23,6 +23,7 @@
   background-color: var(--primary-color);
   color: #f4f4f4;
   border-radius: 8px;
+  padding: 10px 20px;
 }
 .btn-primary:hover {
   color: #f4f4f4;
