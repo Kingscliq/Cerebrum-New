@@ -151,7 +151,7 @@ const TDashboard = () => {
           </div>
         </div>
 
-        <section className='row my-4 mt-5 gx-5'>
+        <section className='row my-4 mx-auto mt-5 gx-5 container'>
           {role === "learner" ? (
             <div className='col-md-6 card p-5 shadow mb-sm-5'>
               <div className='row align-items-center'>
@@ -181,8 +181,8 @@ const TDashboard = () => {
                     {courses.map((course) => (
                       <>
                         <CourseList
-                          courseName={course.category}
-                          courseDesc={course.name}
+                          courseName={course.name}
+                          courseDesc={course.description}
                           courseImg={course.image_url}
                         />
                       </>
