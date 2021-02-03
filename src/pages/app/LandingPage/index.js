@@ -14,7 +14,7 @@ function LandingPage() {
     <>
       <Header />
       <main className="landing-page container pb-5">
-        <section className="landing-page-a row">
+        <section className="landing-page-a row animate__animated animate__bounce">
           <div className="col-6 my-5">
             <h1 className="fw-bold my-3">
               Knowledge <br /> <span>for everyone by everyone</span>
