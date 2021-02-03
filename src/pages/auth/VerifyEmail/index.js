@@ -8,6 +8,7 @@ import { Loader } from "../../../components/Loader";
 // import { emailVerification } from "../../../api";
 import "./VerifyEmail.css";
 import axios from "axios";
+import { AuthHeader } from "../../../widgets/AuthHeader";
 
 function VerifyEmail() {
   const padTime = (time) => {
@@ -63,56 +64,59 @@ function VerifyEmail() {
   };
 
   return (
-    <main className='container-fluid vh-100 verifymail-section'>
-      <section className='row h-100'>
-        <div className='col-7 d-flex justify-content-center align-items-center'>
-          <div className='card shadow w-c'>
-            <form>
-              <h3> Congratulations {name} </h3>
+    <>
+      <AuthHeader />
+      <main className="container-fluid vh-100 verifymail-section">
+        <section className="row h-100">
+          <div className="col-7 d-flex justify-content-center align-items-center">
+            <div className="card shadow w-c">
+              <form>
+                <h3> Congratulations {name} </h3>
 
-              <p className='mt-4 mb-3 signup-p'>
-                Your registration was successful, but we need to verify your
-                email before you can access your account. <br />
-                <br />
-                Kindly check your email @ {email} and click on the verifiction
-                link to complete your registration. <br />
-              </p>
-              <hr />
-              <p className='signup-p'>
-                <span className='text-muted'>
-                  Haven't seen the mail? Click the resend button
-                </span>
-              </p>
-              <Button
-                className='btn btn-primary w-100 mb-5'
-                text={"Resend Verification Mail"}
-                loadingIcon={counter === 0 ? null : <Loader />}
-                disabled={counter === 0 ? false : true}
-                onClick={resendEmail}
-              />
-              <p className='mt-1 signup-p text-center'>
-                {counter === 0 ? (
-                  "Click Resend"
-                ) : (
-                  <span className='verification-timeout'>
-                    Time left <span className='pl-1 pr-1'> : </span>
-                    {format(counter)}
+                <p className="mt-4 mb-3 signup-p">
+                  Your registration was successful, but we need to verify your
+                  email before you can access your account. <br />
+                  <br />
+                  Kindly check your email @ {email} and click on the verifiction
+                  link to complete your registration. <br />
+                </p>
+                <hr />
+                <p className="signup-p">
+                  <span className="text-muted">
+                    Haven't seen the mail? Click the resend button
                   </span>
-                )}
-              </p>
-            </form>
+                </p>
+                <Button
+                  className="btn btn-primary w-100 mb-5"
+                  text={"Resend Verification Mail"}
+                  loadingIcon={counter === 0 ? null : <Loader />}
+                  disabled={counter === 0 ? false : true}
+                  onClick={resendEmail}
+                />
+                <p className="mt-1 signup-p text-center">
+                  {counter === 0 ? (
+                    "Click Resend"
+                  ) : (
+                    <span className="verification-timeout">
+                      Time left <span className="pl-1 pr-1"> : </span>
+                      {format(counter)}
+                    </span>
+                  )}
+                </p>
+              </form>
+            </div>
           </div>
-        </div>
-        <div
-          className='col-5 vh-100'
-          style={{
-            background: `url(${verifyImage})`,
-            backgroundRepeat: `no-repeat`,
-            backgroundSize: `cover`,
-          }}
-        ></div>
-      </section>
-    </main>
+          <div
+            className="col-5 vh-100"
+            style={{
+              background: `url(${verifyImage})`,
+              backgroundRepeat: `no-repeat`,
+              backgroundSize: `cover`,
+            }}
+          ></div>
+        </section>
+      </main>
+    </>
   );
 }
 
