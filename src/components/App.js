@@ -19,6 +19,7 @@ import { TutorAddCourse } from "../pages/app/TutorAddCourse";
 import { Logout } from "../pages/app/Logout";
 import { ViewCourseModal } from "../widgets/ViewCourseModal";
 import { ResetPassword } from "../pages/auth/ResetPassword";
+import { BuyCourse } from "../pages/app/BuyCourse";
 
 function App() {
   return (
@@ -48,24 +49,7 @@ function App() {
         <Route path='/courses' component={Courses} />
         <Route path='/logout' component={Logout} />
         <Route path='/viewcoursemodal' component={ViewCourseModal} />
-      </Switch>
-    </div>
-  );
-  return (
-    <div className='App'>
-      <Switch>
-        <Route path='/login' component={Login} />
-        <Route path='/forgotpassword' component={ForgotPassWord} />
-        <Route path='/verifyemail' component={VerifyEmail} />
-        <Route path='/signup' exact component={SignUp} />
-        <Route path='/dashboard/tutor/addcourse' exact component={AddCourses} />
-        <Route exact path='/tdashboard' component={TDashboard} />
-        <Route path='/verify-email' component={EmailVerify} />
-        <Route path='/watchcourse' component={WatchCourse} />
-        <Route path='/forgotpassword' component={ForgotPassWord} />
-        <Route path='/login' component={Login} />
-        <Route path='/signup' component={SignUp} />
-        <Route path='/forgotpassword' component={ForgotPassWord} />
+        <Route path='/buycourse' component={BuyCourse} />
       </Switch>
     </div>
   );

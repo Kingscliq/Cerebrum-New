@@ -29,10 +29,11 @@ const Login = () => {
 
   let statusAlert;
   if (verify_msg === "success") {
-    statusAlert = "Your Email has been Successfully Verified";
+    setAlert("Your Email has been Successfully Verified");
   } else if (verify_msg === "verify") {
-    statusAlert =
-      "Email has already been verified, You can login to your Dashboard";
+    setAlert(
+      "Email has already been verified, You can login to your Dashboard"
+    );
   }
 
   const handleChange = (e) => {

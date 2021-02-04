@@ -51,11 +51,10 @@ const TDashboard = () => {
 
   useEffect(() => {
     if (user.role === "tutor") {
-      console.log(user);
+      // console.log(user);
       axios
         .get(`https://cerebrum-v1.herokuapp.com/api/tutor/course/${user._id}`)
         .then((res) => {
-          console.log(res.data);
           setCourseCount(res.data.data.length);
           setCourses(res.data.data);
         })
@@ -178,12 +177,13 @@ const TDashboard = () => {
               {courses.length > 0 ? (
                 <>
                   <div className='row align-items-center'>
-                    {courses.map((course) => (
+                    {courses.map((course, index) => (
                       <>
                         <CourseList
                           courseName={course.name}
                           courseDesc={course.description}
                           courseImg={course.image_url}
+                          key={index}
                         />
                       </>
                     ))}
@@ -198,8 +198,8 @@ const TDashboard = () => {
               )}
             </div>
           )}
-          <div className='col-md-1'>&nbsp;</div>
-          <div className='col-md-5'>
+          {/* <div className='col-md-1'>&nbsp;</div> */}
+          <div className='col-md-6'>
             {/* metrics d-flex flex-wrap flex-column */}
             {role === "tutor" ? (
               <>
@@ -232,7 +232,7 @@ const TDashboard = () => {
                     <div className='row'>
                       <div className='col-md-6 col-sm-12'>
                         <div>
-                          {courses.length > 0 ? (
+                          {role === "tutor" || courses.length > 0 ? (
                             <>
                               <h1
                                 style={{ fontSize: "50px", fontWeight: "600" }}
