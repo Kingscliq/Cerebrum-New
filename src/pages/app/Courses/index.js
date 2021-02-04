@@ -70,7 +70,7 @@ function Courses() {
 													alt="tutor pic"
 												/>
 											</div>
-											<a className="all-courses-link" href={`/watchcourse/?id=${course._id}`}>
+											<a className="all-courses-link" href={`/buycourse/?id=${course._id}`}>
 												<p className="fw-bold signup-p m-4">{course.name}</p>
 											</a>
 										</div>

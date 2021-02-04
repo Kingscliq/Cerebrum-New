@@ -17,7 +17,8 @@ import { AddCourses } from "../pages/app/AddCourses";
 import { Courses } from "../pages/app/Courses";
 import { TutorAddCourse } from "../pages/app/TutorAddCourse";
 import { Logout } from "../pages/app/Logout";
-import { ViewCourseModal } from "../widgets/ViewCourseModal";
+import { PaymentSuccessful } from "../widgets/PaymentSuccessful";
+import { TutorProfileSettings } from "../pages/app/TutorProfileSettings";
 
 function App() {
 	return (
@@ -41,7 +42,8 @@ function App() {
 				<Route path="/tutoraddcourse" component={TutorAddCourse} />
 				<Route path="/courses" component={Courses} />
 				<Route path="/logout" component={Logout} />
-				<Route path="/viewcoursemodal" component={ViewCourseModal} />
+				<Route path="/user/course/payment/success" component={PaymentSuccessful} />
+				<Route path="/user/editprofile" component={TutorProfileSettings} />
 			</Switch>
 		</div>
 	);
