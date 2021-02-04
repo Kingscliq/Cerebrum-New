@@ -1,6 +1,6 @@
 /** @format */
-.tdashboard .btn {
-}
+/* .tdashboard .btn {
+} */
 
 /** @format */
 
@@ -13,11 +13,21 @@
   padding: 9px;
 }
 
-.tdashboard .btn {
+.tdashboard .btn-outline-primary {
   background: #ffffff;
   border: 2px solid var(--primary-color);
   border-radius: 8px;
 }
+.btn-primary,
+.btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  color: #f4f4f4;
+  border-radius: 8px;
+}
+.btn-primary:hover {
+  color: #f4f4f4;
+}
+
 .tdashboard .btn a {
   color: var(--primary-color);
   text-decoration: none;
@@ -31,4 +41,8 @@
   padding: 10px 30px;
   outline: none;
   border: none;
+}
+.tdashboard .btn:hover {
+  background-color: var(--primary-color);
+  color: #f4f4f4;
 }

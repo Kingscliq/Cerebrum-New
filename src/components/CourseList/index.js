@@ -8,7 +8,7 @@ const CourseList = ({ courseName, courseImg, courseDesc }) => {
   return (
     <div>
       <section className='courselist m-2'>
-        <article className='card shadow'>
+        <article className='card'>
           <div className='container d-flex align-items-center justify-content-between'>
             <div className='col-md-11 d-flex align-item-start'>
               <div className='row'>

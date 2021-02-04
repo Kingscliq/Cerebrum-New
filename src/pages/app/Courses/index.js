@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState, useEffect } from "react";
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
@@ -25,6 +27,7 @@ function Courses() {
 	const handleClick = () => {
 		setToggle({ clicked: !toggle.clicked });
 	};
+	console.log(allCourses);
 
 	return (
 		<>
@@ -57,9 +60,7 @@ function Courses() {
 									<div key={course._id} className="bg-white all-courses-div d-flex flex-column border m-2 position-relative">
 										<img className="courses-img" src={course.image_url} width="100%" height="70%" alt="dispay" />
 
-										<p className="badge position-absolute courses-price-badge">
-											{course.price === 0 ? (course.price = "FREE") : `N ${course.price}`}
-										</p>
+										<p className="badge position-absolute courses-price-badge">{course.price > 0 ? `N ${course.price}` : (course.price = "FREE")}</p>
 										<div className="w-100">
 											<div className="bg-white rounded-circle courses-tutor-image-radius" height="55px" width="55px">
 												<img
@@ -70,7 +71,7 @@ function Courses() {
 													alt="tutor pic"
 												/>
 											</div>
-											<a className="all-courses-link" href={`/buycourse/?id=${course._id}`}>
+											<a className="all-courses-link" href={`/watchcourse/?id=${course._id}`}>
 												<p className="fw-bold signup-p m-4">{course.name}</p>
 											</a>
 										</div>
