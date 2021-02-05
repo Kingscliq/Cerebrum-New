@@ -58,7 +58,7 @@ function Courses() {
 							{allCourses.length &&
 								allCourses.map((course) => (
 									<div key={course._id} className="bg-white all-courses-div d-flex flex-column border m-2 position-relative">
-										<img className="courses-img" src={course.image_url} width="100%" height="70%" alt="dispay" />
+										<img className="courses-img" src={course.image_url} width="100%" height="80%" alt="dispay" />
 
 										<p className="badge position-absolute courses-price-badge">{course.price > 0 ? `N ${course.price}` : (course.price = "FREE")}</p>
 										<div className="w-100">
@@ -72,7 +72,7 @@ function Courses() {
 												/>
 											</div>
 											<a className="all-courses-link" href={`/watchcourse/?id=${course._id}`}>
-												<p className="fw-bold signup-p m-4">{course.name}</p>
+												<p className="fw-bold signup-p mx-4 mt-3">{course.name}</p>
 											</a>
 										</div>
 									</div>
