@@ -3,16 +3,16 @@ import React from "react";
 import { Button } from "../../components/Button";
 import { DashboardHeader } from "../DashboardHeader";
 import { Footer } from "../Footer";
-import "./PaymentSuccessful.css";
+import "./PaymentFailed.css";
 
-function PaymentSuccessful() {
+function PaymentFailed() {
 	return (
 		<>
 			<DashboardHeader />
 			<main className="container">
 				<section className="my-5 shadow mx-auto p-5 success-payment-section bg-white">
-					<h1 className="fw-700 h2" style={{ color: "#00C17C", marginTop: "2rem" }}>
-						Transaction Successful
+					<h1 className="fw-700 h2" style={{ color: "#E31E18", marginTop: "2rem" }}>
+						Transaction Failed
 					</h1>
 
 					<div className="col-7 mb-4 line-height-26">
@@ -28,7 +28,7 @@ function PaymentSuccessful() {
 						</div>
 
 						<div className="d-inline-block m-1">
-							<Button className="btn payment-watch-btn" text={"Watch Course"} />
+							<Button className="btn payment-watch-btn" text={"Try Again"} />
 						</div>
 					</div>
 				</section>
@@ -38,4 +38,4 @@ function PaymentSuccessful() {
 	);
 }
 
-export { PaymentSuccessful };
+export { PaymentFailed };

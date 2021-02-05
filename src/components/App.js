@@ -20,23 +20,28 @@ import { Logout } from "../pages/app/Logout";
 import { ResetPassword } from "../pages/auth/ResetPassword";
 import { PaymentSuccessful } from "../widgets/PaymentSuccessful";
 import { TutorProfileSettings } from "../pages/app/TutorProfileSettings";
-import { BuyCourse } from "../pages/app/BuyCourse";
-
+import { PaymentFailed } from "../widgets/PaymentFailed";
+import { PaymentOption } from "../widgets/PaymentOption";
+import {BuyCourse}  from '../pages/app/BuyCourse'
 function App() {
   return (
     <div className='App'>
       <Switch>
-        <Route path='/login' component={Login} />
+        <Route path='/auth/login' component={Login} />
+        <Route path='/auth/signup' exact component={SignUp} />
+        <Route path='/auth/verifyemail' component={VerifyEmail} />
         <Route path='/forgotpassword' component={ForgotPassWord} />
-        <Route path='/verifyemail' component={VerifyEmail} />
-        <Route path='/signup' exact component={SignUp} />
+        <Route
+          path='/user/course/payment/success'
+          component={PaymentSuccessful}
+        />
+        <Route path='/user/editprofile' component={TutorProfileSettings} />
+        <Route path='/buycourse' component={BuyCourse} />
         <Route path='/dashboard/tutor/addcourse' exact component={AddCourses} />
         <Route exact path='/tdashboard' component={TDashboard} />
         <Route path='/verify-email' component={EmailVerify} />
         <Route path='/watchcourse' component={WatchCourse} />
         <Route path='/forgotpassword' component={ForgotPassWord} />
-        <Route path='/login' component={Login} />
-        <Route path='/signup' component={SignUp} />
         <Route path='/forgotpassword' component={ForgotPassWord} />
         <Route path='/watchcourse' component={WatchCourse} />
         <Route path='/' exact component={LandingPage} />
@@ -48,14 +53,13 @@ function App() {
         <Route path='/' exact component={LandingPage} />
         <Route path='/tutoraddcourse' component={TutorAddCourse} />
         <Route path='/courses' component={Courses} />
-        <Route path='/logout' component={Logout} />
-
         <Route
           path='/user/course/payment/success'
           component={PaymentSuccessful}
         />
         <Route path='/user/editprofile' component={TutorProfileSettings} />
-        <Route path='/buycourse' component={BuyCourse} />
+        <Route path='/user/course/payment/fail' component={PaymentFailed} />
+        <Route path='/user/course/paymentoption' component={PaymentOption} />
       </Switch>
     </div>
   );

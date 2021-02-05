@@ -6,6 +6,10 @@
  * @format
  */
 
+.dash {
+  background: #ffffff;
+}
+
 .dash-nav-items > * {
   margin: 0 10px;
   color: #b1acac;
@@ -30,3 +34,9 @@
 .dashimage {
   border-radius: 50%;
 }
+/* 
+@media all and (max-width: 800px) {
+  .dash-nav-items input {
+    width: 20px !important;
+  }
+} */

@@ -11,7 +11,7 @@ import "./Footer.css";
 function Footer() {
   return (
     <footer className="footer-section py-3">
-      <section className="d-flex container justify-content-between ">
+      <section className="d-lg-flex container justify-content-between ">
         <div className="nav-logo">
           <img src={logo2} alt="logo2" />
         </div>

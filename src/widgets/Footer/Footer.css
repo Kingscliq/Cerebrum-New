@@ -34,3 +34,9 @@
   margin: 0 15px;
   text-decoration: none;
 }
+
+@media all and (max-width: 800px) {
+  .footer-links {
+    margin-left: -50px;
+  }
+}
