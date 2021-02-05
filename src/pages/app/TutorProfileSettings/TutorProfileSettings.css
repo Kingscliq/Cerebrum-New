@@ -1,0 +1,29 @@
+.profile-settings-border-top {
+	border-radius: 12px 12px 0px 0px;
+}
+
+.profile-upload-pic-div {
+	height: 131.64px;
+	width: 131.64px;
+	border-radius: 50%;
+	background: rgba(253, 141, 9, 0.71);
+}
+
+.profile-settings-label-text {
+	font-size: 13px;
+	letter-spacing: 0.4px;
+}
+
+.profile-settings-hover:hover {
+	color: rgba(20, 33, 255, 0.52);
+	cursor: pointer;
+}
+
+.profile-settings-clicked {
+	background: rgba(20, 33, 255, 0.52);
+}
+
+.profile-settings-opacity,
+.profile-settings-opacity div input::placeholder {
+	color: rgba(33, 33, 33, 0.52);
+}

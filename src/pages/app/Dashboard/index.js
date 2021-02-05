@@ -66,20 +66,20 @@ const Dashboard = () => {
         </div>
         {/* side-section for tutors*/}
         <section className='row my-4'>
-          <div className='col-md-6 card p-5 shadow'>
+          <div className='col-md-6 card p-5 shadow col-sm-12'>
             <div className='row align-items-center'>
-              <div className='col-md-6'>
+              <div className='col-md-6 col-sm-12'>
                 <img src={dashboardImg} alt='' />
               </div>
-              <div className='col-md-6'>
+              <div className='col-md-6 col-sm-12'>
                 <h1 className='font-bold'>Code 101: Codeology</h1>
-                <p>By {}</p>
+                <p>By kingsley</p>
                 <p>
                   Lorem ipsum, or lipsum as it is sometimes known, is dummy text
                   used in laying out print, graphic or web designs.
                 </p>
                 <p>
-                  <button className='btn btn-warning text-light text-bold'>
+                  <button className='btn btn-warning text-light text-bold btn-sm-block'>
                     Continue Course
                   </button>
                 </p>

@@ -5,13 +5,15 @@ import { ActiveCircle } from "../../../assets/images";
 import { Button } from "../../../components/Button";
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
-import { getCourses } from "../../../api";
+import { getLessons } from "../../../api";
 import "./WatchCourse.css";
+// import { CoursePlayer } from "../../../widgets/CoursePlayer";
 
 function WatchCourse() {
 	const [numToggle, setNumToggle] = useState(1);
 	const [courses, setCourses] = useState([]);
-	const [currentlyPlaying, setcurrentlyPlaying] = useState("");
+	const [coursePreview, setCoursePreview] = useState(<h1> h1 </h1>);
+	const [singleCourse, setSingleCourse] = useState({});
 
 	const handleClick = (e) => {
 		e.preventDefault();
@@ -20,50 +22,44 @@ function WatchCourse() {
 		console.log(targetText);
 	};
 
+	// Get Url Parameters
+	const url_string = window.location.href;
+	const url = new URL(url_string);
+	const course_id = url.searchParams.get("id");
+
 	useEffect(() => {
-		getCourses(courses, setCourses);
-		// setCourses(courses);
+		getLessons(courses, setCourses, course_id);
 	}, []);
 
-	// console.log(courses);
+	console.log(courses);
 
 	const handleCurrentlyPlaying = (e) => {
 		const key = e.target.key;
-		key === courses._id ? (
-			console.log(courses)
-		) : (
-			<div className="main-view-img d-flex justify-content-center align-items-center">
-				<ReactPlayer
-					className="react-player"
-					url={`https://res.cloudinary.com/codeangelic/video/upload/v1611738487/cerebrum/lessons/ce7tmefwhlbaxc0udku0.mp4`}
-					playing={true}
-					controls={true}
-					width="100%"
-					height="100%"
-				/>
-			</div>
-		);
+		key !== courses._id
+			? console.log("hello")
+			: setCoursePreview(
+					<div className="main-view-img d-flex justify-content-center align-items-center">
+						<ReactPlayer
+							className="react-player"
+							url={`https://res.cloudinary.com/codeangelic/video/upload/v1611738487/cerebrum/lessons/ce7tmefwhlbaxc0udku0.mp4`}
+							playing={true}
+							controls={true}
+							width="100%"
+							height="100%"
+						/>
+					</div>
+			  );
 	};
 
 	return (
 		<>
 			<DashboardHeader />
 			<main className="container pb-5">
-				<h1 className="fw-bold"> The Story of Art </h1>
+				<h1 className="fw-bold"> {}</h1>
 				<p> by Lil Kim </p>
 				<section className="d-lg-flex flex-lg-row flex-md-column flex-sm-column justify-content-between">
 					<section className="col-lg-7 col-md-12 col-sm-12">
-						<div className="main-view-img d-flex justify-content-center align-items-center">
-							<ReactPlayer
-								className="react-player"
-								url={`https://res.cloudinary.com/codeangelic/video/upload/v1611738487/cerebrum/lessons/ce7tmefwhlbaxc0udku0.mp4`}
-								playing={true}
-								controls={true}
-								width="100%"
-								height="100%"
-							/>
-						</div>
-
+						{coursePreview}
 						<div className="w-100 shadow-lg">
 							<div className="shadow bg-white rounded d-flex flex-row w-100 mt-2 mb-1">
 								<Button

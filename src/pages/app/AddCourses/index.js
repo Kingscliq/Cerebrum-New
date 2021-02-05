@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState, useEffect } from "react";
 import { AddCourseInput } from "../../../components/AddCourseInput";
 import axios from "axios";
@@ -77,16 +79,16 @@ function AddCourses() {
   return (
     <>
       <DashboardHeader />
-      <main className="addcourse-page container">
+      <main className='addcourse-page container'>
         <h1>Add Course</h1>
-        <section className="card shadow py-5 px-4 mb-5">
-          <div className="row col-12">
-            <div className="col-sm-12 col-md-6">
-              <div className="addcourse-a">
+        <section className='card shadow py-5 px-4 mb-5'>
+          <div className='row col-12'>
+            <div className='col-sm-12 col-md-6'>
+              <div className='addcourse-a'>
                 <section>
-                  <div className="courses-form-header">
-                    <h2 className="py-4">Course Details</h2>
-                    <button name="one" onClick={handleClick}>
+                  <div className='courses-form-header'>
+                    <h2 className='py-4'>Course Details</h2>
+                    <button name='one' onClick={handleClick}>
                       <IconContext.Provider
                         value={{
                           className: "one",
@@ -130,30 +132,30 @@ function AddCourses() {
                           })
                           .catch((err) => console.log(form1.tutor_id));
                       }}
-                      enctype="multipart/form-data"
+                      enctype='multipart/form-data'
                     >
                       <label>Name of Course</label>
                       <AddCourseInput
-                        placeholder="Enter course name"
-                        name="name"
+                        placeholder='Enter course name'
+                        name='name'
                         onChange={handleChange}
                         disabled={loading}
                       />
                       <label>Course Description</label>
                       <textarea
-                        className="form-control mb-3"
-                        name="description"
+                        className='form-control mb-3'
+                        name='description'
                         onChange={handleChange}
-                        placeholder="Enter course description..."
-                        rows="7"
+                        placeholder='Enter course description...'
+                        rows='7'
                         disabled={loading}
                       ></textarea>
                       <label>Category</label>
                       <select
-                        name="category"
+                        name='category'
                         onChange={handleChange}
-                        className="form-select mb-3"
-                        aria-label="Default select example"
+                        className='form-select mb-3'
+                        aria-label='Default select example'
                         disabled={loading}
                       >
                         <option>Select course category</option>
@@ -165,23 +167,23 @@ function AddCourses() {
                       </select>
                       <label>Cover Image</label>
                       <AddCourseInput
-                        placeholder="Upload Image"
-                        type="file"
-                        name="img"
+                        placeholder='Upload Image'
+                        type='file'
+                        name='img'
                         onChange={handleChange}
                         disabled={loading}
                       />
                       <label>Price</label>
                       <AddCourseInput
-                        type="text"
-                        placeholder="Enter course price"
-                        name="price"
+                        type='text'
+                        placeholder='Enter course price'
+                        name='price'
                         onChange={handleChange}
                         disabled={loading}
                       />
                       <Button
-                        className="btn btn-primary"
-                        text="Save"
+                        className='btn btn-primary'
+                        text='Save'
                         loadingIcon={loading && <Loader />}
                         onClick={(e) => {
                           e.preventDefault();
@@ -194,9 +196,9 @@ function AddCourses() {
                   )}
                 </section>
                 <section>
-                  <div className="courses-form-header">
-                    <h2 className="py-4">Module</h2>
-                    <button name="two" onClick={handleClick}>
+                  <div className='courses-form-header'>
+                    <h2 className='py-4'>Module</h2>
+                    <button name='two' onClick={handleClick}>
                       <IconContext.Provider
                         value={{
                           className: "two",
@@ -229,24 +231,24 @@ function AddCourses() {
                     >
                       <label>Module</label>
                       <AddCourseInput
-                        name="name"
-                        type="text"
-                        placeholder="Enter module name"
+                        name='name'
+                        type='text'
+                        placeholder='Enter module name'
                         onChange={handleChange2}
                         disabled={loading}
                       />
                       <Button
-                        className="btn btn-primary"
+                        className='btn btn-primary'
                         loadingIcon={loading && <Loader />}
-                        text="Save"
+                        text='Save'
                       />
                     </form>
                   )}
                 </section>
                 <section>
-                  <div className="courses-form-header">
-                    <h2 className="py-4">Lesson</h2>
-                    <button name="three" onClick={handleClick}>
+                  <div className='courses-form-header'>
+                    <h2 className='py-4'>Lesson</h2>
+                    <button name='three' onClick={handleClick}>
                       <IconContext.Provider
                         value={{
                           className: "three",
@@ -284,36 +286,36 @@ function AddCourses() {
                           })
                           .catch((err) => console.log(form1, form2, form3));
                       }}
-                      enctype="multipart/form-data"
+                      enctype='multipart/form-data'
                     >
                       <label>Lesson Name</label>
                       <AddCourseInput
-                        placeholder="Enter lesson name"
-                        type="text"
-                        name="name"
+                        placeholder='Enter lesson name'
+                        type='text'
+                        name='name'
                         disabled={loading}
                         onChange={handleChange3}
                       />
                       <label>Lesson Video</label>
                       <AddCourseInput
-                        placeholder="Upload Video"
-                        type="file"
-                        name="img"
+                        placeholder='Upload Video'
+                        type='file'
+                        name='img'
                         disabled={loading}
                         onChange={handleChange3}
                       />
                       <label>Lesson Description</label>
                       <textarea
-                        className="form-control mb-3"
-                        placeholder="Enter lesson description"
-                        rows="7"
-                        name="description"
+                        className='form-control mb-3'
+                        placeholder='Enter lesson description'
+                        rows='7'
+                        name='description'
                         loading={loading}
                         onChange={handleChange3}
                       ></textarea>
                       <Button
-                        className="btn btn-primary"
-                        text="Publish Course"
+                        className='btn btn-primary'
+                        text='Publish Course'
                         loadingIcon={loading && <Loader />}
                       />
                     </form>
@@ -321,9 +323,9 @@ function AddCourses() {
                 </section>
               </div>
             </div>
-            <div className="col-sm-12 col-md-6">
-              <div className="mt-4 addcourse-b col-5">
-                <img src={courseImage || dashboardImage} alt="No Image" />
+            <div className='col-sm-12 col-md-6'>
+              <div className='mt-4 addcourse-b col-5'>
+                <img src={courseImage || dashboardImage} alt='No Image' />
               </div>
             </div>
           </div>
