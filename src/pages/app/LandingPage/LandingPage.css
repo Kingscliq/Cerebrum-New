@@ -64,3 +64,7 @@
   padding: 10px;
   border-radius: 8px;
 }
+
+.animate__animated {
+  --animate-duration: 3s;
+}

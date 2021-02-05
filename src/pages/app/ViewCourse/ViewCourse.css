@@ -1,0 +1,54 @@
+.viewcourse-section h1 {
+  font-weight: 700;
+}
+.viewcourse-section > p:nth-of-type(1) {
+  font-weight: 600;
+}
+
+.toggle-container {
+  box-shadow: 0px 11px 40px 0px rgba(20, 33, 255, 0.12);
+}
+
+.toggle-btns button {
+  background: #ffffff;
+  outline: none;
+  border: none;
+  font-weight: 600;
+  box-shadow: 0px 11px 40px 0px rgba(20, 33, 255, 0.12);
+}
+
+.toggle-btns .toggle-btn-active {
+  border-bottom: 3px solid var(--primary-color);
+}
+
+.toggle-items h2 {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.toggle-items p {
+  font-weight: 500;
+  font-size: 1.01rem;
+}
+
+.review-btns button {
+  font-weight: 600;
+  border-radius: 12px;
+}
+
+.review-btns button:first-of-type {
+  margin-right: 8px;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+.review-btns button:first-of-type:hover {
+  background: none;
+}
+
+.review-btns button:last-of-type {
+  background: var(--primary-color);
+}
+
+.viewcourse-section aside {
+  box-shadow: 0px 11px 40px 0px rgba(20, 33, 255, 0.12);
+}
