@@ -67,7 +67,7 @@ export const signIn = (e, user, setUser, setLoadState, setError, error) => {
 };
 
 //Watch Course Api
-export const getCourses = (courses, setCourses, course_id) => {
+export const getLessons = (courses, setCourses, course_id) => {
 	const data = courses;
 
 	axios

@@ -17,8 +17,9 @@ import { AddCourses } from "../pages/app/AddCourses";
 import { Courses } from "../pages/app/Courses";
 import { TutorAddCourse } from "../pages/app/TutorAddCourse";
 import { Logout } from "../pages/app/Logout";
-import { ViewCourseModal } from "../widgets/ViewCourseModal";
 import { ResetPassword } from "../pages/auth/ResetPassword";
+import { PaymentSuccessful } from "../widgets/PaymentSuccessful";
+import { TutorProfileSettings } from "../pages/app/TutorProfileSettings";
 import { BuyCourse } from "../pages/app/BuyCourse";
 
 function App() {
@@ -48,7 +49,12 @@ function App() {
         <Route path='/tutoraddcourse' component={TutorAddCourse} />
         <Route path='/courses' component={Courses} />
         <Route path='/logout' component={Logout} />
-        <Route path='/viewcoursemodal' component={ViewCourseModal} />
+
+        <Route
+          path='/user/course/payment/success'
+          component={PaymentSuccessful}
+        />
+        <Route path='/user/editprofile' component={TutorProfileSettings} />
         <Route path='/buycourse' component={BuyCourse} />
       </Switch>
     </div>

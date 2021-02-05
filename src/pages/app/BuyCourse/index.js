@@ -70,7 +70,11 @@ const BuyCourse = () => {
                   <p>{course.description}</p>
                 </div>
                 <div className='mt-5'>
-                  <small className='btn btn-warning text-light'>{`N ${course.price}`}</small>
+                  <small className='btn btn-warning text-light'>
+                    {course.price > 0
+                      ? `N ${course.price}`
+                      : (course.price = "FREE")}
+                  </small>
                 </div>
               </div>
             </div>
