@@ -5,6 +5,7 @@ import { FaEnvelope } from "react-icons/fa";
 import { forgotPasswordImg } from "../../../assets/images";
 import { Button } from "../../../components/Button";
 import { Input } from "../../../components/Input";
+import { AuthHeader } from "../../../widgets/AuthHeader";
 import "./ForgotPassword.css";
 import axios from "axios";
 
@@ -36,55 +37,57 @@ function ForgotPassWord() {
       });
   };
   return (
-    <main className="container-fluid vh-100 fpassword-section">
-      <section className="row h-100">
-        <div className="col-md-7 d-flex justify-content-center align-items-center">
-          <div className="card shadow w-c">
-            <form onSubmit={handleForgotPassword}>
-              <h2 className="fs-5">Find Your Account</h2>
-              <hr className="mt-n5" />
-              {error && (
-                <div className="alert alert-danger">
-                  <p>
+    <>
+      <AuthHeader />
+      <main className="container-fluid vh-100 fpassword-section">
+        <section className="row h-100">
+          <div className="col-md-7 d-flex justify-content-center align-items-center">
+            <div className="card shadow w-c">
+              <form onSubmit={handleForgotPassword}>
+                <h2 className="fs-5">Find Your Account</h2>
+                <hr className="mt-n5" />
+                {error && (
+                  <div className="alert alert-danger">
+                    <p>
+                      {/* We couldn’t find your account with that information. Please
+                      try inputting your correct email */}
+                      {error}
+                    </p>
+                  </div>
+                )}
+                {success && (
+                  <div className="alert alert-success">
                     {/* We couldn’t find your account with that information. Please
                     try inputting your correct email */}
-                    {error}
-                  </p>
-                </div>
-              )}
-              {success && (
-                <div className="alert alert-success">
-                  {/* We couldn’t find your account with that information. Please
-                  try inputting your correct email */}
-                  {success}
-                </div>
-              )}
-
-              <Input
-                type="text"
-                icon={<FaEnvelope />}
-                placeholder="Email"
-                value={email}
-                onChange={handleChange}
-              />
-              <Button
-                className="btn btn-primary w-100"
-                text={"Search"}
-                onClick={handleForgotPassword}
-              />
-            </form>
+                    {success}
+                  </div>
+                )}
+                <Input
+                  type="text"
+                  icon={<FaEnvelope />}
+                  placeholder="Email"
+                  value={email}
+                  onChange={handleChange}
+                />
+                <Button
+                  className="btn btn-primary w-100"
+                  text={"Search"}
+                  onClick={handleForgotPassword}
+                />
+              </form>
+            </div>
           </div>
-        </div>
-        <div
-          className="col-5 h-100 signup-image d-none d-md-block"
-          style={{
-            background: `url(${forgotPasswordImg})`,
-            backgroundRepeat: `no-repeat`,
-            backgroundSize: `cover`,
-          }}
-        ></div>
-      </section>
-    </main>
+          <div
+            className="col-5 h-100 signup-image d-none d-md-block"
+            style={{
+              background: `url(${forgotPasswordImg})`,
+              backgroundRepeat: `no-repeat`,
+              backgroundSize: `cover`,
+            }}
+          ></div>
+        </section>
+      </main>
+    </>
   );
 }
 export { ForgotPassWord };

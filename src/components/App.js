@@ -21,6 +21,7 @@ import { PaymentSuccessful } from "../widgets/PaymentSuccessful";
 import { TutorProfileSettings } from "../pages/app/TutorProfileSettings";
 import { PaymentFailed } from "../widgets/PaymentFailed";
 import { PaymentOption } from "../widgets/PaymentOption";
+import { ViewCourse } from "../pages/app/ViewCourse";
 
 function App() {
   return (
@@ -35,20 +36,12 @@ function App() {
         <Route path="/auth/forgotpassword" component={ForgotPassWord} />
         <Route exact path="/dashboard" component={TDashboard} />
         <Route path="/dashboard/tutor/addcourse" exact component={AddCourses} />
-        <Route path="/tutoraddcourse" component={TutorAddCourse} />
         <Route path="/courses" component={Courses} />
         <Route path="/reset-password" component={ResetPassword} />
         <Route path="/watchcourse" component={WatchCourse} />
-        <Route path="/" exact component={LandingPage} />
-        <Route path="/tutoraddcourse" component={TutorAddCourse} />
-        <Route path="/courses" component={Courses} />
-        <Route
-          path="/user/course/payment/success"
-          component={PaymentSuccessful}
-        />
-        <Route path="/user/editprofile" component={TutorProfileSettings} />
-        <Route path="/user/course/payment/fail" component={PaymentFailed} />
         <Route path="/user/course/paymentoption" component={PaymentOption} />
+        <Route path="/logout" component={Logout} />
+        <Route path="/learner/viewcourse" component={ViewCourse} />
       </Switch>
     </div>
   );
