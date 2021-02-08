@@ -13,9 +13,9 @@ function LandingPage() {
   return (
     <>
       <Header />
-      <main className="landing-page pb-5">
-        <section className="landing-page-a container-fluid ms-4 row">
-          <div className="col-7 my-5 ps-5">
+      <main className="landing-page container pb-5">
+        <section className="landing-page-a row">
+          <div className="col-6 my-5">
             <h1 className="fw-bold my-3">
               Knowledge <br /> <span>for everyone by everyone</span>
             </h1>
@@ -25,24 +25,19 @@ function LandingPage() {
               self-accomplishment.{" "}
             </p>
             <Button
-              className="btn btn-primary my-5 border-2"
+              className="btn btn-primary my-5 py-3 border-2"
               text="Earn as a tutor"
             />
             <Button
-              className="btn btn-outline-primary my-5 border-2"
+              className="btn btn-outline-primary my-5 py-3 border-2"
               text="Access content as a learner"
             />
           </div>
-          <div
-            className="col-5"
-            style={{
-              background: `url(${landingPage1})`,
-              backgroundRepeat: `no-repeat`,
-              backgroundSize: `cover`,
-            }}
-          ></div>
+          <div className="col-6">
+            <img src={landingPage1} alt="landing Image" />
+          </div>
         </section>
-        <section className="container landing-page-b d-flex justify-content-between my-5">
+        <section className="landing-page-b d-flex justify-content-between my-5">
           <div className="card w-25 p-4 text-center shadow-lg">
             <h1>30k</h1>
             <p>Tutors</p>
@@ -56,7 +51,7 @@ function LandingPage() {
             <p>Courses</p>
           </div>
         </section>
-        <section className="container landing-page-c ">
+        <section className="landing-page-c ">
           <div className="d-flex justify-content-between row">
             <div className="col-6 align-self-center">
               <h1 className="fw-bold my-3">Meet Qualified Tutors</h1>
@@ -68,34 +63,30 @@ function LandingPage() {
                 services.
               </p>
               <Button
-                className="btn btn-primary"
+                className="btn btn-primary py-3"
                 text="Access content as a learner"
               />
             </div>
-            <div className="land-img-con-c col-6">
-              <img src={landingPage2} alt="landing Image" />
+            <div className="col-6">
+              <div className="land-img-co-c">
+                <img src={landingPage2} alt="landing Image" />
+              </div>
             </div>
           </div>
         </section>
-        <section className="container landing-page-d ">
+        <section className="landing-page-d my-5">
           <div className="d-flex justify-content-between row">
-            <div className="land-img-con-d col-6">
+            <div className="land-img-co-d col-6">
               <img src={landingPage3} alt="landing Image" />
             </div>
-            <div className="col-6 align-self-center">
-              <h1 className="fw-bold my-3">Meet Verified Tutors</h1>
+            <div className="col-5 align-self-center mx-2">
+              <h1 className="fw-bold my-3">Flexible Payment</h1>
               <p className="mb-5">
                 We check the identity of every tutor who registers with Cerebum
                 and their content goes through various processes , tutors who
                 are listed as verified undergo an extra layer of verification.
-                Each verified tutor needs a minimum of 2 references publicly
-                available on their profile before they can start and get a blue
-                tick.
               </p>
-              <Button
-                className="btn btn-primary"
-                text="Access content as a learner"
-              />
+              <Button className="btn btn-primary py-3" text="Earn as a tutor" />
             </div>
           </div>
         </section>

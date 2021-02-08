@@ -1,5 +1,6 @@
 .home-header-section {
   background: #ffffff;
+  min-width: 100vw;
 }
 
 .home-header-section ul {

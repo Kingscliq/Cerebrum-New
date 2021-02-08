@@ -8,53 +8,53 @@
 
 /* Variables */
 :root {
-	--primary-color: #1421ff;
-	--secondary-color: #212121;
-	--background-color: #fbfbfb;
+  --primary-color: #1421ff;
+  --secondary-color: #212121;
+  --background-color: #fbfbfb;
 }
 
 body {
-	font-family: "Montserrat", sans-serif;
-	background: var(--background-color);
+  font-family: "Montserrat", sans-serif;
+  background: var(--background-color);
 }
 
 .icon-color {
-	color: #21212152;
+  color: #21212152;
 }
 
 .w-c {
-	width: 450px;
-	padding: 30px 55px;
+  width: 450px;
+  padding: 30px 55px;
 }
 .signup-p {
-	font-size: 14px;
+  font-size: 14px;
 }
 
 .w-c {
-	width: 450px;
-	padding: 30px 55px;
+  width: 450px;
+  padding: 30px 55px;
 }
 
 .signup-p {
-	font-size: 14px;
+  font-size: 14px;
 }
 .fw-bold {
-	font-weight: 400;
+  font-weight: 400;
 }
 
 .w-c {
-	width: 450px;
-	padding: 25px 55px;
+  width: 450px;
+  padding: 25px 55px;
 }
 
 .fw-700 {
-	font-weight: 700;
+  font-weight: 700;
 }
 
 .line-height-26 {
-	line-height: 26px;
+  line-height: 26px;
 }
 
 .border-radius-12 {
-	border-radius: 12px;
+  border-radius: 12px;
 }

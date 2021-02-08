@@ -15,8 +15,8 @@ export const signUpReg = (e, state, setLoadState) => {
 			setLoadState(false);
 			window.open(`verifyemail?email=${currentState.email}&name=${currentState.firstName}`, "_self");
 		})
-		.catch(() => {
-			console.log("Error Occured");
+		.catch((e) => {
+			console.log(e.response);
 			setLoadState(false);
 		});
 };

@@ -14,22 +14,22 @@ function Header() {
         <div className="header-items-con d-flex align-items-center">
           <ul className="d-flex">
             <li>
-              <NavLink to="/">About</NavLink>
+              <NavLink to="/about">About</NavLink>
             </li>
             <li>
-              <NavLink to="/">Courses</NavLink>
+              <NavLink to="/courses">Courses</NavLink>
             </li>
             <li>
-              <NavLink to="/">FAQ</NavLink>
+              <NavLink to="/faq">FAQ</NavLink>
             </li>
           </ul>
           <Button
             className="btn btn-outline-primary border-2"
-            text={<Link to="/login">Login</Link>}
+            text={<Link to="/auth/login">Login</Link>}
           />
           <Button
             className="btn btn-primary border-2"
-            text={<Link to="/signup">Sign Up</Link>}
+            text={<Link to="/auth/signup">Sign Up</Link>}
           />
         </div>
       </nav>

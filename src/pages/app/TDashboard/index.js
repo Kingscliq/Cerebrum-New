@@ -23,37 +23,41 @@ const TDashboard = () => {
   // const [dashimage, setDashimage] = useState("");
   const [courses, setCourses] = useState([]);
   const [courseCount, setCourseCount] = useState(0);
-
+  const [data, setData] = useState();
   useEffect(() => {
     const data = localStorage.getItem("userDetails");
-    // if (!data) {
-    //   window.open("/login", "_self");
-    // }
-    //   const user = JSON.parse(data);
-    //   const token = user.data.token;
-    //   const config = {
-    //     headers: {
-    //       Authorization: "Bearer " + token,
-    //     },
-    //   };
-    //   const userId = user.data.uid;
-    //   axios
-    //     .get(`https://cerebrum-v1.herokuapp.com/api/user/${userId}`, config)
-    //     .then((res) => {
-    //       console.log("res value", res.data);
-    //       setUser(res.data.data);
-    //       setRole(res.data.data.role);
-    //     })
-    //     .catch((err) => {
-    //       window.open("/login", "_self");
-    //     });
+    if (!data) {
+      window.open("/login", "_self");
+    }
+    const user = JSON.parse(data);
+    const token = user.data.token;
+    const config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    const userId = user.data.uid;
+    axios
+      .get(`https://cerebrum-v1.herokuapp.com/api/user/${userId}`, config)
+      .then((res) => {
+        console.log("res value", res.data);
+        setUser(res.data.data);
+        setRole(res.data.data.role);
+      })
+      .catch((err) => {
+        window.open("/login", "_self");
+      });
   }, []);
 
   useEffect(() => {
     if (user.role === "tutor") {
+      // console.log(user);
       axios
         .get(`https://cerebrum-v1.herokuapp.com/api/tutor/course/${user._id}`)
-        .then((res) => console.log(res))
+        .then((res) => {
+          setCourseCount(res.data.data.length);
+          setCourses(res.data.data);
+        })
         .catch((err) => console.log(err.response));
     }
   });
@@ -62,16 +66,23 @@ const TDashboard = () => {
     <>
       <DashboardHeader />
       <section className='container container-fluid tdashboard'>
-        <div className='row p-5 shadow'>
+        <div
+          className='row shadow mx-auto mt-4'
+          style={{
+            width: "80%",
+            borderRadius: "15px",
+          }}
+        >
           <div className='col-md-8 align-items-center'>
             <div className='card p-5 border-0'>
-              <div>
+              <div className='container'>
                 <header>
                   <h1 className='font-bold'>Welcome {user.firstName}</h1>
                 </header>
                 <article>
                   Welcome to your cerebrum Dashboard. Cerebrum provides you with
-                  boundless access to courses
+                  boundless access to courses if you are a student and An
+                  opportunity to earn as a tutor
                 </article>
                 <div className='d-flex flex-wrap justify-content-start my-3'>
                   {role === "tutor" ? (
@@ -79,18 +90,22 @@ const TDashboard = () => {
                       <button className='btn-primary text-light'>
                         <Link
                           to='/dashboard/tutor/addcourse'
-                          // style={{ color: "#f4f4f4", textDecoration: "none" }}
+                          style={{ color: "#f4f4f4", textDecoration: "none" }}
                         >
                           Add Course
                         </Link>
                       </button>
                       <button
-                        className='btn btn-outline-primary text-light'
+                        className='btn-outline-primary'
                         style={{ marginLeft: "20px" }}
                       >
                         <Link
                           to='/logout'
-                          // style={{ color: "#f4f4f4", textDecoration: "none" }}
+                          style={{
+                            color: "var(--primary-color)",
+                            textDecoration: "none",
+                          }}
+                          // onMouseOver={}
                         >
                           Logout
                         </Link>
@@ -112,7 +127,7 @@ const TDashboard = () => {
                       >
                         <Link
                           to='/logout'
-                          // style={{ color: "#f4f4f4", textDecoration: "none" }}
+                          style={{ color: "#f4f4f4", textDecoration: "none" }}
                         >
                           Logout
                         </Link>
@@ -125,6 +140,7 @@ const TDashboard = () => {
           </div>
 
           {/* <div className='col-md-4 align-items-center'> */}
+
           <div className='col-4 d-none d-md-block d-flex align-items-center mt-5'>
             <img
               src={dashImg}
@@ -134,76 +150,7 @@ const TDashboard = () => {
           </div>
         </div>
 
-        {/* <div className='container container-fluid mt-5'>
-          <div className='row p-5 shadow'>
-            <div className='col-12 d-flex align-items-center'>
-              <div className='col-8 m-5 justify-content-between'>
-                <header>
-                  <h1 className='font-bold'>Welcome {user.firstName}</h1>
-                </header>
-                <article>
-                  Welcome to your cerebrum Dashboard. Cerebrum provides you with
-                  boundless access to courses
-                </article>
-                <div className='d-flex flex-wrap justify-content-start my-3'>
-                  {role === "tutor" ? (
-                    <>
-                      <button className='btn btn-primary'>
-                        <Link
-                          to='/dashboard/tutor/addcourse'
-                          // style={{ color: "#f4f4f4", textDecoration: "none" }}
-                        >
-                          Add Course
-                        </Link>
-                      </button>
-                      <button
-                        className='btn btn-primary'
-                        style={{ marginLeft: "20px" }}
-                      >
-                        <Link
-                          to='/logout'
-                          // style={{ color: "#f4f4f4", textDecoration: "none" }}
-                        >
-                          Logout
-                        </Link>
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <button className='btn btn-primary'>
-                        <Link
-                          to='/courses'
-                          // style={{ color: "#f4f4f4", textDecoration: "none" }}
-                        >
-                          Buy Course
-                        </Link>
-                      </button>
-                      <button
-                        className='btn btn-primary'
-                        style={{ marginLeft: "20px" }}
-                      >
-                        <Link
-                          to='/logout'
-                          // style={{ color: "#f4f4f4", textDecoration: "none" }}
-                        >
-                          Logout
-                        </Link>
-                      </button>
-                    </>
-                  )}
-                </div>
-              </div>
-              <div className='col-4 d-none d-md-block'>
-                <img
-                  src={dashImg}
-                  className='img-responsive bg-warning rounded-circle shadow img-fluid'
-                  alt='cerebrum'
-                />
-              </div>
-            </div>
-          </div>
-        </div> */}
-        <section className='row my-4 mt-5 gx-5'>
+        <section className='row my-4 mx-auto mt-5 gx-5 container'>
           {role === "learner" ? (
             <div className='col-md-6 card p-5 shadow mb-sm-5'>
               <div className='row align-items-center'>
@@ -227,50 +174,36 @@ const TDashboard = () => {
             </div>
           ) : (
             <div className='col-md-6 card py-5 shadow'>
-              <div className='row align-items-center'>
-                <CourseList
-                  courseName='Code 101: Codeology'
-                  courseDesc='Course +'
-                  courseImg={dashAvater}
-                />
-                <CourseList
-                  courseName=' Code 101: Codeology'
-                  courseDesc='Course +'
-                  courseImg={dashAvater}
-                />
-                <CourseList
-                  courseName=' Code 101: Codeology'
-                  courseDesc='Course +'
-                  courseImg={dashAvater}
-                />
-                <CourseList
-                  courseName=' Code 101: Codeology'
-                  courseDesc='Course +'
-                  courseImg={dashAvater}
-                />
-                <CourseList
-                  courseName=' Code 101: Codeology'
-                  courseDesc='Course +'
-                  courseImg={dashAvater}
-                />
-                <CourseList
-                  courseName=' Code 101: Codeology'
-                  courseDesc='Course +'
-                  courseImg={dashAvater}
-                />
-                <CourseList
-                  courseName=' Code 101: Codeology'
-                  courseDesc='Course +'
-                  courseImg={dashAvater}
-                />
-              </div>
+              {courses.length > 0 ? (
+                <>
+                  <div className='row align-items-center'>
+                    {courses.map((course, index) => (
+                      <>
+                        <CourseList
+                          courseName={course.name}
+                          courseDesc={course.description}
+                          courseImg={course.image_url}
+                          key={index}
+                        />
+                      </>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className='d-flex align-items-center justify-content-center mt-5'>
+                    <h1>No Courses Uploaded Yet</h1>
+                  </div>
+                </>
+              )}
             </div>
           )}
-          <div className='col-md-1'>&nbsp;</div>
-          <div className='col-md-5'>
+          {/* <div className='col-md-1'>&nbsp;</div> */}
+          <div className='col-md-6'>
             {/* metrics d-flex flex-wrap flex-column */}
             {role === "tutor" ? (
               <>
+                {/* Render If Role is Tutor */}
                 <div className='card py-4 h-60 shadow mb-3'>
                   <div className='container'>
                     <div className='row'>
@@ -281,9 +214,9 @@ const TDashboard = () => {
                             style={{ fontSize: "50px", fontWeight: "600" }}
                             className='text-primary text-center'
                           >
-                            &nbsp;
+                            0
                           </h1>
-                          <p className='text-center'>No Course Uploaded Yet</p>
+                          <p className='text-center'>No of Course Uploaded</p>
                         </div>
                       </div>
                       <div className='col-md-6 col-sm-12'>
@@ -299,13 +232,30 @@ const TDashboard = () => {
                     <div className='row'>
                       <div className='col-md-6 col-sm-12'>
                         <div>
-                          <h1
-                            style={{ fontSize: "50px", fontWeight: "600" }}
-                            className='text-primary'
-                          ></h1>
-                          <p className='text-center'>
-                            No Student Registered Yet
-                          </p>
+                          {role === "tutor" || courses.length > 0 ? (
+                            <>
+                              <h1
+                                style={{ fontSize: "50px", fontWeight: "600" }}
+                                className='text-primary text-center'
+                              >
+                                {courses.length}
+                              </h1>
+                              <p className='text-center'>Courses Uploaded</p>
+                            </>
+                          ) : (
+                            <>
+                              {/* Render if role is Student */}
+                              <h1
+                                style={{ fontSize: "50px", fontWeight: "600" }}
+                                className='text-primary text-center'
+                              >
+                                {courses.length}
+                              </h1>
+                              <p className='text-center'>
+                                No Student Registered Yet
+                              </p>
+                            </>
+                          )}
                         </div>
                       </div>
                       <div className='col-md-6 col-sm-12'>
@@ -329,7 +279,7 @@ const TDashboard = () => {
                             style={{ fontSize: "50px", fontWeight: "600" }}
                             className='text-primary text-center'
                           >
-                            &nbsp;
+                            0
                           </h1>
                           <p className='text-center'>No Course Enrolled Yet</p>
                         </div>
@@ -349,8 +299,10 @@ const TDashboard = () => {
                         <div>
                           <h1
                             style={{ fontSize: "50px", fontWeight: "600" }}
-                            className='text-primary'
-                          ></h1>
+                            className='text-primary text-center'
+                          >
+                            0
+                          </h1>
                           <p className='text-center'>No Course Completed Yet</p>
                         </div>
                       </div>
