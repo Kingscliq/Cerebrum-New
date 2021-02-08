@@ -3,4 +3,3 @@ on the dashboard page, if isLogged in is true
      else
      render the dashboard page
 
-
