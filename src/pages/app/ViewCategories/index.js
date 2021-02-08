@@ -4,6 +4,7 @@ import { Footer } from "../../../widgets/Footer";
 import { getAllCategories } from "../../../api";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { VscChromeClose } from "react-icons/vsc";
+import { Link } from "react-router-dom";
 import "../Courses/Courses.css";
 import axios from "axios";
 
@@ -39,7 +40,10 @@ function ViewCategories() {
 				</div>
 				<aside className="col-lg-3 col-md-4">
 					<div className={toggle.clicked ? "all-categories-active bg-white mb-2 p-4 rounded" : `all-categories bg-white mb-2 p-4 rounded`}>
-						<p className="signup-p all-courses-category-list"> All Courses </p>
+						<Link to={`/courses`} className="text-decoration-none">
+							<p className="signup-p all-courses-category-list"> All Courses </p>
+						</Link>
+
 						<p className="signup-p all-courses-category-list"> Recommended Courses </p>
 					</div>
 					<div className={toggle.clicked ? "all-categories-active bg-white p-4 rounded" : "all-categories bg-white p-4 rounded"}>

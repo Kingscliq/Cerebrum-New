@@ -6,6 +6,7 @@ import { Footer } from "../../../widgets/Footer";
 import { getAllCourses, getAllCategories } from "../../../api";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { VscChromeClose } from "react-icons/vsc";
+import { Link } from "react-router-dom";
 import "./Courses.css";
 
 function Courses() {
@@ -45,8 +46,10 @@ function Courses() {
 						<ul className="courses-list">
 							<h1 className="signup-p fw-bold"> Categories </h1> <hr />
 							{allCategories.map((category) => (
-								<li key={category._id} className="signup-p pb-3 all-courses-category-list">
-									{category.name}
+								<li key={category._id} className="signup-p pb-3">
+									<Link to={`/course/categories`} className="text-decoration-none all-courses-category-list">
+										{category.name}
+									</Link>
 								</li>
 							))}
 						</ul>
