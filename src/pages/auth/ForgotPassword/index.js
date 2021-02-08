@@ -36,15 +36,15 @@ function ForgotPassWord() {
       });
   };
   return (
-    <main className='container-fluid vh-100 fpassword-section'>
-      <section className='row h-100'>
-        <div className='col-7 d-flex justify-content-center align-items-center'>
-          <div className='card shadow w-c'>
+    <main className="container-fluid vh-100 fpassword-section">
+      <section className="row h-100">
+        <div className="col-md-7 d-flex justify-content-center align-items-center">
+          <div className="card shadow w-c">
             <form onSubmit={handleForgotPassword}>
-              <h2 className='fs-5'>Find Your Account</h2>
-              <hr className='mt-n5' />
+              <h2 className="fs-5">Find Your Account</h2>
+              <hr className="mt-n5" />
               {error && (
-                <div className='alert alert-danger'>
+                <div className="alert alert-danger">
                   <p>
                     {/* We couldn’t find your account with that information. Please
                     try inputting your correct email */}
@@ -53,7 +53,7 @@ function ForgotPassWord() {
                 </div>
               )}
               {success && (
-                <div className='alert alert-success'>
+                <div className="alert alert-success">
                   {/* We couldn’t find your account with that information. Please
                   try inputting your correct email */}
                   {success}
@@ -61,14 +61,14 @@ function ForgotPassWord() {
               )}
 
               <Input
-                type='text'
+                type="text"
                 icon={<FaEnvelope />}
-                placeholder='Email'
+                placeholder="Email"
                 value={email}
                 onChange={handleChange}
               />
               <Button
-                className='btn btn-primary w-100'
+                className="btn btn-primary w-100"
                 text={"Search"}
                 onClick={handleForgotPassword}
               />
@@ -76,7 +76,7 @@ function ForgotPassWord() {
           </div>
         </div>
         <div
-          className='col-5 h-100 signup-image'
+          className="col-5 h-100 signup-image d-none d-md-block"
           style={{
             background: `url(${forgotPasswordImg})`,
             backgroundRepeat: `no-repeat`,
