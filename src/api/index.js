@@ -1,3 +1,5 @@
+/** @format */
+
 import axios from "axios";
 
 export const signUpReg = (e, state, setLoadState) => {
@@ -51,7 +53,12 @@ export const signIn = (e, user, setUser, setLoadState, setError, error) => {
       console.log(userDetails);
       // console.log("proppps", props);
       // props.history.push("/tdashboard");
-      window.open("/tdashboard", "_self");
+
+      if (localStorage.getItem("current") === null) {
+        window.open("/tdashboard", "_self");
+      } else {
+        window.open(localStorage.getItem("current"), "_self");
+      }
     })
     .catch((err) => {
       console.log("err", err);
@@ -98,7 +105,7 @@ export const getAllCourses = async () => {
 
     return returnedData;
   } catch (e) {
-    console.log("Error:", e);
+    console.log("Error:", e.response);
   }
 };
 

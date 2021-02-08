@@ -13,7 +13,6 @@ function WatchCourse() {
 	const [numToggle, setNumToggle] = useState(1);
 	const [courses, setCourses] = useState([]);
 	const [coursePreview, setCoursePreview] = useState(<h1> h1 </h1>);
-	const [singleCourse, setSingleCourse] = useState({});
 
 	const handleClick = (e) => {
 		e.preventDefault();

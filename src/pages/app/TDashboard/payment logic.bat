@@ -1,4 +1,4 @@
-once the user clicks on Buy course the user is redirected to the subscription page
+once the user is on the buycourse page and clicks on Buy course the user is redirected to the subscription page
     if the user is not logged in the user is redirected back to the login page and 
     then the href stored on the local storage
 if the user is logged in once the user logs in, then 

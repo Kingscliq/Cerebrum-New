@@ -15,7 +15,6 @@ import "./TDashboard.css";
 import axios from "axios";
 
 // Api Call to get Authorized User
-
 const TDashboard = () => {
   const [user, setUser] = useState([]);
   const [role, setRole] = useState();
@@ -87,28 +86,11 @@ const TDashboard = () => {
                 <div className='d-flex flex-wrap justify-content-start my-3'>
                   {role === "tutor" ? (
                     <>
-                      <button className='btn-primary text-light'>
-                        <Link
-                          to='/dashboard/tutor/addcourse'
-                          style={{ color: "#f4f4f4", textDecoration: "none" }}
-                        >
-                          Add Course
-                        </Link>
+                      <button className='btn btn-primary'>
+                        <Link to='/dashboard/tutor/addcourse'>Add Course</Link>
                       </button>
-                      <button
-                        className='btn-outline-primary'
-                        style={{ marginLeft: "20px" }}
-                      >
-                        <Link
-                          to='/logout'
-                          style={{
-                            color: "var(--primary-color)",
-                            textDecoration: "none",
-                          }}
-                          // onMouseOver={}
-                        >
-                          Logout
-                        </Link>
+                      <button className='btn btn-outline-primary mx-4'>
+                        <Link to='/logout'>Logout</Link>
                       </button>
                     </>
                   ) : (
@@ -116,7 +98,7 @@ const TDashboard = () => {
                       <button className='btn btn-primary text-light'>
                         <Link
                           to='/courses'
-                          style={{ color: "#f4f4f4", textDecoration: "none" }}
+                          // style={{ color: "#f4f4f4", textDecoration: "none" }}
                         >
                           Buy Course
                         </Link>
@@ -127,7 +109,7 @@ const TDashboard = () => {
                       >
                         <Link
                           to='/logout'
-                          style={{ color: "#f4f4f4", textDecoration: "none" }}
+                          // style={{ color: "#f4f4f4", textDecoration: "none" }}
                         >
                           Logout
                         </Link>

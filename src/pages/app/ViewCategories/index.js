@@ -1,33 +1,34 @@
-/** @format */
-
 import React, { useState, useEffect } from "react";
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
-import { getAllCourses, getAllCategories } from "../../../api";
+import { getAllCategories } from "../../../api";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { VscChromeClose } from "react-icons/vsc";
-import "./Courses.css";
+import "../Courses/Courses.css";
+import axios from "axios";
 
-function Courses() {
-	const [allCourses, setAllCourses] = useState([]);
+function ViewCategories() {
 	const [allCategories, setAllCategories] = useState([]);
+	const [seeCourses, setSeeCourses] = useState([]);
+	const [toggle, setToggle] = useState({ clicked: false });
 
 	useEffect(() => {
-		getAllCourses().then((dataGotten) => {
-			setAllCourses(dataGotten);
-			console.log(dataGotten[0].tutor_id);
-		});
-
 		getAllCategories(allCategories, setAllCategories);
 		setAllCategories(allCategories);
 	}, []);
 
-	const [toggle, setToggle] = useState({ clicked: false });
+	const getCoursesInCategory = async (e) => {
+		let targetCategory = e.target.innerText;
+		axios(`https://cerebrum-v1.herokuapp.com/api/category/course/${targetCategory}`).then((res) => {
+			setSeeCourses(res.data.data);
+			console.log(seeCourses);
+		});
+	};
 
 	const handleClick = () => {
 		setToggle({ clicked: !toggle.clicked });
 	};
-	console.log(allCourses);
+	// console.log(allCourses);
 
 	return (
 		<>
@@ -45,7 +46,7 @@ function Courses() {
 						<ul className="courses-list">
 							<h1 className="signup-p fw-bold"> Categories </h1> <hr />
 							{allCategories.map((category) => (
-								<li key={category._id} className="signup-p pb-3 all-courses-category-list">
+								<li onClick={getCoursesInCategory} key={category._id} className="signup-p pb-3 all-courses-category-list">
 									{category.name}
 								</li>
 							))}
@@ -55,7 +56,7 @@ function Courses() {
 				<section className="col-lg-8 col-md-7">
 					<section>
 						<article className={toggle.clicked ? `d-none` : "col-12 d-flex flex-row flex-wrap mb-3"}>
-							{allCourses.map((course) => (
+							{seeCourses.map((course) => (
 								<div key={course._id} className="bg-white all-courses-div d-flex flex-column border m-2 position-relative">
 									<img className="courses-img" src={course.image_url} width="100%" height="75%" alt="dispay" />
 
@@ -72,7 +73,7 @@ function Courses() {
 												alt="tutor pic"
 											/>
 										</div>
-										<a className="all-courses-link" href={`/buycourse/?id=${course._id}`}>
+										<a className="all-courses-link" href={`/watchcourse/?id=${course._id}`}>
 											<p className="fw-bold signup-p mx-4 mt-3">{course.name}</p>
 										</a>
 									</div>
@@ -87,4 +88,4 @@ function Courses() {
 	);
 }
 
-export { Courses };
+export { ViewCategories };
