@@ -117,7 +117,7 @@ function Courses() {
                     </div>
                     <a
                       className="all-courses-link"
-                      href={`/watchcourse/?id=${course._id}`}
+                      href={`/buycourse/?id=${course._id}`}
                     >
                       <p className="fw-bold signup-p mx-4 mt-3">
                         {course.name}

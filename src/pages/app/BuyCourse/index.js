@@ -14,11 +14,30 @@ const BuyCourse = () => {
   const [courseId, setCourseId] = useState("");
 
   const handleBuy = () => {
-    window.open(``);
+    const data = localStorage.getItem("userDetails");
+    if (data === null) {
+      let url_string = window.location.href;
+      let url = new URL(url_string);
+      localStorage.setItem("current", url);
+      console.log(url);
+      window.open(`/auth/login`);
+    } else {
+      window.open(`/watchcourse/${courseId}`, "_blank");
+    }
+    window.open(`/user/course/paymentoption`);
     console.log("Course Bought");
   };
   const watchCourse = () => {
-    window.open(`/watchcourse/${courseId}`, "_blank");
+    const data = localStorage.getItem("userDetails");
+    if (data === null) {
+      let url_string = window.location.href;
+      let url = new URL(url_string);
+      localStorage.setItem("current", url);
+      console.log(url);
+      window.open(`/auth/login`);
+    } else {
+      window.open(`/watchcourse/${courseId}`, "_blank");
+    }
   };
   useEffect(() => {
     const url_string = window.location.href;
