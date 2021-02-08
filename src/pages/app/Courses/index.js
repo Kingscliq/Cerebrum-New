@@ -79,54 +79,53 @@ function Courses() {
                   : "col-12 d-flex flex-row flex-wrap mb-3"
               }
             >
-              {allCourses.length &&
-                allCourses.map((course) => (
-                  <div
-                    key={course._id}
-                    className="bg-white all-courses-div d-flex flex-column border m-2 position-relative"
-                  >
-                    <img
-                      className="courses-img"
-                      src={course.image_url}
-                      width="100%"
-                      height="80%"
-                      alt="dispay"
-                    />
+              {allCourses.map((course) => (
+                <div
+                  key={course._id}
+                  className="bg-white all-courses-div d-flex flex-column border m-2 position-relative"
+                >
+                  <img
+                    className="courses-img"
+                    src={course.image_url}
+                    width="100%"
+                    height="75%"
+                    alt="dispay"
+                  />
 
-                    <p className="badge position-absolute courses-price-badge">
-                      {course.price > 0
-                        ? `N ${course.price}`
-                        : (course.price = "FREE")}
-                    </p>
-                    <div className="w-100">
-                      <div
-                        className="bg-white rounded-circle courses-tutor-image-radius"
-                        height="55px"
-                        width="55px"
-                      >
-                        <img
-                          className="rounded-circle"
-                          src={
-                            course.tutor_id !== undefined
-                              ? course.tutor_id.image_url
-                              : ""
-                          }
-                          height="45px"
-                          width="45px"
-                          alt="tutor pic"
-                        />
-                      </div>
-                      <a
-                        className="all-courses-link"
-                        href={`/watchcourse/?id=${course._id}`}
-                      >
-                        <p className="fw-bold signup-p mx-4 mt-3">
-                          {course.name}
-                        </p>
-                      </a>
+                  <p className="badge position-absolute courses-price-badge p-2">
+                    {course.price > 0
+                      ? `N ${course.price}`
+                      : (course.price = "FREE")}
+                  </p>
+                  <div className="w-100">
+                    <div
+                      className="bg-white rounded-circle courses-tutor-image-radius"
+                      height="55px"
+                      width="55px"
+                    >
+                      <img
+                        className="rounded-circle"
+                        src={
+                          course.tutor_id !== undefined
+                            ? course.tutor_id.image_url
+                            : ""
+                        }
+                        height="45px"
+                        width="45px"
+                        alt="tutor pic"
+                      />
                     </div>
+                    <a
+                      className="all-courses-link"
+                      href={`/watchcourse/?id=${course._id}`}
+                    >
+                      <p className="fw-bold signup-p mx-4 mt-3">
+                        {course.name}
+                      </p>
+                    </a>
                   </div>
-                ))}
+                </div>
+              ))}
             </article>
           </section>
         </section>

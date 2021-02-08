@@ -20,9 +20,6 @@ function TutorProfileSettings() {
 		profilePhoto: "",
 	});
 
-	//profile picture upload
-	// const [file, setFile] = useState([]);
-
 	//select option
 	const [toggle, setToggle] = useState({ clicked: false });
 
