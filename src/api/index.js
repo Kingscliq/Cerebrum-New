@@ -90,7 +90,7 @@ export const getAllCourses = async () => {
 
 		return returnedData;
 	} catch (e) {
-		console.log("Error:", e);
+		console.log("Error:", e.response);
 	}
 };
 

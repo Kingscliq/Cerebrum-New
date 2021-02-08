@@ -22,6 +22,7 @@ import { PaymentSuccessful } from "../widgets/PaymentSuccessful";
 import { TutorProfileSettings } from "../pages/app/TutorProfileSettings";
 import { PaymentFailed } from "../widgets/PaymentFailed";
 import { PaymentOption } from "../widgets/PaymentOption";
+import { ViewCategories } from "../pages/app/ViewCategories";
 
 function App() {
 	return (
@@ -54,6 +55,7 @@ function App() {
 				<Route path="/user/editprofile" component={TutorProfileSettings} />
 				<Route path="/user/course/payment/fail" component={PaymentFailed} />
 				<Route path="/user/course/paymentoption" component={PaymentOption} />
+				<Route path="/course/categories" component={ViewCategories} />
 			</Switch>
 		</div>
 	);

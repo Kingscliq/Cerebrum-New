@@ -7,6 +7,7 @@
 	width: 80%;
 	margin: auto auto 1rem auto;
 	border-radius: 12px;
+	height: 220px;
 }
 
 .all-courses-p {
@@ -27,6 +28,7 @@
 .all-courses-category-list:hover,
 .all-courses-link:hover {
 	color: var(--primary-color);
+	cursor: pointer;
 }
 
 .all-courses-link {
