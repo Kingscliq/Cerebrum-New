@@ -42,7 +42,7 @@ function SignUp() {
   return (
     <main className="container-fluid vh-100 signup-section">
       <section className="row h-100">
-        <div className="col-7 d-flex justify-content-center align-items-center">
+        <div className="col-md-7 d-flex justify-content-center align-items-center">
           <div className="card shadow w-c">
             <form onSubmit={handleSubmit}>
               <h2 className="fs-5">Create Account</h2>
@@ -125,7 +125,7 @@ function SignUp() {
           </div>
         </div>
         <div
-          className="col-5 h-100 signup-image"
+          className="col-5 h-100 signup-image d-none d-md-block"
           style={{
             background: `url(${signupImage})`,
             backgroundRepeat: `no-repeat`,
