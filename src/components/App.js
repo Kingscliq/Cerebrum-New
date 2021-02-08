@@ -13,7 +13,6 @@ import { WatchCourse } from "../pages/app/WatchCourse";
 import "./App.css";
 import { EmailVerify } from "../pages/auth/EmailVerify";
 import { AddCourses } from "../pages/app/AddCourses";
-// import { signIn } from "../api/index";
 import { Courses } from "../pages/app/Courses";
 import { TutorAddCourse } from "../pages/app/TutorAddCourse";
 import { Logout } from "../pages/app/Logout";
@@ -27,22 +26,17 @@ function App() {
   return (
     <div className="App">
       <Switch>
+        <Route path="/" exact component={LandingPage} />
         <Route path="/auth/login" component={Login} />
         <Route path="/auth/signup" exact component={SignUp} />
         <Route path="/auth/verifyemail" component={VerifyEmail} />
-        <Route path="/forgotpassword" component={ForgotPassWord} />
-
+        <Route path="/auth/verify-email" component={EmailVerify} />
+        <Route path="/auth/logout" component={Logout} />
+        <Route path="/auth/forgotpassword" component={ForgotPassWord} />
+        <Route exact path="/dashboard" component={TDashboard} />
         <Route path="/dashboard/tutor/addcourse" exact component={AddCourses} />
-        <Route exact path="/tdashboard" component={TDashboard} />
-        <Route path="/verify-email" component={EmailVerify} />
-        <Route path="/watchcourse" component={WatchCourse} />
-        <Route path="/forgotpassword" component={ForgotPassWord} />
-        <Route path="/forgotpassword" component={ForgotPassWord} />
-        <Route path="/watchcourse" component={WatchCourse} />
-        <Route path="/" exact component={LandingPage} />
         <Route path="/tutoraddcourse" component={TutorAddCourse} />
         <Route path="/courses" component={Courses} />
-        <Route path="/logout" component={Logout} />
         <Route path="/reset-password" component={ResetPassword} />
         <Route path="/watchcourse" component={WatchCourse} />
         <Route path="/" exact component={LandingPage} />
