@@ -1,0 +1,29 @@
+.aside-video {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  padding: 20px;
+  cursor: pointer;
+}
+.aside-video:hover {
+  background: rgba(20, 33, 255, 0.08);
+}
+.aside-video span {
+  height: 20px;
+  width: 20px;
+  border: 2px solid #7d7d7d;
+  margin-left: auto;
+  border-radius: 100%;
+  color: red;
+}
+
+.aside-video h3 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  margin-left: 20px;
+}
+.aside-video p {
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-left: 20px;
+}

@@ -22,10 +22,10 @@ const BuyCourse = () => {
       console.log(url);
       window.open(`/auth/login`);
     } else {
-      window.open(`/watchcourse/${courseId}`, "_blank");
+      // window.open(`/buycourse/${courseId}`, "_blank");
+      window.open(`/user/course/paymentoption`);
     }
-    window.open(`/user/course/paymentoption`);
-    console.log("Course Bought");
+    // console.log("Course Bought");
   };
   const watchCourse = () => {
     const data = localStorage.getItem("userDetails");
@@ -39,6 +39,8 @@ const BuyCourse = () => {
       window.open(`/watchcourse/${courseId}`, "_blank");
     }
   };
+
+  // const getCourse = () => {};
   useEffect(() => {
     const url_string = window.location.href;
     const url = new URL(url_string);
@@ -50,12 +52,9 @@ const BuyCourse = () => {
         const data = res.data.data;
         data.map((course) => {
           setCourse(course);
+          localStorage.setItem("courses", JSON.stringify(course));
           //   console.log(course.tutor_id);
           setTutor(course.tutor_id);
-          //   console.log(tutor.firstName);
-          //   map((tutor) => {
-          //     console.log(tutor.firstName);
-          //   });
         });
       })
       .catch((err) => console.log(err.response));

@@ -16,10 +16,10 @@ function LandingPage() {
       <main className="landing-page container pb-5">
         <section className="landing-page-a row">
           <div className="col-6 my-5">
-            <h1 className="fw-bold my-3">
+            <h1 className="animate__animated animate__bounce fw-bold my-3">
               Knowledge <br /> <span>for everyone by everyone</span>
             </h1>
-            <p className="my-4">
+            <p className="animate__animated animate__bounce my-4">
               Cerebrum offers quality online learning that is flexible and
               inclusive for tutors and learners, which gives them a feeling of
               self-accomplishment.{" "}
@@ -34,19 +34,23 @@ function LandingPage() {
             />
           </div>
           <div className="col-6">
-            <img src={landingPage1} alt="landing Image" />
+            <img
+              className={"animate__animated animate__bounceInRight"}
+              src={landingPage1}
+              alt="landing Image"
+            />
           </div>
         </section>
         <section className="landing-page-b d-flex justify-content-between my-5">
-          <div className="card w-25 p-4 text-center shadow-lg">
+          <div className="animate__animated animate__bounceInLeft card w-25 p-4 text-center shadow-lg">
             <h1>30k</h1>
             <p>Tutors</p>
           </div>
-          <div className="card w-25 p-4 text-center shadow-lg">
+          <div className="animate__animated animate__bounceInUp card w-25 p-4 text-center shadow-lg">
             <h1>100k</h1>
             <p>Learners</p>
           </div>
-          <div className="card w-25 p-4 text-center shadow-lg">
+          <div className="animate__animated animate__bounceInRight card w-25 p-4 text-center shadow-lg">
             <h1>500k</h1>
             <p>Courses</p>
           </div>
