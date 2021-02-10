@@ -13,7 +13,13 @@
   --background-color: #fbfbfb;
 }
 
+html {
+  min-height: 100vh;
+}
+
 body {
+  position: relative;
+  min-height: 100vh;
   font-family: "Montserrat", sans-serif;
   background: var(--background-color);
 }

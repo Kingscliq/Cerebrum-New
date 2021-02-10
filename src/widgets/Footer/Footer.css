@@ -1,6 +1,7 @@
 .footer-section {
   background: var(--secondary-color);
   color: #ffffff;
+  margin-top: auto;
 }
 
 .footer-section p {

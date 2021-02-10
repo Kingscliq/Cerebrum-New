@@ -55,7 +55,7 @@ export const signIn = (e, user, setUser, setLoadState, setError, error) => {
       // props.history.push("/tdashboard");
 
       if (localStorage.getItem("current") === null) {
-        window.open("/tdashboard", "_self");
+        window.open("/dashboard", "_self");
       } else {
         window.open(localStorage.getItem("current"), "_self");
       }

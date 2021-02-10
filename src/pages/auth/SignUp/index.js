@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { signupImage } from "../../../assets/images";
 import { Input } from "../../../components/Input";
-import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
+import { FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import "./SignUp.css";
 import { Button } from "../../../components/Button";
 import { signUpReg } from "../../../api";
@@ -19,7 +19,7 @@ function SignUp() {
     password: "",
     role: "learner",
   });
-
+  const [eye2, setEye2] = useState(false);
   const [loading, setLoading] = useState(false);
   const [numToogle, setNumToogle] = useState(1);
 
@@ -40,6 +40,9 @@ function SignUp() {
     setSignUpData({ ...signUpData, [e.target.name]: value });
   };
 
+  const handleEye2 = (e) => {
+    setEye2((prevState) => !prevState);
+  };
   return (
     <>
       <AuthHeader />
@@ -96,11 +99,13 @@ function SignUp() {
                   disabled={loading}
                 />
                 <Input
-                  type="password"
+                  type={eye2 ? "text" : "password"}
                   icon={<FaLock />}
+                  icon2={eye2 ? <FaEyeSlash /> : <FaEye />}
                   placeholder="Password"
                   name="password"
                   onChange={handleChange}
+                  onEye={handleEye2}
                   value={signUpData.password || ""}
                   disabled={loading}
                 />

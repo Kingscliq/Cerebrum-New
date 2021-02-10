@@ -22,6 +22,7 @@ import { PaymentOption } from "../widgets/PaymentOption";
 import { BuyCourse } from "../pages/app/BuyCourse";
 import { ViewCategories } from "../pages/app/ViewCategories";
 import { ViewCourse } from "../pages/app/ViewCourse";
+import { Search } from "../pages/app/Search";
 
 function App() {
   return (
@@ -51,6 +52,8 @@ function App() {
         <Route path="/learner/viewcourse" component={ViewCourse} />
         <Route path="/tutoraddcourse" component={TutorAddCourse} />
         <Route path="/course/categories" component={ViewCategories} />
+        <Route path="/search/:id" component={Search} />
+        <Route path="/search" component={Search} />
       </Switch>
     </div>
   );
