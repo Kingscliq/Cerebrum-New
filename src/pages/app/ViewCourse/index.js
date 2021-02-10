@@ -31,7 +31,7 @@ function ViewCourse() {
   useEffect(() => {
     axios(
       `https://cerebrum-v1.herokuapp.com/api/course/view/${courseId}`
-    ).then((res) => console.log(res.data.data[0].video_url));
+    ).then((res) => console.log(res.data));
   }, []);
 
   useEffect(() => {
