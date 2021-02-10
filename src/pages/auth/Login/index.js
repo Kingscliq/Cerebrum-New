@@ -14,6 +14,7 @@ import { AuthHeader } from "../../../widgets/AuthHeader";
 
 const Login = () => {
   // console.log("propoooooooops", props);
+  const history = useHistory();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -48,7 +49,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     // Call Api Function
 
-    signIn(e, user, setUser, setLoading, setError, setSuccess);
+    signIn(e, user, setUser, setLoading, setError, setSuccess, history);
   };
 
   return (
@@ -58,10 +59,6 @@ const Login = () => {
         <section className='row h-100'>
           <div className='col-md-7 d-flex justify-content-center align-items-center col-sm-12'>
             <div className='card shadow w-c'>
-              {/* {error === "invalid username or password" ? (
-                <div className='alert alert-danger'>{error}</div>
-              ) : null} */}
-
               {error && <div className='alert alert-danger'>{error}</div>}
               {success && <div className='alert alert-success'>{success}</div>}
               {alert ? (

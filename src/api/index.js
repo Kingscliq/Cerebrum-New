@@ -41,7 +41,8 @@ export const signIn = (
   setUser,
   setLoadState,
   setError,
-  setSuccess
+  setSuccess,
+  history
 ) => {
   e.preventDefault();
   setLoadState(true);
@@ -60,9 +61,9 @@ export const signIn = (
       setLoadState(false);
 
       if (localStorage.getItem("current") === null) {
-        window.open("/dashboard", "_self");
+        history.push("/dashboard");
       } else {
-        window.open(localStorage.getItem("current"), "_self");
+        history.push(localStorage.getItem("current"));
       }
     })
     .catch((err) => {
@@ -73,7 +74,7 @@ export const signIn = (
         setSuccess(null);
       }
       if (err.response === undefined) {
-        window.open("/auth/login", "_self");
+        history.push("/auth/login");
         setError("Opps! there is a problem with our server");
         setSuccess(null);
       }

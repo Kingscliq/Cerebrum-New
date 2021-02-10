@@ -1,17 +1,20 @@
 /** @format */
 
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { FaWindows } from "react-icons/fa";
-import { dummyVideoImage } from "../../../assets/images";
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
 
+let url_string = window.location.href;
+let url = new URL(url_string);
+
 const BuyCourse = () => {
+  const history = useHistory();
   const [courses, setCourses] = useState([]);
   const [course, setCourse] = useState({});
   const [tutor, setTutor] = useState({});
-  const [courseId, setCourseId] = useState("");
+  const [courseId, setCourseId] = useState(url.searchParams.get("id"));
   const [buy, setBuy] = useState();
 
   const handleBuy = () => {
@@ -20,35 +23,29 @@ const BuyCourse = () => {
       let url_string = window.location.href;
       let url = new URL(url_string);
       localStorage.setItem("current", url);
-      console.log(url);
-      window.open(`/auth/login`);
+      // console.log(url);
+      history.push(`/auth/login`);
     } else {
       // window.open(`/buycourse/${courseId}`, "_blank");
-      window.open(`/user/course/paymentoption`);
+      history.push(`/user/course/paymentoption`);
     }
     // console.log("Course Bought");
   };
   const watchCourse = () => {
     const data = localStorage.getItem("userDetails");
     if (data === null) {
-      let url_string = window.location.href;
-      let url = new URL(url_string);
       localStorage.setItem("current", url);
       console.log(url);
-      window.open(`/auth/login`);
+      history.push(`/auth/login`);
     } else {
-      window.open(`/watchcourse/${courseId}`, "_blank");
+      history.push(`/watchcourse/${courseId}`, "_blank");
     }
   };
 
   // const getCourse = () => {};
   useEffect(() => {
-    const url_string = window.location.href;
-    const url = new URL(url_string);
-    const course_id = url.searchParams.get("id");
-    setCourseId(course_id);
     axios
-      .get(`https://cerebrum-v1.herokuapp.com/api/course/${course_id}`)
+      .get(`https://cerebrum-v1.herokuapp.com/api/course/${courseId}`)
       .then((res) => {
         const data = res.data.data;
         data.map((course) => {
@@ -62,14 +59,14 @@ const BuyCourse = () => {
   }, []);
 
   useEffect(() => {
-    const url_string = window.location.href;
-    const url = new URL(url_string);
-    const course_id = url.searchParams.get("id");
     const user = JSON.parse(localStorage.getItem("userDetails"));
+    if (user === null) {
+      history.push("/auth/login");
+    }
     const user_id = user.data.uid;
     const data = {
       user_id: user_id,
-      course_id: course_id,
+      course_id: courseId,
     };
 
     console.log(data);

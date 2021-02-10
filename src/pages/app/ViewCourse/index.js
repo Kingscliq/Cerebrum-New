@@ -8,12 +8,14 @@ import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
 import "./ViewCourse.css";
 
+const url_string = window.location.href;
+
 function ViewCourse() {
   const [currentVideo, setCurrentVideo] = useState(
     "https://www.youtube.com/watch?v=ysz5S6PUM-U"
   );
   const [sectionToggle, setSectionToggle] = useState("About Course");
-  const [courseId, setCourseId] = useState("");
+  const [courseId, setCourseId] = useState(url.searchParams.get("id"));
   const [watchCourse, setWatchCourse] = useState();
 
   const handleClick = (e) => {
@@ -29,20 +31,17 @@ function ViewCourse() {
   };
 
   useEffect(() => {
-    axios(
-      `https://cerebrum-v1.herokuapp.com/api/course/view/${courseId}`
-    ).then((res) => console.log(res.data));
+    axios(`https://cerebrum-v1.herokuapp.com/api/course/view/${courseId}`)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err.response));
   }, []);
 
   useEffect(() => {
-    const url_string = window.location.href;
-    const url = new URL(url_string);
-    const course_id = url.searchParams.get("id");
     const user = JSON.parse(localStorage.getItem("userDetails"));
     const user_id = user.data.uid;
     const data = {
       user_id: user_id,
-      course_id: course_id,
+      course_id: courseId,
     };
 
     console.log(data);
@@ -56,7 +55,7 @@ function ViewCourse() {
       })
       .catch((err) => {
         console.log(err.response.data.success);
-        window.location.assign(`/buycourse?id=${course_id}`);
+        history.push(`/buycourse?id=${courseId}`);
         setWatchCourse(false);
       });
   }, []);
