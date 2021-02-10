@@ -1,5 +1,5 @@
 /** @format */
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import {
   dashAvater,
@@ -16,17 +16,19 @@ import axios from "axios";
 
 // Api Call to get Authorized User
 const TDashboard = () => {
+  const history = useHistory();
   const [user, setUser] = useState([]);
   const [role, setRole] = useState();
   const [loggedIn, setLoggedIn] = useState(false);
-  // const [dashimage, setDashimage] = useState("");
   const [courses, setCourses] = useState([]);
   const [courseCount, setCourseCount] = useState(0);
   const [data, setData] = useState();
+
+  // Get login details from Local Storage
   useEffect(() => {
     const data = localStorage.getItem("userDetails");
     if (!data) {
-      window.open("/login", "_self");
+      history.push("/auth/login");
     }
     const user = JSON.parse(data);
     const token = user.data.token;
@@ -44,7 +46,7 @@ const TDashboard = () => {
         setRole(res.data.data.role);
       })
       .catch((err) => {
-        window.open("/login", "_self");
+        history.push("/auth/login");
       });
   }, []);
 

@@ -1,36 +1,45 @@
+/** @format */
+
 .payment-option-btn {
-	border: 1px solid var(--primary-color);
-	border-radius: 12px;
-	background: var(--primary-color);
-	color: var(--background-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 12px;
+  background: var(--primary-color);
+  color: var(--background-color);
 }
 
 .payment-option-price-div {
-	height: 270px;
+  height: 270px;
 }
 .payment-option-price-div img {
 	object-fit: cover;
 }
 
+.payment-option-price-div img {
+  object-fit: cover;
+}
 .payment-option-price {
-	top: 90px;
-	font-size: 50px;
-	z-index: 1;
+  top: 90px;
+  font-size: 50px;
+  z-index: 1;
 }
 
 .payment-option-section-div {
-	width: 48%;
+  width: 48%;
 }
 
 .payment-option-overlay {
-	width: 100%;
-	border-top-left-radius: 12px;
-	border-top-right-radius: 12px;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: linear-gradient(0deg, rgba(20, 33, 255, 0.7), rgba(20, 33, 255, 0.7));
+  width: 100%;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(20, 33, 255, 0.7),
+    rgba(20, 33, 255, 0.7)
+  );
 }
 
 /* .check {
