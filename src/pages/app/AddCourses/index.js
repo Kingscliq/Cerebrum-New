@@ -20,7 +20,13 @@ function AddCourses() {
 
   const [courseImage, setCourseImage] = useState("");
 
+  const [moduleMessage, setModuleMessage] = useState(false);
+
+  const [lessonMessage, setLessonMessage] = useState(false);
+
   const [loading, setLoading] = useState(false);
+
+  const [loadingBtn, setLoadingBtn] = useState(false);
 
   const [form1, setForm1] = useState({
     tutor_id: JSON.parse(localStorage.getItem("userDetails")).data.uid,
@@ -103,6 +109,7 @@ function AddCourses() {
                       onSubmit={async (e) => {
                         e.preventDefault();
                         setLoading(true);
+                        setLoadingBtn(true);
                         let formData = new FormData();
                         formData.append("img", form1.img);
                         formData.append("description", form1.description);
@@ -128,11 +135,12 @@ function AddCourses() {
                               ...form2,
                               course_id: res.data.data._id,
                             });
-                            setLoading(false);
+                            setLoadingBtn(false);
+                            setLoading(true);
                           })
-                          .catch((err) => console.log(form1.tutor_id));
+                          .catch((err) => console.log(err.response));
                       }}
-                      enctype="multipart/form-data"
+                      encType="multipart/form-data"
                     >
                       <label>Name of Course</label>
                       <AddCourseInput
@@ -181,10 +189,16 @@ function AddCourses() {
                         onChange={handleChange}
                         disabled={loading}
                       />
+                      {courseImage && (
+                        <div className="alert-message my-2 py-3 alert alert-success">
+                          {`Your course "${form1.name}" has been successfully created.
+                           Kindly create modules and lessons for this course.`}
+                        </div>
+                      )}
                       <Button
                         className="btn btn-primary"
                         text="Save"
-                        loadingIcon={loading && <Loader />}
+                        loadingIcon={loadingBtn && <Loader />}
                         onClick={(e) => {
                           e.preventDefault();
                           const userId = localStorage.getItem("userDetails")
@@ -212,6 +226,7 @@ function AddCourses() {
                     <form
                       onSubmit={(e) => {
                         e.preventDefault();
+                        setLoadingBtn(true);
                         setLoading(true);
                         console.log(form2);
                         axios
@@ -225,8 +240,12 @@ function AddCourses() {
                               course_id: form2.course_id,
                               module_id: res.data.data._id,
                             });
-                            setLoading(false);
-                          });
+
+                            setLoadingBtn(false);
+                            setLoading(true);
+                            setModuleMessage(true);
+                          })
+                          .catch((err) => console.log(form2));
                       }}
                     >
                       <label>Module</label>
@@ -235,11 +254,17 @@ function AddCourses() {
                         type="text"
                         placeholder="Enter module name"
                         onChange={handleChange2}
-                        disabled={loading}
+                        disabled={loadingBtn}
                       />
+                      {moduleMessage && (
+                        <div className="alert-message my-2 py-3 alert alert-success">
+                          {`This module "${form2.name}" has been successfully created.
+                           Kindly create lessons for this module.`}
+                        </div>
+                      )}
                       <Button
                         className="btn btn-primary"
-                        loadingIcon={loading && <Loader />}
+                        loadingIcon={loadingBtn && <Loader />}
                         text="Save"
                       />
                     </form>
@@ -263,6 +288,7 @@ function AddCourses() {
                       onSubmit={async (e) => {
                         e.preventDefault();
                         setLoading(true);
+                        setLoadingBtn(true);
                         let formData = new FormData();
                         formData.append("img", form3.img);
                         formData.append("description", form3.description);
@@ -282,18 +308,22 @@ function AddCourses() {
                           )
                           .then((res) => {
                             console.log(res);
-                            setLoading(false);
+                            setLoadingBtn(false);
+                            setLoading(true);
+                            setLessonMessage(true);
+                            setForm3({});
                           })
                           .catch((err) => console.log(form1, form2, form3));
                       }}
-                      enctype="multipart/form-data"
+                      encType="multipart/form-data"
                     >
                       <label>Lesson Name</label>
                       <AddCourseInput
                         placeholder="Enter lesson name"
                         type="text"
                         name="name"
-                        disabled={loading}
+                        disabled={loadingBtn}
+                        value={form3.name}
                         onChange={handleChange3}
                       />
                       <label>Lesson Video</label>
@@ -301,7 +331,8 @@ function AddCourses() {
                         placeholder="Upload Video"
                         type="file"
                         name="img"
-                        disabled={loading}
+                        disabled={loadingBtn}
+                        value={form3.img}
                         onChange={handleChange3}
                       />
                       <label>Lesson Description</label>
@@ -310,13 +341,20 @@ function AddCourses() {
                         placeholder="Enter lesson description"
                         rows="7"
                         name="description"
-                        loading={loading}
+                        loading={loadingBtn}
+                        value={form3.description}
                         onChange={handleChange3}
                       ></textarea>
+                      {lessonMessage && (
+                        <div className="alert-message my-2 py-3 alert alert-success">
+                          {`This lesson "${form3.name}" has been successfully added to this course.
+                           You can add more lessons before publishing course.`}
+                        </div>
+                      )}
                       <Button
                         className="btn btn-primary"
                         text="Publish Course"
-                        loadingIcon={loading && <Loader />}
+                        loadingIcon={loadingBtn && <Loader />}
                       />
                     </form>
                   )}
@@ -325,7 +363,7 @@ function AddCourses() {
             </div>
             <div className="col-sm-12 col-md-6">
               <div className="mt-4 addcourse-b col-5">
-                <img src={courseImage || dashboardImage} alt="No Image" />
+                <img src={courseImage || dashboardImage} alt="Empty" />
               </div>
             </div>
           </div>

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { getAllCourses } from "../../../api";
 import {
   landingPage1,
   landingPage2,
@@ -10,6 +11,14 @@ import { Header } from "../../../widgets/Header/Index";
 import "./LandingPage.css";
 
 function LandingPage() {
+  const [allCourse, setAllCourse] = useState([]);
+
+  useEffect(() => {
+    getAllCourses().then((res) => {
+      setAllCourse(res.slice(0, 4));
+      console.log(allCourse);
+    });
+  }, []);
   return (
     <>
       <Header />
@@ -92,6 +101,56 @@ function LandingPage() {
               </p>
               <Button className="btn btn-primary py-3" text="Earn as a tutor" />
             </div>
+          </div>
+        </section>
+        <section className="landing-page-e my-4">
+          <h3>Trending Courses</h3>
+          <div className="d-flex">
+            {allCourse.map((course) => (
+              <div
+                key={course._id}
+                className="bg-white all-courses-div d-flex flex-column border m-2 position-relative"
+              >
+                <img
+                  className="courses-img"
+                  src={course.image_url}
+                  width="100%"
+                  height="75%"
+                  alt="dispay"
+                />
+
+                <p className="badge position-absolute courses-price-badge p-2">
+                  {course.price > 0
+                    ? `N ${course.price}`
+                    : (course.price = "FREE")}
+                </p>
+                <div className="w-100">
+                  <div
+                    className="bg-white rounded-circle courses-tutor-image-radius"
+                    height="55px"
+                    width="55px"
+                  >
+                    <img
+                      className="rounded-circle"
+                      src={
+                        course.tutor_id !== undefined
+                          ? course.tutor_id.image_url
+                          : ""
+                      }
+                      height="45px"
+                      width="45px"
+                      alt="tutor pic"
+                    />
+                  </div>
+                  <a
+                    className="all-courses-link"
+                    href={`/buycourse/?id=${course._id}`}
+                  >
+                    <p className="fw-bold signup-p mx-4 mt-3">{course.name}</p>
+                  </a>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
       </main>
