@@ -8,24 +8,35 @@ import { Footer } from "../../../widgets/Footer";
 import "./TutorProfileSettings.css";
 
 function TutorProfileSettings() {
-	const [updateProfile, setUpdateProfile] = useState({
+	const [accountInfo, setAccountInfo] = useState({
 		firstName: "",
 		lastName: "",
-		email: "",
+		image: "",
+	});
+
+	const [password, setPassword] = useState({
 		password: "",
 		newPassword: "",
-		cardNumber: "",
-		CVC: "",
-		cardExpiration: "",
-		profilePhoto: "",
+		confirmPassword: "",
 	});
+
+	const [payment, setPayment] = useState({});
 
 	//select option
 	const [toggle, setToggle] = useState({ clicked: false });
+	const [onLoad, setOnLoad] = useState(false);
 
-	const handleChange = (e) => {
-		const value = e.target.value;
-		setUpdateProfile({ ...updateProfile, [e.target.name]: value });
+	const handleChange = (event) => {
+		if (event.target.files) {
+			let currentImg = event.target.name;
+			setAccountInfo({ ...accountInfo, [currentImg]: event.target.files[0] });
+			console.log(accountInfo);
+		} else {
+			let currentInput = event.target.name;
+			setAccountInfo({ ...accountInfo, [currentInput]: event.target.value });
+			setPassword({ ...password, [currentInput]: event.target.value });
+			console.log(accountInfo);
+		}
 	};
 
 	const [targetOption, setTargetOption] = useState("");
@@ -36,18 +47,19 @@ function TutorProfileSettings() {
 		display();
 
 		setToggle({ clicked: !toggle.clicked });
+		setOnLoad(true);
 	};
 
 	const display = () => {
 		switch (targetOption) {
 			case "one":
-				return <AccountInformation updateProfile={updateProfile} handleChange={handleChange} setUpdateProfile={setUpdateProfile} />;
+				return <AccountInformation accountInfo={accountInfo} handleChange={handleChange} setAccountInfo={setAccountInfo} />;
 
 			case "two":
-				return <ChangePassword updateProfile={updateProfile} handleChange={handleChange} />;
+				return <ChangePassword password={password} handleChange={handleChange} />;
 
 			case "three":
-				return <Paymentinformation updateProfile={updateProfile} handleChange={handleChange} />;
+				return <Paymentinformation payment={payment} handleChange={handleChange} />;
 
 			default:
 		}
@@ -79,7 +91,7 @@ function TutorProfileSettings() {
 						</li>
 					</ul>
 					<section className="col-9 bg-white">
-						<div className="p-5 m-5">{display(targetOption)}</div>
+						<div className="p-2 m-5">{display(targetOption)}</div>
 					</section>
 				</section>
 			</main>

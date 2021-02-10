@@ -8,6 +8,9 @@
 	border-radius: 50%;
 	background: rgba(253, 141, 9, 0.71);
 }
+.profile-upload-pic-div img {
+	object-fit: cover;
+}
 
 .profile-settings-label-text {
 	font-size: 13px;
@@ -26,4 +29,32 @@
 .profile-settings-opacity,
 .profile-settings-opacity div input::placeholder {
 	color: rgba(33, 33, 33, 0.52);
+}
+
+.profile-settings-white-btn {
+	border: 1px solid var(--primary-color);
+	border-radius: 4px;
+	background: #ffff;
+	color: var(--primary-color);
+	padding: 8px 16px 8px 16px;
+}
+
+.profile-settings-blue-btn {
+	border: 1px solid var(--primary-color);
+	border-radius: 4px;
+	background: var(--primary-color);
+	color: var(--background-color);
+	padding: 8px 16px 8px 16px;
+}
+
+.payment-active {
+	color: #57c467;
+}
+
+.payment-expired {
+	color: #ff7d7d;
+}
+
+.payment-info {
+	color: #2e384d;
 }

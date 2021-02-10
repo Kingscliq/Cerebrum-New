@@ -3,7 +3,7 @@ import { loaderImage } from "../../assets/images";
 import "./Loader.css";
 
 function Loader() {
-  return <img src={loaderImage} className="loader-img" alt="loader" />;
+	return <img src={loaderImage} className="loader-img" alt="loader" />;
 }
 
 export { Loader };

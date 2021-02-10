@@ -48,7 +48,6 @@ function ViewCourse() {
         setTutor(
           `${res.data.data[0].course_id.tutor_id.firstName} ${res.data.data[0].course_id.tutor_id.lastName}`
         );
-        // console.log(res.data.data[0].course_id.description);
       })
       .catch((err) => console.log(err.response));
   }, []);
