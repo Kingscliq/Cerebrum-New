@@ -46,3 +46,15 @@
 	color: var(--background-color);
 	padding: 8px 16px 8px 16px;
 }
+
+.payment-active {
+	color: #57c467;
+}
+
+.payment-expired {
+	color: #ff7d7d;
+}
+
+.payment-info {
+	color: #2e384d;
+}

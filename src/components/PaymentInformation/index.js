@@ -1,7 +1,9 @@
 import React from "react";
-import { RiDeleteBinLine } from "react-icons/ri";
 
-function Paymentinformation(props) {
+function Paymentinformation() {
+	const active = "";
+	const expired = "expired";
+
 	return (
 		<>
 			<h1 className="h4"> Payment </h1> <br />
@@ -9,13 +11,13 @@ function Paymentinformation(props) {
 				<thead>
 					<tr className="light-grey-color">
 						<th scope="col" className="fs-12">
-							CARD TYPE
+							COURSE NAME
 						</th>
 						<th scope="col" className="fs-12">
-							NUMBER
+							AMOUNT
 						</th>
 						<th scope="col" className="fs-12">
-							CARD HOLDER
+							DATE PAID
 						</th>
 						<th scope="col" className="fs-12">
 							EXPIRES
@@ -23,57 +25,22 @@ function Paymentinformation(props) {
 						<th scope="col" className="fs-12">
 							STATUS
 						</th>
-						<th scope="col" className="fs-12"></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<th scope="row" className="signup-p">
-							1
-						</th>
-						<td className="signup-p"> ****1243 </td>
-						<td className="signup-p"> Kenechukwu Ohiaeri </td>
-						<td className="signup-p"> 03/21 </td>
-						<td className="signup-p"> Active </td>
-						<td>
-							<RiDeleteBinLine />
-						</td>
+						<td className="signup-p payment-info"> Learn Programming 101 </td>
+						<td className="signup-p payment-info"> N6000 </td>
+						<td className="signup-p payment-info"> 02/01/2021 </td>
+						<td className="signup-p payment-info"> 02/01/2021 </td>
+						<td className={`signup-p ${active.innerText !== "Active" ? "payment-active" : "payment-expired"}`}> Active </td>
 					</tr>
 					<tr>
-						<th scope="row" className="signup-p">
-							1
-						</th>
-						<td className="signup-p"> ****1243 </td>
-						<td className="signup-p"> Kenechukwu Ohiaeri </td>
-						<td className="signup-p"> 03/21 </td>
-						<td className="signup-p"> Active </td>
-						<td>
-							<RiDeleteBinLine />
-						</td>
-					</tr>
-					<tr>
-						<th scope="row" className="signup-p">
-							1
-						</th>
-						<td className="signup-p"> ****1243 </td>
-						<td className="signup-p"> Kenechukwu Ohiaeri </td>
-						<td className="signup-p"> 03/21 </td>
-						<td className="signup-p"> Active </td>
-						<td>
-							<RiDeleteBinLine />
-						</td>
-					</tr>
-					<tr>
-						<th scope="row" className="signup-p">
-							1
-						</th>
-						<td className="signup-p"> ****1243 </td>
-						<td className="signup-p"> Kenechukwu Ohiaeri </td>
-						<td className="signup-p"> 03/21 </td>
-						<td className="signup-p"> Active </td>
-						<td>
-							<RiDeleteBinLine />
-						</td>
+						<td className="signup-p payment-info"> Learn Programming 101 </td>
+						<td className="signup-p payment-info"> N6000 </td>
+						<td className="signup-p payment-info"> 02/01/2021 </td>
+						<td className="signup-p payment-info"> 02/01/2021 </td>
+						<td className={`signup-p ${active.innerText === "Expired" ? "payment-active" : "payment-expired"}`}> Expired </td>
 					</tr>
 				</tbody>
 			</table>
