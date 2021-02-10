@@ -8,6 +8,9 @@
 .payment-option-price-div {
 	height: 270px;
 }
+.payment-option-price-div img {
+	object-fit: cover;
+}
 
 .payment-option-price {
 	top: 90px;

@@ -26,7 +26,7 @@ function PaymentOption() {
 								nibh. Sit suscipit id tristique nisi, viverra sed amet est. Netus tristique sed lobortis.
 							</p>
 							<div className="text-center my-2">
-								<Button className="btn payment-option-btn" text={"Buy Course"} />
+								<Button className="btn payment-option-btn py-2 px-3 fw-700" text={"Buy Course"} />
 							</div>
 						</div>
 					</div>
@@ -45,7 +45,7 @@ function PaymentOption() {
 								nibh. Sit suscipit id tristique nisi, viverra sed amet est. Netus tristique sed lobortis.
 							</p>
 							<div className="text-center my-2">
-								<Button className="btn payment-option-btn" text={"Buy Course"} />
+								<Button className="btn payment-option-btn py-2 px-3 fw-700" text={"Buy Course"} />
 							</div>
 						</div>
 					</div>

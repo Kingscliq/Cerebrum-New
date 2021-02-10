@@ -1,41 +1,77 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaUser, FaEnvelope } from "react-icons/fa";
 import { VscDeviceCamera } from "react-icons/vsc";
 import { Input } from "../Input";
-// import ImageUploader from "react-images-upload";
+import axios from "axios";
+import { Button } from "../Button";
+import { Loader } from "../Loader";
 
 function AccountInformation(props) {
-	const [file, setFile] = React.useState(null);
+	const [loading, setLoading] = useState(false);
 
-	const fileHandler = (e) => {
-		setFile(e.target.files[0]);
-		props.setUpdateProfile({ profilePhoto: setFile });
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		setLoading(true);
+		let userInfo = new FormData();
+		userInfo.append("firstName", props.accountInfo.firstName);
+		userInfo.append("lastName", props.accountInfo.lastName);
+		userInfo.append("image", props.accountInfo.image);
 
-		console.log(props.updateProfile.profilePhoto);
+		const data = localStorage.getItem("userDetails");
+		const user = JSON.parse(data);
+		const token = user.data.token;
+		const userID = user.data.uid;
+		const config = {
+			headers: {
+				"Content-Type": "multipart/form-data",
+				Authorization: `Bearer ${token}`,
+			},
+		};
+		axios
+			.patch(`https://cerebrum-v1.herokuapp.com/api/auth/update-profile/${userID}`, userInfo, config)
+			.then((res) => {
+				console.log(res.data.data);
+				console.log(userInfo);
+				setLoading(false);
+				console.log(props.accountInfo);
+			})
+			.catch((err) => {
+				console.log(err.response);
+				console.log(props.accountInfo);
+				console.log(token);
+			});
 	};
 
 	return (
 		<>
 			<h1 className="h4"> Account Information </h1>
-			<div className="my-5 mx-2">
-				<div className="profile-upload-pic-div d-flex justify-content-center align-items-center position-relative">
-					<img
-						src={file ? URL.createObjectURL(file) : null}
-						alt={file ? file.name : null}
-						className="rounded-circle position-absolute"
-						width="131px"
-						height="131px"
-					/>
+			<form className="profile-settings-opacity" onSubmit={handleSubmit} encType="multipart/form-data">
+				<div className="my-5 mx-2">
+					<div className="profile-upload-pic-div d-flex justify-content-center align-items-center position-relative">
+						<img
+							src={props.accountInfo.image ? URL.createObjectURL(props.accountInfo.image) : null}
+							alt={props.accountInfo.image ? props.accountInfo.image.name : null}
+							className="rounded-circle position-absolute"
+							width="131px"
+							height="131px"
+						/>
 
-					<input type="file" className="position-absolute" onChange={fileHandler} style={{ opacity: 0 }} />
+						<input
+							type="file"
+							name="image"
+							accept="image/*"
+							className="position-absolute"
+							onChange={props.handleChange}
+							style={{ opacity: 0 }}
+							disabled={loading}
+						/>
 
-					<VscDeviceCamera className="h2 mt-3 " value={{ color: "blue", size: "50px" }} />
+						<VscDeviceCamera className="h2 mt-3 " value={{ color: "blue", size: "50px" }} />
+					</div>
+
+					<p className="profile-settings-label-text pt-2"> Edit profile picture </p>
 				</div>
 
-				<p className="profile-settings-label-text pt-2"> Edit profile picture </p>
-			</div>
-
-			<form className="profile-settings-opacity">
 				<div>
 					<span className="profile-settings-label-text"> First Name</span>
 					<Input
@@ -44,7 +80,8 @@ function AccountInformation(props) {
 						placeholder="Enter first name"
 						name="firstName"
 						onChange={props.handleChange}
-						value={props.updateProfile.firstName || ""}
+						value={props.accountInfo.firstName || ""}
+						disabled={loading}
 					/>
 				</div>
 				<br />
@@ -56,7 +93,8 @@ function AccountInformation(props) {
 						placeholder="Enter last name"
 						name="lastName"
 						onChange={props.handleChange}
-						value={props.updateProfile.lastName || ""}
+						value={props.accountInfo.lastName || ""}
+						disabled={loading}
 					/>
 				</div>
 				<br />
@@ -68,17 +106,18 @@ function AccountInformation(props) {
 						placeholder="Enter email address"
 						name="email"
 						onChange={props.handleChange}
-						value={props.updateProfile.email || ""}
+						value={props.accountInfo.email || ""}
+						disabled={true}
 					/>
 				</div>
 
 				<div className="my-5 d-flex justify-content-end">
 					<div className="d-inline-block m-1">
-						<button className="btn watchcourse-cancel-btn fw-bold">Edit</button>
+						<Button className="btn profile-settings-white-btn fw-bold" text="Edit" />
 					</div>
 
 					<div className="d-inline-block m-1">
-						<button className="btn watchcourse-send-btn fw-bold">Apply</button>
+						<Button className="btn profile-settings-blue-btn fw-bold" text="Apply Changes" loadingIcon={loading && <Loader />} />
 					</div>
 				</div>
 			</form>
