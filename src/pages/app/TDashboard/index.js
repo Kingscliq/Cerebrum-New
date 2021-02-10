@@ -185,7 +185,7 @@ const TDashboard = () => {
           {/* <div className='col-md-1'>&nbsp;</div> */}
           <div className='col-md-6'>
             {/* metrics d-flex flex-wrap flex-column */}
-            {role === "tutor" ? (
+            {role === "tutor" && courses.length === 0 ? (
               <>
                 {/* Render If Role is Tutor */}
                 <div className='card py-4 h-60 shadow mb-3'>
