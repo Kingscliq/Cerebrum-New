@@ -13,6 +13,7 @@ function PaymentOption() {
   const [courseId, setCourseId] = useState("");
   const [courseImg, setCourseImg] = useState("");
   const [price, setPrice] = useState("");
+  const [buy, setBuy] = useState("");
 
   useEffect(() => {
     const course = JSON.parse(localStorage.getItem("courses"));
@@ -47,7 +48,29 @@ function PaymentOption() {
       .catch((err) => console.log(err.response));
   };
 
-  const handleMonthly = () => {};
+  const handleMonthly = async () => {
+    const { uid, lastName, firstName, email } = user.data;
+    const data = {
+      user_id: uid,
+      lastName: lastName,
+      firstName: firstName,
+      course_id: courseId,
+      email: email,
+      paymentType: "subscription",
+      amount: price,
+    };
+
+    console.log(data);
+
+    // console.log(user);
+    await axios
+      .post(`https://cerebrum-v1.herokuapp.com/api/payment/new`, data)
+      .then((res) => {
+        console.log(res.data.data);
+        window.location.assign(res.data.data);
+      })
+      .catch((err) => console.log(err.response));
+  };
 
   // console.log(user);
   return (

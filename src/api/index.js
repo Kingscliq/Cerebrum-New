@@ -2,7 +2,7 @@
 
 import axios from "axios";
 
-export const signUpReg = (e, state, setLoadState) => {
+export const signUpReg = (e, state, setLoadState, setError, setSuccess) => {
   e.preventDefault();
 
   setLoadState(true);
@@ -16,13 +16,15 @@ export const signUpReg = (e, state, setLoadState) => {
 
       setLoadState(false);
       window.open(
-        `verifyemail?email=${currentState.email}&name=${currentState.firstName}`,
+        `auth/verifyemail?email=${currentState.email}&name=${currentState.firstName}`,
         "_self"
       );
     })
     .catch((e) => {
       console.log(e.response);
       setLoadState(false);
+      setError(e.response.data.message);
+      setSuccess(null);
     });
 };
 
@@ -33,7 +35,14 @@ export const getCategories = (stateFunction) => {
 };
 
 /// Login Api
-export const signIn = (e, user, setUser, setLoadState, setError, error) => {
+export const signIn = (
+  e,
+  user,
+  setUser,
+  setLoadState,
+  setError,
+  setSuccess
+) => {
   e.preventDefault();
   setLoadState(true);
   const data = {
@@ -50,27 +59,29 @@ export const signIn = (e, user, setUser, setLoadState, setError, error) => {
       localStorage.setItem("userDetails", userDetails);
       setLoadState(false);
 
-      console.log(userDetails);
-      // console.log("proppps", props);
-      // props.history.push("/tdashboard");
-
       if (localStorage.getItem("current") === null) {
-        window.open("/tdashboard", "_self");
+        window.open("/dashboard", "_self");
       } else {
         window.open(localStorage.getItem("current"), "_self");
       }
     })
     .catch((err) => {
-      console.log("err", err);
+      console.log("err", err.response);
+      if (err.response.status === 400) {
+        setError(err.response.data.message);
+        console.log(err.response.data.message);
+        setSuccess(null);
+      }
       if (err.response === undefined) {
-        window.open("/login", "_self");
+        window.open("/auth/login", "_self");
         setError("Opps! there is a problem with our server");
+        setSuccess(null);
       }
       if (
         err.response.data.message ===
         "Email not verified, kindly check your email for verification link"
       ) {
-        window.open(`/verifyemail?email=${data.email}`, "_self");
+        window.open(`/auth/verifyemail?email=${data.email}`, "_self");
       }
       // console.log(err.response.message);
       // console.log(err.response.data.message);

@@ -7,7 +7,7 @@ const Logout = () => {
   useEffect(() => {
     localStorage.clear();
   });
-  return <Redirect to='/login' />;
+  return <Redirect to='/auth/login' />;
 };
 
 export { Logout };

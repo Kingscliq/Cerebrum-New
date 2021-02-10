@@ -12,6 +12,7 @@ const BuyCourse = () => {
   const [course, setCourse] = useState({});
   const [tutor, setTutor] = useState({});
   const [courseId, setCourseId] = useState("");
+  const [buy, setBuy] = useState();
 
   const handleBuy = () => {
     const data = localStorage.getItem("userDetails");
@@ -59,6 +60,29 @@ const BuyCourse = () => {
       })
       .catch((err) => console.log(err.response));
   }, []);
+
+  useEffect(() => {
+    const url_string = window.location.href;
+    const url = new URL(url_string);
+    const course_id = url.searchParams.get("id");
+    const user = JSON.parse(localStorage.getItem("userDetails"));
+    const user_id = user.data.uid;
+    const data = {
+      user_id: user_id,
+      course_id: course_id,
+    };
+
+    console.log(data);
+    axios
+      .post(`https://cerebrum-v1.herokuapp.com/api/payment/confirm/`, data)
+      .then((res) => {
+        setBuy(false);
+      })
+      .catch((err) => {
+        console.log(err.response.data.success);
+        setBuy(true);
+      });
+  }, []);
   //
   return (
     <div>
@@ -98,7 +122,7 @@ const BuyCourse = () => {
             </div>
           </div>
           <div className='d-flex justify-content-end'>
-            {course.price > 0 ? (
+            {course.price > 0 && buy ? (
               <button
                 className='btn btn-primary pull-right'
                 onClick={handleBuy}

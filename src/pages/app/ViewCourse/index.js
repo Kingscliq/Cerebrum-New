@@ -14,6 +14,7 @@ function ViewCourse() {
   );
   const [sectionToggle, setSectionToggle] = useState("About Course");
   const [courseId, setCourseId] = useState("");
+  const [watchCourse, setWatchCourse] = useState();
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -47,9 +48,19 @@ function ViewCourse() {
     console.log(data);
     axios
       .post(`https://cerebrum-v1.herokuapp.com/api/payment/confirm/`, data)
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err.response));
+      .then((res) => {
+        if (res.data.success === true) {
+          console.log(" you are qualified");
+          setWatchCourse(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err.response.data.success);
+        window.location.assign(`/buycourse?id=${course_id}`);
+        setWatchCourse(false);
+      });
   }, []);
+
   return (
     <>
       <DashboardHeader />
