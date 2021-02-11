@@ -89,7 +89,7 @@ function ViewCategories() {
 										<img className="courses-img" src={course.image_url} width="100%" height="75%" alt="dispay" />
 
 										<p className="badge position-absolute courses-price-badge p-2">
-											{course.price > 0 ? `N ${course.price}` : (course.price = "FREE")}
+											{course.price.lifeTime > 0 ? `N ${course.price.lifeTime}` : (course.price.lifeTime = "FREE")}
 										</p>
 										<div className="w-100">
 											<div className="bg-white rounded-circle courses-tutor-image-radius" height="55px" width="55px">
@@ -101,7 +101,7 @@ function ViewCategories() {
 													alt="tutor pic"
 												/>
 											</div>
-											<a className="all-courses-link" href={`/watchcourse/?id=${course._id}`}>
+											<a className="all-courses-link" href={`/buycourse/?id=${course._id}`}>
 												<p className="fw-bold signup-p mx-4 my-3">{course.name}</p>
 											</a>
 										</div>

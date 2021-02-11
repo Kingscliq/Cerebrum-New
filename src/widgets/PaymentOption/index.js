@@ -84,9 +84,12 @@ function PaymentOption() {
 							<h2 className="position-absolute payment-option-price text-white fw-700"> {price} </h2>
 						</div>
 
-						<div className="p-5">
-							<h1 className="h4 fw-700"> One time payment </h1>
-							<p className="signup-p my-4 line-height-26">Pay one time and have a lifetime access to your paid courses.</p>
+						<div className="p-5 move-buy-btn-div">
+							<div>
+								<h1 className="h4 fw-700"> One time payment </h1>
+								<p className="signup-p my-4 line-height-26">Pay one time and have a lifetime access to your paid courses.</p>
+							</div>
+
 							<div className="text-center my-2">
 								<Button className="btn payment-option-btn py-2 px-3 fw-700" text={"Buy Course"} handleClick={handleOneTime} />
 							</div>

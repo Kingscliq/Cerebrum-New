@@ -1,5 +1,7 @@
-.success-payment-section {
+.failed-payment-section {
 	border-radius: 12px;
+	margin-top: 40px;
+	margin-bottom: 110px;
 }
 
 .payment-add-btn {
