@@ -82,7 +82,6 @@ const TDashboard = () => {
 			.catch((err) => console.log(err.response));
 	}, []);
 
-<<<<<<< HEAD
   return (
     <>
       <DashboardHeader />
@@ -142,7 +141,6 @@ const TDashboard = () => {
               </div>
             </div>
           </div>
-=======
 	return (
 		<>
 			<DashboardHeader />
@@ -197,8 +195,6 @@ const TDashboard = () => {
 							</div>
 						</div>
 					</div>
->>>>>>> parent of de892a4 (Fix Dashboard Header)
-
 					{/* <div className='col-md-4 align-items-center'> */}
 
 					<div className="col-4 d-none d-md-block d-flex align-items-center mt-5">
