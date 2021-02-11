@@ -13,35 +13,14 @@
   padding: 9px 2px;
 }
 
-/* .tdashboard .btn-outline-primary {
-  background: #ffffff;
-  border: 2px solid var(--primary-color);
-  border-radius: 8px;
-} */
-/* .btn-primary,
-.btn-outline-primary:hover {
-  background-color: var(--primary-color);
-  color: #f4f4f4;
-  border-radius: 8px;
-  padding: 10px 20px;
-} */
-/* .btn-primary:hover {
-  color: #f4f4f4;
-}
-
-.tdashboard .btn a {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: 600;
-} */
-
 .tdashboard .btn-warning {
   background: #f8ab39;
   border-radius: 8px;
   font-weight: 600;
-  padding: 10px 30px;
+  padding: 10px 20px;
   outline: none;
   border: none;
+  font-size: 10px;
 }
 /* .tdashboard .btn:hover {
   background-color: var(--primary-color);
