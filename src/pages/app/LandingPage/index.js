@@ -113,7 +113,7 @@ function LandingPage() {
               >
                 <img
                   className="courses-img"
-                  src={course.image_url}
+                 src={course.image_url}
                   width="100%"
                   height="75%"
                   alt="dispay"

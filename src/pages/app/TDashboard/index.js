@@ -17,6 +17,8 @@ const TDashboard = () => {
 	const [courses, setCourses] = useState([]);
 	const [courseCount, setCourseCount] = useState(0);
 	const [data, setData] = useState();
+	const [lcourse, setLcourse] = useState({});
+	const [lcourseCount, setLcourseCount] = useState();
 
 	// Get login details from Local Storage
 	useEffect(() => {
@@ -24,14 +26,14 @@ const TDashboard = () => {
 		if (!data) {
 			history.push("/auth/login");
 		}
-		const user = JSON.parse(data);
-		const token = user.data.token;
+		const userData = JSON.parse(data);
+		const token = userData.data.token;
 		const config = {
 			headers: {
 				Authorization: "Bearer " + token,
 			},
 		};
-		const userId = user.data.uid;
+		const userId = userData.data.uid;
 		axios
 			.get(`https://cerebrum-v1.herokuapp.com/api/user/${userId}`, config)
 			.then((res) => {
@@ -46,7 +48,6 @@ const TDashboard = () => {
 
 	useEffect(() => {
 		if (user.role === "tutor") {
-			// console.log(user);
 			axios
 				.get(`https://cerebrum-v1.herokuapp.com/api/tutor/course/${user._id}`)
 				.then((res) => {
@@ -55,7 +56,31 @@ const TDashboard = () => {
 				})
 				.catch((err) => console.log(err.response));
 		}
-	});
+	}, []);
+
+	useEffect(() => {
+		const learner = JSON.parse(localStorage.getItem("userDetails"));
+		// console.log(user)
+		axios
+			.get(`https://cerebrum-v1.herokuapp.com/api/payment/${learner.data.uid}`)
+			.then((res) => {
+				console.log(res.data.data);
+				const stcourses = res.data.data;
+				setLcourseCount(stcourses.length);
+				setLcourse(stcourses[0]);
+				console.log(stcourses[0]);
+				// courses.map((stcourse, index) => {
+				//   if (index === 0) {
+				//     console.log(stcourse.course_id);
+				//   }
+				// });
+				// console.log(stcourses[0]);
+				// setLcourse(stcourses[0]);
+				// console.log(lcourse);
+				// setCourses(res.data.data);
+			})
+			.catch((err) => console.log(err.response));
+	}, []);
 
 	return (
 		<>
@@ -74,7 +99,7 @@ const TDashboard = () => {
 									<h1 className="font-bold">Welcome {user.firstName}</h1>
 								</header>
 								<article>
-									Welcome to your Cerebrum dashboard. Cerebrum provides you with boundless access to courses if you are a student and an opportunity
+									Welcome to your cerebrum Dashboard. Cerebrum provides you with boundless access to courses if you are a student and An opportunity
 									to earn as a tutor
 								</article>
 								<div className="d-flex flex-wrap justify-content-start my-3">
@@ -120,16 +145,23 @@ const TDashboard = () => {
 				</div>
 
 				<section className="row my-4 mx-auto mt-5 gx-5 container">
+					{/* LEARNERS COURSE */}
 					{role === "learner" ? (
-						<div className="col-md-6 card p-5 shadow mb-sm-5">
-							<div className="row align-items-center">
-								<div className="col-md-6">
+						<div className="col-md-6 p-4 card shadow mb-sm-5">
+							<div className="row align-items-center gx-3">
+								<div className="col-md-5">
 									<img src={dashboardImg} alt="" />
 								</div>
-								<div className="col-md-6">
-									<h1 className="font-bold">Code 101: Codeology</h1>
+								<div className="col-md-5 offset-2">
+									<h1 className="font-bold">
+										Code 101: Codeology
+										{/* {lcourse.course_id.name} */}
+									</h1>
 									<p>By {user.lastName}</p>
-									<p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</p>
+									<p>
+										Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
+										{/* {lcourse.description} */}
+									</p>
 									<p>
 										<button className="btn-warning text-light">Continue Course</button>
 									</p>
@@ -151,7 +183,7 @@ const TDashboard = () => {
 							) : (
 								<>
 									<div className="d-flex align-items-center justify-content-center mt-5">
-										<h1>No Courses Uploaded Yet</h1>
+										<p>No Courses Uploaded Yet</p>
 									</div>
 								</>
 							)}
@@ -188,7 +220,7 @@ const TDashboard = () => {
 										<div className="row">
 											<div className="col-md-6 col-sm-12">
 												<div>
-													{role === "tutor" || courses.length > 0 ? (
+													{role === "tutor" && courses.length > 0 ? (
 														<>
 															<h1 style={{ fontSize: "50px", fontWeight: "600" }} className="text-primary text-center">
 																{courses.length}
@@ -199,9 +231,9 @@ const TDashboard = () => {
 														<>
 															{/* Render if role is Student */}
 															<h1 style={{ fontSize: "50px", fontWeight: "600" }} className="text-primary text-center">
-																{courses.length}
+																0
 															</h1>
-															<p className="text-center">No Student Registered Yet</p>
+															<p className="text-center">No of Student Registered</p>
 														</>
 													)}
 												</div>

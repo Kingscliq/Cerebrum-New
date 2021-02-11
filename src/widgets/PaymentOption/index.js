@@ -9,17 +9,23 @@ import axios from "axios";
 
 function PaymentOption() {
 	const [user, setUser] = useState({});
-	const [courseId, setCourseId] = useState("");
 	const [courseImg, setCourseImg] = useState("");
-	const [price, setPrice] = useState("");
+	const [courseId, setCourseId] = useState("");
+	const [course, setCourse] = useState("");
+	const [price, setPrice] = useState({});
 
 	useEffect(() => {
 		const course = JSON.parse(localStorage.getItem("courses"));
 		console.log(course);
-		setCourseId(course._id);
-		setUser(JSON.parse(localStorage.getItem("userDetails")));
-		setCourseImg(course.image_url);
-		setPrice(course.price);
+		course.map((lesson) => {
+			console.log(lesson);
+			localStorage.setItem("courses", JSON.stringify(course));
+			setCourse(lesson);
+			setPrice(lesson.price);
+			setCourseId(lesson._id);
+			setUser(JSON.parse(localStorage.getItem("userDetails")));
+			setCourseImg(lesson.image_url);
+		});
 	}, []);
 
 	const handleOneTime = async () => {
@@ -30,8 +36,8 @@ function PaymentOption() {
 			firstName: firstName,
 			course_id: courseId,
 			email: email,
-			paymentType: "subscription",
-			amount: price,
+			paymentType: "one-time",
+			amount: price.lifeTime,
 		};
 
 		console.log(data);
@@ -55,7 +61,7 @@ function PaymentOption() {
 			course_id: courseId,
 			email: email,
 			paymentType: "subscription",
-			amount: price,
+			amount: price.subscription,
 		};
 
 		console.log(data);
@@ -81,7 +87,7 @@ function PaymentOption() {
 						<div className="col-12 position-relative payment-option-price-div d-flex justify-content-center">
 							<img src={courseImg} alt="dummy" width="100%" />
 							<div className="payment-option-overlay position-absolute"></div>
-							<h2 className="position-absolute payment-option-price text-white fw-700"> {price} </h2>
+							<h2 className="position-absolute payment-option-price text-white fw-700">₦ {price.lifeTime} </h2>
 						</div>
 
 						<div className="p-5 move-buy-btn-div">
@@ -100,7 +106,7 @@ function PaymentOption() {
 							<img src={courseImg} alt="dummy" width="100%" />
 							<div className="payment-option-overlay position-absolute"></div>
 							<h2 className="position-absolute payment-option-price text-white fw-700">
-								{price}/<span className="h3 fw-700">Month</span>
+								₦{price.subscription}/<span className="h3 fw-700">Month</span>
 							</h2>
 						</div>
 						<div className="p-5">
@@ -111,7 +117,7 @@ function PaymentOption() {
 								subscription is active.
 							</p>
 							<div className="text-center my-2">
-								<Button className="btn payment-option-btn py-2 px-3 fw-700" text={"Buy Course"} onClick={handleMonthly} />
+								<Button className="btn payment-option-btn py-2 px-3 fw-700" text={"Buy Course"} handleClick={handleMonthly} />
 							</div>
 						</div>
 					</div>
