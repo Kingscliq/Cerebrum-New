@@ -59,7 +59,9 @@ function Paymentinformation() {
               return (
                 <tbody key={detail._id}>
                   <tr>
-                    <td className='signup-p payment-info'>Course Title</td>
+                    <td className='signup-p payment-info'>
+                      {detail.course_id.name}
+                    </td>
                     <td className='signup-p payment-info'> {detail.amount} </td>
                     <td className='signup-p payment-info'>{detail.sub_date}</td>
                     <td className='signup-p payment-info'>{detail.exp_date}</td>
