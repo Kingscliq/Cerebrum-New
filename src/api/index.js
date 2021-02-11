@@ -63,7 +63,7 @@ export const signIn = (
       if (!localStorage.getItem("current")) {
         history.push("/dashboard");
       } else {
-        history.push(localStorage.getItem("current"));
+        window.location.assign(localStorage.getItem("current"));
       }
     })
     .catch((err) => {

@@ -12,10 +12,10 @@ let url = new URL(url_string);
 const BuyCourse = () => {
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("userDetails"));
-  
+
   console.log(user);
   if (!user) {
-	  let currentUrl = localStorage.setItem('current', url)
+    let currentUrl = localStorage.setItem("current", url);
     history.push("/auth/login");
   }
   // const [courses, setCourses] = useState([]);
@@ -54,21 +54,28 @@ const BuyCourse = () => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userDetails"));
-    console.log(user);
-    const user_id = user.data.uid;
-    const data = {
-      user_id: user_id,
-      course_id: courseId,
-    };
-    axios
-      .post(`https://cerebrum-v1.herokuapp.com/api/payment/confirm/`, data)
-      .then((res) => {
-        setBuy(false);
-      })
-      .catch((err) => {
-        console.log(err.response);
-        setBuy(true);
-      });
+
+    if (!user) {
+      localStorage.setItem("current", url);
+      history.push("/auth/login");
+    } else {
+      const user_id = user.data.uid;
+      const data = {
+        user_id: user_id,
+        course_id: courseId,
+      };
+      axios
+        .post(`https://cerebrum-v1.herokuapp.com/api/payment/confirm/`, data)
+        .then((res) => {
+          setBuy(false);
+        })
+        .catch((err) => {
+          console.log(err.response);
+          setBuy(true);
+        });
+    }
+    // console.log(user);
+
     // console.log(data);
   }, []);
 
@@ -90,7 +97,7 @@ const BuyCourse = () => {
 
       .catch((err) => console.log(err.response));
   }, []);
-  console.log(course);
+  //   console.log(course);
   //
   return (
     <div>
