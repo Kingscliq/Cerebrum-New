@@ -17,7 +17,7 @@ const EmailVerify = () => {
       )
       .then((res) => {
         if (res.data.message === "Email verified successfully") {
-          window.open("/login?msg=success", "_self");
+          window.open("/auth/login?msg=success", "_self");
         }
       })
       .catch((err) => {
