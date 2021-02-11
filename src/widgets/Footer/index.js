@@ -18,16 +18,16 @@ function Footer() {
         <div>
           <ul className="footer-links d-flex">
             <li>
-              <Link>About</Link>
+              <Link to="/about">About</Link>
             </li>
             <li>
-              <Link>Support</Link>
+              <Link to="/support">Support</Link>
             </li>
             <li>
-              <Link>Courses</Link>
+              <Link to="/courses">Courses</Link>
             </li>
             <li>
-              <Link>FAQ</Link>
+              <Link to="/faq">FAQ</Link>
             </li>
           </ul>
         </div>

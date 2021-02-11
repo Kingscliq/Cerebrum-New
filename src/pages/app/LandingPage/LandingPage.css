@@ -34,6 +34,9 @@
   color: var(--primary-color);
 }
 
+.landing-page-a div:nth-of-type(2) img {
+  margin-left: 8px;
+}
 .landing-page-b .card {
   width: 65% !important;
   margin-right: 20px;
