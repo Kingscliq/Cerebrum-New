@@ -19,6 +19,7 @@ function ViewCategories() {
 		setAllCategories(allCategories);
 	}, []);
 
+	// get all courses in a category
 	const getCoursesInCategory = async (e) => {
 		let targetCategory = e.target.innerText;
 		axios(`https://cerebrum-v1.herokuapp.com/api/category/course/${targetCategory}`).then((res) => {
