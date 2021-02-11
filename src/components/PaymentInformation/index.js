@@ -2,12 +2,11 @@ import React from "react";
 
 function Paymentinformation() {
 	const active = "";
-	const expired = "expired";
 
 	return (
 		<>
 			<h1 className="h4"> Payment </h1> <br />
-			<table class="table table-striped">
+			<table className="table table-striped">
 				<thead>
 					<tr className="light-grey-color">
 						<th scope="col" className="fs-12">

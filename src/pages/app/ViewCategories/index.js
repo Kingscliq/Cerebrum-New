@@ -41,32 +41,37 @@ function ViewCategories() {
 					{toggle.clicked ? <VscChromeClose /> : <BiMenuAltLeft />}
 				</div>
 				<aside className="col-lg-3 col-md-4">
-					<div
-						className={
-							toggle.clicked
-								? "all-categories-active bg-white mb-2 p-4 rounded animate__animated animate__slideInLeft"
-								: `all-categories bg-white mb-2 p-4 rounded animate__animated animate__slideInLeft`
-						}>
-						<Link to={`/courses`} className="text-decoration-none">
-							<p className="signup-p all-courses-category-list"> All Courses </p>
-						</Link>
+					<div>
+						<div
+							className={
+								toggle.clicked
+									? "all-categories-active bg-white mb-2 p-4 rounded animate__animated animate__slideInLeft"
+									: `all-categories bg-white mb-2 p-4 rounded animate__animated animate__slideInLeft`
+							}>
+							<Link to={`/courses`} className="text-decoration-none">
+								<p className="signup-p all-courses-category-list"> All Courses </p>
+							</Link>
 
-						<p className="signup-p all-courses-category-list"> Recommended Courses </p>
-					</div>
-					<div
-						className={
-							toggle.clicked
-								? "all-categories-active bg-white p-4 rounded animate__animated animate__slideInLeft"
-								: "all-categories bg-white p-4 rounded animate__animated animate__slideInLeft"
-						}>
-						<ul className="courses-list">
-							<h1 className="signup-p fw-bold"> Categories </h1> <hr />
-							{allCategories.map((category) => (
-								<li onClick={getCoursesInCategory} key={category._id} className="signup-p pb-3 all-courses-category-list">
-									{category.name}
-								</li>
-							))}
-						</ul>
+							<p className="signup-p all-courses-category-list"> Recommended Courses </p>
+						</div>
+						<div
+							className={
+								toggle.clicked
+									? "all-categories-active bg-white p-4 rounded animate__animated animate__slideInLeft"
+									: "all-categories bg-white p-4 rounded animate__animated animate__slideInLeft"
+							}>
+							<ul className="courses-list">
+								<h1 className="signup-p fw-bold"> Categories </h1> <hr />
+								{allCategories.map((category) => (
+									<li
+										onClick={getCoursesInCategory}
+										key={category._id}
+										className={`signup-p pb-3 all-courses-category-list ${toggle.clicked ? "bg-success" : ""}`}>
+										{category.name}
+									</li>
+								))}
+							</ul>
+						</div>
 					</div>
 				</aside>
 				<section className="col-lg-8 col-md-7">
@@ -97,7 +102,7 @@ function ViewCategories() {
 												/>
 											</div>
 											<a className="all-courses-link" href={`/watchcourse/?id=${course._id}`}>
-												<p className="fw-bold signup-p mx-4 mt-3">{course.name}</p>
+												<p className="fw-bold signup-p mx-4 my-3">{course.name}</p>
 											</a>
 										</div>
 									</div>

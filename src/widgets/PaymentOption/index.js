@@ -86,10 +86,7 @@ function PaymentOption() {
 
 						<div className="p-5">
 							<h1 className="h4 fw-700"> One time payment </h1>
-							<p className="signup-p my-4 line-height-26">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis malesuada aenean tortor ultrices. Lobortis nisl sed ornare sed
-								nibh. Sit suscipit id tristique nisi, viverra sed amet est. Netus tristique sed lobortis.
-							</p>
+							<p className="signup-p my-4 line-height-26">Pay one time and have a lifetime access to your paid courses.</p>
 							<div className="text-center my-2">
 								<Button className="btn payment-option-btn py-2 px-3 fw-700" text={"Buy Course"} handleClick={handleOneTime} />
 							</div>
@@ -106,8 +103,9 @@ function PaymentOption() {
 						<div className="p-5">
 							<h1 className="h4 fw-700"> Monthly Payment </h1>
 							<p className="signup-p my-4 line-height-26">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis malesuada aenean tortor ultrices. Lobortis nisl sed ornare sed
-								nibh. Sit suscipit id tristique nisi, viverra sed amet est. Netus tristique sed lobortis.
+								Easily create different plans and fee structures in more than 100 currencies. Enables customers to easily upgrade, pause, or cancel
+								subscriptions and speed through checkout with just a few taps, on almost any device. This gives you access to your course once your
+								subscription is active.
 							</p>
 							<div className="text-center my-2">
 								<Button className="btn payment-option-btn py-2 px-3 fw-700" text={"Buy Course"} onClick={handleMonthly} />
