@@ -1,17 +1,21 @@
 /** @format */
 
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { FaWindows } from "react-icons/fa";
-import { dummyVideoImage } from "../../../assets/images";
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
 
+let url_string = window.location.href;
+let url = new URL(url_string);
+
 const BuyCourse = () => {
+  const history = useHistory();
   const [courses, setCourses] = useState([]);
   const [course, setCourse] = useState({});
   const [tutor, setTutor] = useState({});
-  const [courseId, setCourseId] = useState("");
+  const [courseId, setCourseId] = useState(url.searchParams.get("id"));
+  const [buy, setBuy] = useState();
 
   const handleBuy = () => {
     const data = localStorage.getItem("userDetails");
@@ -19,46 +23,62 @@ const BuyCourse = () => {
       let url_string = window.location.href;
       let url = new URL(url_string);
       localStorage.setItem("current", url);
-      console.log(url);
-      window.open(`/auth/login`);
+      // console.log(url);
+      history.push(`/auth/login`);
     } else {
-      window.open(`/watchcourse/${courseId}`, "_blank");
+      // window.open(`/buycourse/${courseId}`, "_blank");
+      history.push(`/user/course/paymentoption`);
     }
-    window.open(`/user/course/paymentoption`);
-    console.log("Course Bought");
+    // console.log("Course Bought");
   };
   const watchCourse = () => {
     const data = localStorage.getItem("userDetails");
     if (data === null) {
-      let url_string = window.location.href;
-      let url = new URL(url_string);
       localStorage.setItem("current", url);
       console.log(url);
-      window.open(`/auth/login`);
+      history.push(`/auth/login`);
     } else {
-      window.open(`/watchcourse/${courseId}`, "_blank");
+      history.push(`/learner/viewcourse?id=${courseId}`);
     }
   };
+
+  // const getCourse = () => {};
   useEffect(() => {
-    const url_string = window.location.href;
-    const url = new URL(url_string);
-    const course_id = url.searchParams.get("id");
-    setCourseId(course_id);
     axios
-      .get(`https://cerebrum-v1.herokuapp.com/api/course/${course_id}`)
+      .get(`https://cerebrum-v1.herokuapp.com/api/course/${courseId}`)
       .then((res) => {
         const data = res.data.data;
         data.map((course) => {
           setCourse(course);
+          localStorage.setItem("courses", JSON.stringify(course));
           //   console.log(course.tutor_id);
           setTutor(course.tutor_id);
-          //   console.log(tutor.firstName);
-          //   map((tutor) => {
-          //     console.log(tutor.firstName);
-          //   });
         });
       })
       .catch((err) => console.log(err.response));
+  }, []);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userDetails"));
+    if (user === null) {
+      history.push("/auth/login");
+    }
+    const user_id = user.data.uid;
+    const data = {
+      user_id: user_id,
+      course_id: courseId,
+    };
+
+    console.log(data);
+    axios
+      .post(`https://cerebrum-v1.herokuapp.com/api/payment/confirm/`, data)
+      .then((res) => {
+        setBuy(false);
+      })
+      .catch((err) => {
+        console.log(err.response.data.success);
+        setBuy(true);
+      });
   }, []);
   //
   return (
@@ -99,7 +119,7 @@ const BuyCourse = () => {
             </div>
           </div>
           <div className='d-flex justify-content-end'>
-            {course.price > 0 ? (
+            {course.price > 0 && buy ? (
               <button
                 className='btn btn-primary pull-right'
                 onClick={handleBuy}

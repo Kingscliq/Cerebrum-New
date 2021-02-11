@@ -35,7 +35,7 @@ const ResetPassword = () => {
     setUser({ ...user, [e.target.name]: value });
   };
 
-  // Function to Handle Login Submit
+  // Function to Handle Reset Password Submit
   const handleSubmit = (e) => {
     // Call Api Function
     e.preventDefault();
@@ -105,7 +105,7 @@ const ResetPassword = () => {
                 </span>{" "}
                 or &nbsp;{" "}
                 <span>
-                  <Link to='/Login'>Login</Link> Instead
+                  <Link to='/auth/login'>Login</Link> Instead
                 </span>
               </p>
             </form>

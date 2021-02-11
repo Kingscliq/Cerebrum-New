@@ -3,10 +3,11 @@ once the user is on the buycourse page and clicks on Buy course the user is redi
     then the href stored on the local storage
 if the user is logged in once the user logs in, then 
 then href is gotten back from the localStorage and 
-then the user redirected to the buy course page
+then the user redirected to the buy course page === DONE
 
 
-if the user is logged in then the user is redirected subscription page, selects payment option
+if the user is logged-in then the user is redirected subscription page, 
+selects payment option
 
 the user clicks on the payment option, the paymentid and courseid is picked and stored in a state,
 

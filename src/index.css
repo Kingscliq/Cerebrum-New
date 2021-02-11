@@ -11,6 +11,7 @@
   --primary-color: #1421ff;
   --secondary-color: #212121;
   --background-color: #fbfbfb;
+  --opacity-color: #acb5bd;
 }
 
 html {
@@ -63,4 +64,12 @@ body {
 
 .border-radius-12 {
   border-radius: 12px;
+}
+
+.fs-12 {
+  font-size: 12px;
+}
+
+.light-grey-color {
+  color: #acb5bd;
 }

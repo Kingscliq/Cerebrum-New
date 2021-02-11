@@ -1,3 +1,5 @@
+/** @format */
+
 .payment-option-btn {
   border: 1px solid var(--primary-color);
   border-radius: 12px;
@@ -8,7 +10,13 @@
 .payment-option-price-div {
   height: 270px;
 }
+.payment-option-price-div img {
+  object-fit: cover;
+}
 
+.payment-option-price-div img {
+  object-fit: cover;
+}
 .payment-option-price {
   top: 90px;
   font-size: 50px;

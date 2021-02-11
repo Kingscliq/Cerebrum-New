@@ -1,64 +1,85 @@
-import React from "react";
-import { Input } from "../Input";
-import { ImCreditCard } from "react-icons/im";
-import { BsCreditCard } from "react-icons/bs";
+/** @format */
 
-function Paymentinformation(props) {
-	return (
-		<>
-			<h1 className="h4"> Payment </h1> <br />
-			<form className="profile-settings-opacity">
-				<div className="row">
-					<div className="col-9">
-						<p className="profile-settings-label-text"> Card Number </p>
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
-						<Input
-							type="text"
-							icon={<BsCreditCard />}
-							placeholder="Enter card number"
-							name="cardNumber"
-							onChange={props.handleChange}
-							value={props.updateProfile.cardNumber || ""}
-						/>
-					</div>
-					<div className="col-3">
-						<p className="profile-settings-label-text"> CVC Code </p>
+function Paymentinformation() {
+  const [paymentStatus, setPaymentStatus] = useState("");
+  const [msg, setMsg] = useState("");
+  const [paymentInfo, setPaymentInfo] = useState([]);
 
-						<Input
-							type="text"
-							icon={<ImCreditCard />}
-							placeholder="3 digit code"
-							name="CVC"
-							onChange={props.handleChange}
-							value={props.updateProfile.CVC || ""}
-						/>
-					</div>
-				</div>
-				<br />
-				<div>
-					<p className="profile-settings-label-text"> Expiration </p>
+  const active = "";
+  const expired = "expired";
 
-					<Input
-						type="text"
-						icon={<ImCreditCard />}
-						placeholder="Enter card expiration date"
-						name="cardExpiration"
-						onChange={props.handleChange}
-						value={props.updateProfile.cardExpiration || ""}
-					/>
-				</div>
-				<div className="my-5 d-flex justify-content-end">
-					<div className="d-inline-block m-1">
-						<button className="btn watchcourse-cancel-btn fw-bold"> Edit </button>
-					</div>
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userDetails"));
+    const userId = user.data.uid;
+    axios
+      .get(`https://cerebrum-v1.herokuapp.com/api/payment/${userId}`)
+      .then((res) => {
+        console.log(res.data);
+        setPaymentStatus(true);
+        setPaymentInfo(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+        setMsg(err.response.data.message);
+        setPaymentStatus(false);
+      });
+  }, []);
 
-					<div className="d-inline-block m-1">
-						<button className="btn watchcourse-send-btn fw-bold"> Save </button>
-					</div>
-				</div>
-			</form>
-		</>
-	);
+  return (
+    <>
+      {!paymentStatus ? (
+        <div>{msg}</div>
+      ) : (
+        <>
+          <h1 className='h4'> Payment </h1> <br />
+          <table class='table table-striped'>
+            <thead>
+              <tr className='light-grey-color'>
+                <th scope='col' className='fs-12'>
+                  COURSE NAME
+                </th>
+                <th scope='col' className='fs-12'>
+                  AMOUNT
+                </th>
+                <th scope='col' className='fs-12'>
+                  DATE PAID
+                </th>
+                <th scope='col' className='fs-12'>
+                  EXPIRES
+                </th>
+                <th scope='col' className='fs-12'>
+                  STATUS
+                </th>
+              </tr>
+            </thead>
+            {paymentInfo.map((detail) => {
+              return (
+                <tbody key={detail._id}>
+                  <tr>
+                    <td className='signup-p payment-info'>
+                      {detail.course_id.name}
+                    </td>
+                    <td className='signup-p payment-info'> {detail.amount} </td>
+                    <td className='signup-p payment-info'>{detail.sub_date}</td>
+                    <td className='signup-p payment-info'>{detail.exp_date}</td>
+
+                    {detail.status ? (
+                      <td className='signup-p payment-active'>Active</td>
+                    ) : (
+                      <td className='signup-p payment-expired'>Expired</td>
+                    )}
+                  </tr>
+                </tbody>
+              );
+            })}
+          </table>
+        </>
+      )}
+    </>
+  );
 }
 
 export { Paymentinformation };
