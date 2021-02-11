@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { loginImg } from "../../../assets/images";
 import { Input } from "../../../components/Input";
-import { FaEnvelope, FaLock } from "react-icons/fa";
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { Button } from "../../../components/Button";
 import { useState } from "react";
 import { Loader } from "../../../components/Loader";
@@ -20,6 +20,7 @@ const Login = () => {
     password: "",
   });
   const [loggedIn, setLoggedIn] = useState(false);
+  const [eye, setEye] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [alert, setAlert] = useState(false);
@@ -52,6 +53,10 @@ const Login = () => {
     signIn(e, user, setUser, setLoading, setError, setSuccess, history);
   };
 
+  const handleEye = (e) => {
+    setEye((prevState) => !prevState);
+  };
+
   return (
     <>
       <AuthHeader />
@@ -77,10 +82,12 @@ const Login = () => {
                   name='email'
                 />
                 <Input
-                  type='password'
+                  type={eye ? "text" : "password"}
                   icon={<FaLock />}
+                  icon2={eye ? <FaEyeSlash /> : <FaEye />}
                   placeholder='Enter Password'
                   onChange={handleChange}
+                  onEye={handleEye}
                   value={user.password}
                   name='password'
                 />

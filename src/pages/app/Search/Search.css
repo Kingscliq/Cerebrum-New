@@ -1,0 +1,11 @@
+.search-section-header {
+  border-bottom: 1px solid #cdcdcd;
+}
+
+.search-header-b select {
+  width: 2000px;
+}
+
+#cars {
+  padding: 10px 50px;
+}

@@ -65,6 +65,9 @@
   border-radius: 8px;
 }
 
+.landing-page-e h3 {
+  font-weight: 600;
+}
 .animate__animated {
   --animate-duration: 3s;
 }

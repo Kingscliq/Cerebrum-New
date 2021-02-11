@@ -38,7 +38,7 @@ const BuyCourse = () => {
       console.log(url);
       history.push(`/auth/login`);
     } else {
-      history.push(`/watchcourse/${courseId}`, "_blank");
+      history.push(`/learner/viewcourse?id=${courseId}`);
     }
   };
 

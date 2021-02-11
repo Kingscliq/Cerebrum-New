@@ -1,6 +1,7 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import ReactPlayer from "react-player/lazy";
 import { ViewCourseElement } from "../../../components/ViewCourseElement";
@@ -9,12 +10,18 @@ import { Footer } from "../../../widgets/Footer";
 import "./ViewCourse.css";
 
 const url_string = window.location.href;
+const url = new URL(url_string);
 
 function ViewCourse() {
+	const history = useHistory();
 	const [currentVideo, setCurrentVideo] = useState("https://www.youtube.com/watch?v=ysz5S6PUM-U");
 	const [sectionToggle, setSectionToggle] = useState("About Course");
 	const [courseId, setCourseId] = useState(url.searchParams.get("id"));
 	const [watchCourse, setWatchCourse] = useState();
+	const [course, setCourse] = useState([]);
+	const [courseDesc, setCourseDesc] = useState("");
+	const [courseTitle, setCourseTitle] = useState("");
+	const [tutor, setTutor] = useState("");
 
 	const handleClick = (e) => {
 		e.preventDefault();
@@ -30,7 +37,14 @@ function ViewCourse() {
 
 	useEffect(() => {
 		axios(`https://cerebrum-v1.herokuapp.com/api/course/view/${courseId}`)
-			.then((res) => console.log(res.data))
+			.then((res) => {
+				console.log(res.data);
+				setCourse(res.data.data);
+				setCurrentVideo(res.data.data[0].video_url);
+				setCourseDesc(res.data.data[0].course_id.description);
+				setCourseTitle(res.data.data[0].course_id.name);
+				setTutor(`${res.data.data[0].course_id.tutor_id.firstName} ${res.data.data[0].course_id.tutor_id.lastName}`);
+			})
 			.catch((err) => console.log(err.response));
 	}, []);
 
@@ -62,8 +76,8 @@ function ViewCourse() {
 		<>
 			<DashboardHeader />
 			<main className="viewcourse-section container my-5">
-				<h1>The Story of Art</h1>
-				<p>Lil Kim</p>
+				<h1>{courseTitle}</h1>
+				<p>{tutor}</p>
 				<section className="row">
 					<section className="col-7">
 						<div>
@@ -71,21 +85,18 @@ function ViewCourse() {
 						</div>
 						<div className="toggle-container my-3">
 							<div className="toggle-btns">
-								<button onClick={handleToggle} className={`w-50 py-3 ${sectionToggle == "About Course" ? "toggle-btn-active" : ""}`}>
+								<button onClick={handleToggle} className={`w-50 py-3 ${sectionToggle === "About Course" ? "toggle-btn-active" : ""}`}>
 									About Course
 								</button>
-								<button onClick={handleToggle} className={`w-50 py-3 ${sectionToggle == "Review" ? "toggle-btn-active" : ""}`}>
+								<button onClick={handleToggle} className={`w-50 py-3 ${sectionToggle === "Review" ? "toggle-btn-active" : ""}`}>
 									Review
 								</button>
 							</div>
 							<div className="toggle-items p-3">
-								{sectionToggle == "About Course" ? (
+								{sectionToggle === "About Course" ? (
 									<>
 										<h2 className="mt-3">About This Course</h2>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae ipsa perferendis aliquam repellat, vel ex sit cumque reiciendis,
-											neque doloribus sint eum voluptatem adipisci nemo dolore harum praesentium laboriosam et.
-										</p>
+										<p>{courseDesc}</p>
 									</>
 								) : (
 									<>
@@ -100,23 +111,9 @@ function ViewCourse() {
 						</div>
 					</section>
 					<aside className="col-5">
-						<ViewCourseElement
-							data-video-url={"https://res.cloudinary.com/codeangelic/video/upload/v1611911011/cerebrum/lessons/iwoo9u5n6hpwf22q9plb.mp4"}
-							onClick={handleClick}
-						/>
-						<ViewCourseElement data-video-url={"https://youtu.be/9WC5baL5CrQ"} onClick={handleClick} />
-						<ViewCourseElement
-							data-video-url={"https://res.cloudinary.com/codeangelic/video/upload/v1611911011/cerebrum/lessons/iwoo9u5n6hpwf22q9plb.mp4"}
-							onClick={handleClick}
-						/>
-						<ViewCourseElement
-							data-video-url={"https://res.cloudinary.com/codeangelic/video/upload/v1611911011/cerebrum/lessons/iwoo9u5n6hpwf22q9plb.mp4"}
-							onClick={handleClick}
-						/>
-						<ViewCourseElement
-							data-video-url={"https://res.cloudinary.com/codeangelic/video/upload/v1611911011/cerebrum/lessons/iwoo9u5n6hpwf22q9plb.mp4"}
-							onClick={handleClick}
-						/>
+						{course.map((lesson) => {
+							return <ViewCourseElement data-video-url={lesson.video_url} onClick={handleClick} />;
+						})}
 					</aside>
 				</section>
 			</main>

@@ -1,13 +1,16 @@
+/** @format */
+
 import React, { useState } from "react";
 import { AccountInformation } from "../../../components/AccountInformation";
 import { ChangePassword } from "../../../components/ChangePassword";
 import { Paymentinformation } from "../../../components/PaymentInformation";
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
-
+import { Redirect, useHistory } from "react-router-dom";
 import "./TutorProfileSettings.css";
 
 function TutorProfileSettings() {
+	const history = useHistory();
 	const [accountInfo, setAccountInfo] = useState({
 		firstName: "",
 		lastName: "",
@@ -20,6 +23,8 @@ function TutorProfileSettings() {
 		confirmPassword: "",
 	});
 
+	const [payment, setPayment] = useState({});
+
 	//select option
 	const [toggle, setToggle] = useState({ clicked: false });
 	const [onLoad, setOnLoad] = useState(false);
@@ -28,7 +33,7 @@ function TutorProfileSettings() {
 		if (event.target.files) {
 			let currentImg = event.target.name;
 			setAccountInfo({ ...accountInfo, [currentImg]: event.target.files[0] });
-			console.log(accountInfo.image);
+			console.log(accountInfo);
 		} else {
 			let currentInput = event.target.name;
 			setAccountInfo({ ...accountInfo, [currentInput]: event.target.value });
@@ -48,6 +53,11 @@ function TutorProfileSettings() {
 		setOnLoad(true);
 	};
 
+	// Handle Logout
+	const handleLogout = () => {
+		history.push("/logout");
+	};
+
 	const display = () => {
 		switch (targetOption) {
 			case "one":
@@ -57,7 +67,7 @@ function TutorProfileSettings() {
 				return <ChangePassword password={password} handleChange={handleChange} />;
 
 			case "three":
-				return <Paymentinformation handleChange={handleChange} />;
+				return <Paymentinformation payment={payment} handleChange={handleChange} />;
 
 			default:
 		}
@@ -84,12 +94,12 @@ function TutorProfileSettings() {
 							onClick={handleClick}>
 							Payment
 						</li>
-						<li className={`p-4 profile-settings-hover`} onClick={handleClick}>
+						<li className={`p-4 profile-settings-hover`} onClick={handleLogout}>
 							Logout
 						</li>
 					</ul>
 					<section className="col-9 bg-white">
-						<div className="p-5 m-5">
+						<div className="p-2 m-5">
 							{!onLoad ? (
 								<AccountInformation accountInfo={accountInfo} handleChange={handleChange} setAccountInfo={setAccountInfo} />
 							) : (

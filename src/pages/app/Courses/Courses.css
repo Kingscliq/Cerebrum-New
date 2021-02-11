@@ -1,34 +1,34 @@
 .courses-list {
-	list-style-type: none;
-	padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 .all-courses-div {
-	width: 80%;
-	margin: auto auto 1rem auto;
-	border-radius: 12px;
-	height: 220px;
+  width: 80%;
+  margin: auto auto 1rem auto;
+  border-radius: 12px;
+  height: 260px;
 }
 
 .all-courses-p {
-	width: 80%;
+  width: 80%;
 }
 
 .courses-img {
-	border-top-left-radius: 12px;
-	border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .courses-price-badge {
-	background: #f15223;
-	color: #ffff;
-	font-size: 14px;
+  background: #f15223;
+  color: #ffff;
+  font-size: 14px;
 }
 
 .all-courses-category-list:hover,
 .all-courses-link:hover {
-	color: var(--primary-color);
-	cursor: pointer;
+  color: var(--primary-color);
+  cursor: pointer;
 }
 
 .all-courses-category-list {
@@ -36,30 +36,30 @@
 }
 
 .all-courses-link {
-	text-decoration: none;
-	color: #000000;
+  text-decoration: none;
+  color: #000000;
 }
 
 .menu-icon {
-	float: right;
+  float: right;
 }
 
 .all-categories {
-	display: none;
+  display: none;
 }
 
 .all-categories-active {
-	opacity: 1;
-	z-index: 2;
-	transition-timing-function: ease-in-out;
+  opacity: 1;
+  z-index: 2;
+  transition-timing-function: ease-in-out;
 }
 
 .courses-tutor-image-radius {
-	position: absolute;
-	bottom: 30px;
-	right: 0;
-	border: 2px solid var(--primary-color);
-	padding: 3px;
+  position: absolute;
+  bottom: 30px;
+  right: 0;
+  border: 2px solid var(--primary-color);
+  padding: 3px;
 }
 
 .special-loader {
@@ -71,27 +71,27 @@
 	width: 250px;
 }
 @media only screen and (min-width: 600px) {
-	.all-courses-div {
-		width: 45%;
-	}
+  .all-courses-div {
+    width: 45%;
+  }
 }
 
 @media only screen and (min-width: 768px) {
-	.all-courses-div {
-		width: 45%;
-	}
+  .all-courses-div {
+    width: 45%;
+  }
 
-	.all-categories {
-		display: block;
-	}
+  .all-categories {
+    display: block;
+  }
 
-	.menu-icon {
-		display: none;
-	}
+  .menu-icon {
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 992px) {
-	.all-courses-div {
-		width: 30%;
-	}
+  .all-courses-div {
+    width: 30%;
+  }
 }
