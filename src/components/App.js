@@ -23,6 +23,9 @@ import { BuyCourse } from "../pages/app/BuyCourse";
 import { ViewCategories } from "../pages/app/ViewCategories";
 import { ViewCourse } from "../pages/app/ViewCourse";
 import { Search } from "../pages/app/Search";
+import { About } from "../pages/app/About";
+import { Faq } from "../pages/app/Faq";
+import Support from "../pages/app/Support";
 
 function App() {
   return (
@@ -54,6 +57,9 @@ function App() {
         <Route path="/course/categories" component={ViewCategories} />
         <Route path="/search/:id" component={Search} />
         <Route path="/search" component={Search} />
+        <Route path="/about" component={About} />
+        <Route path="/faq" component={Faq} />
+        <Route path="/support" component={Support} />
       </Switch>
     </div>
   );

@@ -1,13 +1,12 @@
 /** @format */
 
 import React, { useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, Link } from "react-router-dom";
 import { FaSearch, FaRegBell } from "react-icons/fa";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { dashAvater, logo } from "../../assets/images";
 import { Input } from "../../components/Input";
 import "./DashboardHeader.css";
-import axios from "axios";
 
 function DashboardHeader() {
   let history = useHistory();
@@ -27,7 +26,9 @@ function DashboardHeader() {
     <header className="dash py-4 mb-5">
       <nav className="dash-nav-container container d-xl-flex justify-content-between">
         <div className="dash-nav-logo">
-          <img src={logo} alt="logo" />
+          <Link to="/dashboard">
+            <img src={logo} alt="logo" />
+          </Link>
         </div>
         <div className="dash-nav-items d-flex align-items-center">
           <h5>Courses</h5>

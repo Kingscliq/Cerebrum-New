@@ -9,7 +9,9 @@ function Header() {
     <header className="home-header-section py-4">
       <nav className="container d-flex justify-content-between">
         <div className="header-img-con">
-          <img src={logo} alt="logo" />
+          <Link to="/">
+            <img src={logo} alt="logo" />
+          </Link>
         </div>
         <div className="header-items-con d-flex align-items-center">
           <ul className="d-flex">
