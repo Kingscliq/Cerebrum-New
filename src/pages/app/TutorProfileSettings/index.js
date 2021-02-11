@@ -6,7 +6,7 @@ import { ChangePassword } from "../../../components/ChangePassword";
 import { Paymentinformation } from "../../../components/PaymentInformation";
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./TutorProfileSettings.css";
 
 function TutorProfileSettings() {
@@ -18,7 +18,6 @@ function TutorProfileSettings() {
 	});
 
 	const [password, setPassword] = useState({
-		password: "",
 		newPassword: "",
 		confirmPassword: "",
 	});
@@ -64,7 +63,7 @@ function TutorProfileSettings() {
 				return <AccountInformation accountInfo={accountInfo} handleChange={handleChange} setAccountInfo={setAccountInfo} />;
 
 			case "two":
-				return <ChangePassword password={password} handleChange={handleChange} />;
+				return <ChangePassword password={password} setPassword={setPassword} handleChange={handleChange} />;
 
 			case "three":
 				return <Paymentinformation payment={payment} handleChange={handleChange} />;
