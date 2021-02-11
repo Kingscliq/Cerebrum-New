@@ -7,38 +7,39 @@ import axios from "axios";
 
 function ChangePassword(props) {
 	const [loading, setLoading] = useState(false);
+	const [success, setSuccess] = useState("");
 	const [error, setError] = useState("");
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (props.password.newPassword === props.password.confirmPassword) {
 			setLoading(true);
-			let formData = new FormData();
-			formData.append("password", props.password.password);
+			let userInfo = new FormData();
+			userInfo.append("newPassword", props.password.newPassword);
+			console.log(userInfo);
 
-			formData.append("newPassword", props.password.newPassword);
-			formData.append("confirmPassword", props.password.confirmPassword);
-			console.log(formData);
+			const data = localStorage.getItem("userDetails");
+			const user = JSON.parse(data);
+			const token = user.data.token;
+			const userID = user.data.uid;
+			const config = {
+				headers: {
+					"Content-Type": "multipart/form-data",
+					Authorization: `Bearer ${token}`,
+				},
+			};
 			axios
-				.patch("https://cerebrum-v1.herokuapp.com/api/auth/update-profile", formData, {
-					headers: {
-						"Content-Type": "multipart/form-data",
-					},
-				})
+				.post(`https://cerebrum-v1.herokuapp.com/api/auth/profile-reset-password/${userID}`, userInfo, config)
 				.then((res) => {
-					console.log(res.data.data);
-					// setProfileImage(res.data.data.image_url);
-					// setForm2({
-					// 	...form2,
-					// 	course_id: res.data.data._id,
-					// });
+					setSuccess("Your password has been updated");
+					console.log(userInfo);
+					props.setPassword({ ...props.password, newPassword: res.data.data.password });
 					setLoading(false);
-					setError(null);
+					console.log(props.password);
 				})
 				.catch((err) => {
 					console.log(props.password);
-					// setError(err.res.formData.message);
-					setLoading(false);
+					console.log(token);
 				});
 		} else {
 			console.log("");
@@ -51,11 +52,12 @@ function ChangePassword(props) {
 			<h1 className="h4"> Password </h1> <br />
 			<form className="profile-settings-opacity" onSubmit={handleSubmit} encType="multipart/form-data">
 				{error && <div className="alert alert-danger">{error}</div>}
+				{success && <div className="alert alert-success">{success}</div>}
 
 				<div>
 					<span className="profile-settings-label-text"> New Password </span>
 					<Input
-						type="text"
+						type="password"
 						icon={<FaLock />}
 						placeholder="Enter new password"
 						name="newPassword"
@@ -67,7 +69,7 @@ function ChangePassword(props) {
 				<div>
 					<span className="profile-settings-label-text"> Confirm Password </span>
 					<Input
-						type="text"
+						type="password"
 						icon={<FaLock />}
 						placeholder="Enter new password again"
 						name="confirmPassword"
