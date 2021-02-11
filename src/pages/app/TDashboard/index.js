@@ -116,6 +116,9 @@ const TDashboard = () => {
                       <button className="btn btn-primary">
                         <Link to="/dashboard/tutor/addcourse">Add Course</Link>
                       </button>
+                      <button className="btn btn-outline-primary mx-4">
+                        <Link to="/auth/logout">Logout</Link>
+                      </button>
                     </>
                   ) : (
                     <>
@@ -125,6 +128,17 @@ const TDashboard = () => {
                           // style={{ color: "#f4f4f4", textDecoration: "none" }}
                         >
                           Buy Course
+                        </Link>
+                      </button>
+                      <button
+                        className="btn btn-outline-primary text-light"
+                        style={{ marginLeft: "20px" }}
+                      >
+                        <Link
+                          to="/logout"
+                          // style={{ color: "#f4f4f4", textDecoration: "none" }}
+                        >
+                          Logout
                         </Link>
                       </button>
                     </>
