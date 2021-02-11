@@ -34,7 +34,7 @@ export const getCategories = (stateFunction) => {
   });
 };
 
-/// Login Api
+/// Login Api for Auth
 export const signIn = (
   e,
   user,
