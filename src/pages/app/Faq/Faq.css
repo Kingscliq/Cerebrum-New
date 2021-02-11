@@ -1,7 +1,7 @@
-.faq-section .bg-primary {
-  background: red;
+.faq-section section:first-of-type {
+  background: var(--primary-color);
 }
-.faq-section .bg-primary h1 {
+.faq-section section:first-of-type h1 {
   font-weight: 700;
   color: #ffffff;
 }
