@@ -1,5 +1,9 @@
 /** @format */
 
 .font-bold {
-  font-weight: 600;
+	font-weight: 600;
+}
+
+.course-list-mapped {
+	background: #fbfbfb;
 }
