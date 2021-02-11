@@ -48,23 +48,23 @@ function SignUp() {
   return (
     <>
       <AuthHeader />
-      <main className='container-fluid vh-100 signup-section'>
-        <section className='row h-100'>
-          <div className='col-md-7 d-flex justify-content-center align-items-center'>
-            <div className='card shadow w-c'>
+      <main className="container-fluid vh-100 signup-section">
+        <section className="row h-100">
+          <div className="col-md-7 d-flex justify-content-center align-items-center">
+            <div className="card shadow w-c">
               <form onSubmit={handleSubmit}>
-                {error && <div className='alert alert-danger'>{error}</div>}
+                {error && <div className="alert alert-danger">{error}</div>}
                 {success && (
-                  <div className='alert alert-success'>{success}</div>
+                  <div className="alert alert-success">{success}</div>
                 )}
-                <h2 className='fs-5'>Create Account</h2>
-                <hr className='mt-n5' />
-                <div className='btn-container'>
+                <h2 className="fs-5">Create Account</h2>
+                <hr className="mt-n5" />
+                <div className="btn-container">
                   <Button
                     className={`btn btn-primary ${
                       numToogle === 0 ? "active" : ""
                     } w-50`}
-                    text='Learner'
+                    text="Learner"
                     handleClick={handleClick}
                     disabled={loading}
                   />
@@ -72,34 +72,34 @@ function SignUp() {
                     className={`btn btn-primary ${
                       numToogle === 1 ? "active" : ""
                     } w-50`}
-                    text='Tutor'
+                    text="Tutor"
                     handleClick={handleClick}
                     disabled={loading}
                   />
                 </div>
                 <Input
-                  type='text'
+                  type="text"
                   icon={<FaUser />}
-                  placeholder='First Name'
-                  name='firstName'
+                  placeholder="First Name"
+                  name="firstName"
                   onChange={handleChange}
                   value={signUpData.firstName || ""}
                   disabled={loading}
                 />
                 <Input
-                  type='text'
+                  type="text"
                   icon={<FaUser />}
-                  placeholder='Last Name'
-                  name='lastName'
+                  placeholder="Last Name"
+                  name="lastName"
                   onChange={handleChange}
                   value={signUpData.lastName || ""}
                   disabled={loading}
                 />
                 <Input
-                  type='email'
+                  type="email"
                   icon={<FaEnvelope />}
-                  placeholder='Email'
-                  name='email'
+                  placeholder="Email"
+                  name="email"
                   onChange={handleChange}
                   value={signUpData.email || ""}
                   disabled={loading}
@@ -108,39 +108,39 @@ function SignUp() {
                   type={eye2 ? "text" : "password"}
                   icon={<FaLock />}
                   icon2={eye2 ? <FaEyeSlash /> : <FaEye />}
-                  placeholder='Password'
-                  name='password'
+                  placeholder="Password"
+                  name="password"
                   onChange={handleChange}
                   onEye={handleEye2}
                   value={signUpData.password || ""}
                   disabled={loading}
                 />
-                <p className='signup-p'>
+                <p className="signup-p">
                   Use 8 or more characters with a mix of letters, number &
                   symbols
                 </p>
                 <Button
-                  className='btn btn-primary w-100'
+                  className="btn btn-primary w-100"
                   text={"Sign Up"}
                   loadingIcon={loading && <Loader />}
                   disabled={loading}
                 />
-                <p className='signup-p pt-2'>
+                <p className="signup-p pt-2">
                   By signing up, you agree to our <span>Terms of Use</span> &
                   <span> Privacy Policy.</span>
                 </p>
                 <hr />
-                <p className='signup-p'>
+                <p className="signup-p">
                   Already have an account?{" "}
                   <span>
-                    <Link to='/auth/login'>Log In</Link>
+                    <Link to="/auth/login">Log In</Link>
                   </span>
                 </p>
               </form>
             </div>
           </div>
           <div
-            className='col-5 h-100 signup-image d-none d-md-block'
+            className="col-5 h-100 signup-image d-none d-md-block"
             style={{
               background: `url(${signupImage})`,
               backgroundRepeat: `no-repeat`,

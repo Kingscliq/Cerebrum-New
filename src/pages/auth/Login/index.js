@@ -60,59 +60,59 @@ const Login = () => {
   return (
     <>
       <AuthHeader />
-      <main className='vh-100 container-fluid login-section'>
-        <section className='row h-100'>
-          <div className='col-md-7 d-flex justify-content-center align-items-center col-sm-12'>
-            <div className='card shadow w-c'>
-              {error && <div className='alert alert-danger'>{error}</div>}
-              {success && <div className='alert alert-success'>{success}</div>}
+      <main className="vh-100 container-fluid login-section">
+        <section className="row h-100">
+          <div className="col-md-7 d-flex justify-content-center align-items-center col-sm-12">
+            <div className="card shadow w-c">
+              {error && <div className="alert alert-danger">{error}</div>}
+              {success && <div className="alert alert-success">{success}</div>}
               {alert ? (
                 <div className={`alert alert-success`}>{alert}</div>
               ) : null}
 
               <form onSubmit={handleSubmit}>
-                <h2 className='text-left'>Log In</h2>
-                <hr className='mt-n5' />
+                <h2 className="text-left">Log In</h2>
+                <hr className="mt-n5" />
                 <Input
-                  type='email'
+                  type="email"
                   icon={<FaEnvelope />}
-                  placeholder='Enter Email'
+                  placeholder="Enter Email"
                   onChange={handleChange}
                   value={user.email}
-                  name='email'
+                  name="email"
                 />
                 <Input
                   type={eye ? "text" : "password"}
                   icon={<FaLock />}
                   icon2={eye ? <FaEyeSlash /> : <FaEye />}
-                  placeholder='Enter Password'
+                  placeholder="Enter Password"
                   onChange={handleChange}
                   onEye={handleEye}
                   value={user.password}
-                  name='password'
+                  name="password"
                 />
-                <p className='signup-p'>
+                <p className="signup-p">
                   <span>
-                    <Link to='/auth/forgotpassword'>Forgot Password</Link>
+                    <Link to="/auth/forgotpassword">Forgot Password</Link>
                   </span>
                 </p>
                 <Button
-                  className='btn btn-primary w-100'
-                  text='Login'
+                  className="btn btn-primary w-100"
+                  text="Login"
                   loadingIcon={loading && <Loader />}
                 />
                 <hr />
-                <p className='signup-p'>
+                <p className="signup-p">
                   New Member?{" "}
                   <span>
-                    <Link to='/auth/signup'>Sign Up</Link>
+                    <Link to="/auth/signup">Sign Up</Link>
                   </span>
                 </p>
               </form>
             </div>
           </div>
           <div
-            className='col-5 h-100 signup-image d-none d-md-block'
+            className="col-5 h-100 signup-image d-none d-md-block"
             style={{
               background: `url(${loginImg})`,
               backgroundRepeat: `no-repeat`,

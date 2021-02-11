@@ -11,7 +11,7 @@ function Faq() {
         <section className="bg-primary py-5 mb-5">
           <h1 className="py-5 text-center font-weight-bold">FAQ</h1>
         </section>
-        <section className="container">
+        <section className="container py-5">
           <h1>Frequently asked questions</h1>
           <p>
             This is the type of questions that the user is most likely to ask

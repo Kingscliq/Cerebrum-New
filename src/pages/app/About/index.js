@@ -13,12 +13,21 @@ function About() {
             Knowledge for everyone by everyone
           </h1>
         </section>
-        <section className="container">
+        <section className="container my-5">
           <h1>About Us</h1>
           <p>
-            Cerebrum offers quality online learning that is flexible and
-            inclusive for tutors and learners, which gives them a feeling of
-            self-accomplishment.
+            Cerebrum is where you go to learn. Cerebrum is the trusted platform
+            for education and learning. Cerebrum intends to be a home to more
+            than 20 million learners, the majority of top-ranked universities in
+            the world and industry-leading companies. As a global nonprofit,
+            Cerebrum is transforming traditional education, removing the
+            barriers of cost, location and access. Fulfilling the demand for
+            people to learn on their own terms, Cerebrum is reimagining the
+            possibilities of education, providing the highest-quality, stackable
+            learning experiences. Supporting learners at every stage, whether
+            entering the job market, changing fields, seeking a promotion or
+            exploring new interests, Cerebrum delivers courses for curious
+            minds.
           </p>
         </section>
       </main>
