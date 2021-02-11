@@ -11,11 +11,19 @@ let url = new URL(url_string);
 
 const BuyCourse = () => {
   const history = useHistory();
-  const [courses, setCourses] = useState([]);
+  const user = JSON.parse(localStorage.getItem("userDetails"));
+  
+  console.log(user);
+  if (!user) {
+	  let currentUrl = localStorage.setItem('current', url)
+    history.push("/auth/login");
+  }
+  // const [courses, setCourses] = useState([]);
   const [course, setCourse] = useState({});
-  const [tutor, setTutor] = useState({});
-  const [courseId, setCourseId] = useState(url.searchParams.get("id"));
+  const [tutorId, setTutorId] = useState({});
+  const [courseId, setCourseId] = useState(`${url.searchParams.get("id")}`);
   const [buy, setBuy] = useState();
+  const [priceId, setPriceId] = useState({});
 
   const handleBuy = () => {
     const data = localStorage.getItem("userDetails");
@@ -42,43 +50,47 @@ const BuyCourse = () => {
     }
   };
 
-  // const getCourse = () => {};
+  const getCourse = () => {};
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userDetails"));
+    console.log(user);
+    const user_id = user.data.uid;
+    const data = {
+      user_id: user_id,
+      course_id: courseId,
+    };
+    axios
+      .post(`https://cerebrum-v1.herokuapp.com/api/payment/confirm/`, data)
+      .then((res) => {
+        setBuy(false);
+      })
+      .catch((err) => {
+        console.log(err.response);
+        setBuy(true);
+      });
+    // console.log(data);
+  }, []);
+
   useEffect(() => {
     axios
       .get(`https://cerebrum-v1.herokuapp.com/api/course/${courseId}`)
       .then((res) => {
         const courseDetail = res.data.data;
+        courseDetail.map((lesson) => {
+          console.log(lesson);
+          localStorage.setItem("courses", JSON.stringify(courseDetail));
+          setCourse(lesson);
+          setTutorId(lesson.tutor_id);
+          setPriceId(lesson.price);
+        });
 
-        localStorage.setItem("course", JSON.stringify(courseDetail));
-        setCourse(courseDetail);
+        const courseStore = JSON.parse(localStorage.getItem("course"));
       })
+
       .catch((err) => console.log(err.response));
   }, []);
-
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("userDetails"));
-    if (!user) {
-      history.push("/auth/login");
-    } else {
-      const user_id = user.data.uid;
-      const data = {
-        user_id: user_id,
-        course_id: courseId,
-      };
-      axios
-        .post(`https://cerebrum-v1.herokuapp.com/api/payment/confirm/`, data)
-        .then((res) => {
-          setBuy(false);
-        })
-        .catch((err) => {
-          console.log(err.response.data.success);
-          setBuy(true);
-        });
-      console.log(data);
-    }
-  }, []);
-
-  // console.log(course);
+  console.log(course);
   //
   return (
     <div>
@@ -102,23 +114,23 @@ const BuyCourse = () => {
                   >
                     {course.name}
                   </h1>
-                  <small>By {`${tutor.firstName} ${tutor.lastName}`}</small>
+                  <small>By {`${tutorId.firstName} ${tutorId.lastName}`}</small>
                 </div>
                 <div className='mt-4'>
                   <p>{course.description}</p>
                 </div>
                 <div className='mt-5'>
                   <small className='btn btn-warning text-light'>
-                    {course.price.lifeTime > 0
-                      ? `N ${course.price.lifeTime}`
-                      : (course.price.lifeTime = "FREE")}
+                    {priceId.lifeTime > 0
+                      ? `N ${priceId.lifeTime}`
+                      : (priceId.lifeTime = "FREE")}
                   </small>
                 </div>
               </div>
             </div>
           </div>
           <div className='d-flex justify-content-end'>
-            {course.price.lifeTime > 0 && buy ? (
+            {priceId.lifeTime > 0 && buy ? (
               <button
                 className='btn btn-primary pull-right'
                 onClick={handleBuy}

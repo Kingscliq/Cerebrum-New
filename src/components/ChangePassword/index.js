@@ -51,18 +51,7 @@ function ChangePassword(props) {
 			<h1 className="h4"> Password </h1> <br />
 			<form className="profile-settings-opacity" onSubmit={handleSubmit} encType="multipart/form-data">
 				{error && <div className="alert alert-danger">{error}</div>}
-				<div>
-					<span className="profile-settings-label-text"> Current Password </span>
-					<Input
-						type="text"
-						icon={<FaLock />}
-						placeholder="Enter current password"
-						name="password"
-						onChange={props.handleChange}
-						value={props.password.password || ""}
-					/>
-				</div>
-				<br />
+
 				<div>
 					<span className="profile-settings-label-text"> New Password </span>
 					<Input

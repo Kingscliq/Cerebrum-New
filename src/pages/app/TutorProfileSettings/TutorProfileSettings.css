@@ -33,7 +33,7 @@
 
 .profile-settings-white-btn {
 	border: 1px solid var(--primary-color);
-	border-radius: 4px;
+	border-radius: 12px;
 	background: #ffff;
 	color: var(--primary-color);
 	padding: 8px 16px 8px 16px;
@@ -41,7 +41,7 @@
 
 .profile-settings-blue-btn {
 	border: 1px solid var(--primary-color);
-	border-radius: 4px;
+	border-radius: 12px;
 	background: var(--primary-color);
 	color: var(--background-color);
 	padding: 8px 16px 8px 16px;

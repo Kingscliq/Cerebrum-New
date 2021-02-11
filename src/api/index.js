@@ -60,7 +60,7 @@ export const signIn = (
       localStorage.setItem("userDetails", userDetails);
       setLoadState(false);
 
-      if (localStorage.getItem("current") === null) {
+      if (!localStorage.getItem("current")) {
         history.push("/dashboard");
       } else {
         history.push(localStorage.getItem("current"));

@@ -9,6 +9,8 @@ import { Button } from "../../../components/Button";
 import { Footer } from "../../../widgets/Footer";
 import { Header } from "../../../widgets/Header/Index";
 import "./LandingPage.css";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 function LandingPage() {
   const [allCourse, setAllCourse] = useState([]);
@@ -19,16 +21,24 @@ function LandingPage() {
       console.log(allCourse);
     });
   }, []);
+
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
   return (
     <>
       <Header />
       <main className="landing-page container pb-5">
         <section className="landing-page-a row">
           <div className="col-6 my-5">
-            <h1 className="animate__animated animate__bounce fw-bold my-3">
+            <h1
+              className="fw-bold my-3"
+              data-aos="fade-zoom-in"
+              data-aos-delay="300"
+            >
               Knowledge <br /> <span>for everyone by everyone</span>
             </h1>
-            <p className="animate__animated animate__bounce my-4">
+            <p className="my-4">
               Cerebrum offers quality online learning that is flexible and
               inclusive for tutors and learners, which gives them a feeling of
               self-accomplishment.{" "}
@@ -42,24 +52,29 @@ function LandingPage() {
               text="Access content as a learner"
             />
           </div>
-          <div className="col-6">
-            <img
-              className={"animate__animated animate__bounceInRight"}
-              src={landingPage1}
-              alt="landing Image"
-            />
+          <div className="col-6" data-aos="fade-left">
+            <img src={landingPage1} alt="landing Image" />
           </div>
         </section>
         <section className="landing-page-b d-flex justify-content-between my-5">
-          <div className="animate__animated animate__bounceInLeft card w-25 p-4 text-center shadow-lg">
+          <div
+            className="card w-25 p-4 text-center shadow-lg"
+            data-aos="slide-right"
+          >
             <h1>30k</h1>
             <p>Tutors</p>
           </div>
-          <div className="animate__animated animate__bounceInUp card w-25 p-4 text-center shadow-lg">
+          <div
+            className="card w-25 p-4 text-center shadow-lg"
+            data-aos="slide-right"
+          >
             <h1>100k</h1>
             <p>Learners</p>
           </div>
-          <div className="animate__animated animate__bounceInRight card w-25 p-4 text-center shadow-lg">
+          <div
+            className="card w-25 p-4 text-center shadow-lg"
+            data-aos="slide-right"
+          >
             <h1>500k</h1>
             <p>Courses</p>
           </div>
@@ -81,7 +96,7 @@ function LandingPage() {
               />
             </div>
             <div className="col-6">
-              <div className="land-img-co-c">
+              <div className="land-img-co-c" data-aos="fade-left">
                 <img src={landingPage2} alt="landing Image" />
               </div>
             </div>
@@ -89,7 +104,7 @@ function LandingPage() {
         </section>
         <section className="landing-page-d my-5">
           <div className="d-flex justify-content-between row">
-            <div className="land-img-co-d col-6">
+            <div className="land-img-co-d col-6" data-aos="fade-right">
               <img src={landingPage3} alt="landing Image" />
             </div>
             <div className="col-5 align-self-center mx-2">
@@ -113,7 +128,7 @@ function LandingPage() {
               >
                 <img
                   className="courses-img"
-                 src={course.image_url}
+                  src={course.image_url}
                   width="100%"
                   height="75%"
                   alt="dispay"
