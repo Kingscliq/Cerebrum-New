@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { logo } from "../../assets/images";
 import "./AuthHeader.css";
 
@@ -7,7 +8,9 @@ function AuthHeader() {
     <header className="container-fluid auth-header-section py-4">
       <nav className="container text-center text-lg-start">
         <div className="auth-header-img-con">
-          <img src={logo} alt="logo" />
+          <Link to="/">
+            <img src={logo} alt="logo" />
+          </Link>
         </div>
       </nav>
     </header>
