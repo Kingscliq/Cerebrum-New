@@ -24,6 +24,7 @@ const TDashboard = () => {
   const [courseCount, setCourseCount] = useState(0);
   const [data, setData] = useState();
   const [lcourse, setLcourse] = useState({});
+  const [lcourseCount, setLcourseCount] = useState();
 
   // Get login details from Local Storage
   useEffect(() => {
@@ -64,26 +65,27 @@ const TDashboard = () => {
   }, []);
 
   useEffect(() => {
-    if (user.role === "learner") {
-      // console.log(user)
-      axios
-        .get(`https://cerebrum-v1.herokuapp.com/api/payment/${user._id}`)
-        .then((res) => {
-          console.log(res.data.data);
-          const stcourses = res.data.data;
-          console.log(stcourses);
-          courses.map((stcourse, index) => {
-            if (index === 0) {
-              console.log(stcourse.course_id)
-            }
-          });
-          // console.log(stcourses[0]);
-          // setLcourse(stcourses[0]);
-          // console.log(lcourse);
-          // setCourses(res.data.data);
-        })
-        .catch((err) => console.log(err.response));
-    }
+    const learner = JSON.parse(localStorage.getItem("userDetails"));
+    // console.log(user)
+    axios
+      .get(`https://cerebrum-v1.herokuapp.com/api/payment/${learner.data.uid}`)
+      .then((res) => {
+        console.log(res.data.data);
+        const stcourses = res.data.data;
+        setLcourseCount(stcourses.length);
+        setLcourse(stcourses[0]);
+        console.log(stcourses[0]);
+        // courses.map((stcourse, index) => {
+        //   if (index === 0) {
+        //     console.log(stcourse.course_id);
+        //   }
+        // });
+        // console.log(stcourses[0]);
+        // setLcourse(stcourses[0]);
+        // console.log(lcourse);
+        // setCourses(res.data.data);
+      })
+      .catch((err) => console.log(err.response));
   }, []);
 
   return (
@@ -168,7 +170,7 @@ const TDashboard = () => {
                 <div className='col-md-5 offset-2'>
                   <h1 className='font-bold'>
                     Code 101: Codeology
-                    {lcourse.course_id.name}
+                    {/* {lcourse.course_id.name} */}
                   </h1>
                   <p>By {user.lastName}</p>
                   <p>
@@ -204,7 +206,7 @@ const TDashboard = () => {
               ) : (
                 <>
                   <div className='d-flex align-items-center justify-content-center mt-5'>
-                    <h1>No Courses Uploaded Yet</h1>
+                    <p>No Courses Uploaded Yet</p>
                   </div>
                 </>
               )}
@@ -244,7 +246,7 @@ const TDashboard = () => {
                     <div className='row'>
                       <div className='col-md-6 col-sm-12'>
                         <div>
-                          {role === "tutor" || courses.length > 0 ? (
+                          {role === "tutor" && courses.length > 0 ? (
                             <>
                               <h1
                                 style={{ fontSize: "50px", fontWeight: "600" }}
@@ -261,10 +263,10 @@ const TDashboard = () => {
                                 style={{ fontSize: "50px", fontWeight: "600" }}
                                 className='text-primary text-center'
                               >
-                                {courses.length}
+                                0
                               </h1>
                               <p className='text-center'>
-                                No Student Registered Yet
+                                No of Student Registered
                               </p>
                             </>
                           )}
