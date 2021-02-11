@@ -53,24 +53,7 @@ function DashboardHeader() {
               width="30"
             />
             <span id="dash-toggle">
-              <select
-                name="dash-toogler"
-                id="toggler"
-                onChange={(e) => {
-                  let button = e.target.value;
-                  if (button == "settings") {
-                    history.push("/user/editprofile");
-                  } else if (button == "logout") {
-                    history.push("/logout");
-                  } else if (button == "dashboard") {
-                    history.push("/dashboard");
-                  }
-                }}
-              >
-                <option value="dashboard">Dashboard</option>
-                <option value="settings">Settings</option>
-                <option value="logout">Log out</option>
-              </select>
+              <RiArrowDownSLine />
             </span>
           </div>
         </div>

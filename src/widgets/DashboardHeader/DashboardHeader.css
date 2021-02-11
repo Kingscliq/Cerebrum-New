@@ -34,16 +34,6 @@
 .dashimage {
   border-radius: 50%;
 }
-
-#toggler {
-  border: none;
-  outline: none;
-  font-size: 0.98rem;
-  width: 19px;
-}
-/* #toggler {
-  border: none;
-} */
 /* 
 @media all and (max-width: 800px) {
   .dash-nav-items input {
