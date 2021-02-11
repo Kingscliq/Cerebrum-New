@@ -1,4 +1,8 @@
-.support-section .bg-primary h1 {
+.support-section section:first-of-type {
+  background: var(--primary-color);
+}
+
+.support-section section:first-of-type h1 {
   font-weight: 700;
   color: #ffffff;
 }
