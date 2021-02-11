@@ -19,7 +19,7 @@ const BuyCourse = () => {
 
   const handleBuy = () => {
     const data = localStorage.getItem("userDetails");
-    if (data === null) {
+    if (!data) {
       let url_string = window.location.href;
       let url = new URL(url_string);
       localStorage.setItem("current", url);
@@ -33,7 +33,7 @@ const BuyCourse = () => {
   };
   const watchCourse = () => {
     const data = localStorage.getItem("userDetails");
-    if (data === null) {
+    if (!data) {
       localStorage.setItem("current", url);
       console.log(url);
       history.push(`/auth/login`);
@@ -47,39 +47,38 @@ const BuyCourse = () => {
     axios
       .get(`https://cerebrum-v1.herokuapp.com/api/course/${courseId}`)
       .then((res) => {
-        const data = res.data.data;
-        data.map((course) => {
-          setCourse(course);
-          localStorage.setItem("courses", JSON.stringify(course));
-          //   console.log(course.tutor_id);
-          setTutor(course.tutor_id);
-        });
+        const courseDetail = res.data.data;
+
+        localStorage.setItem("course", JSON.stringify(courseDetail));
+        setCourse(courseDetail);
       })
       .catch((err) => console.log(err.response));
   }, []);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userDetails"));
-    if (user === null) {
+    if (!user) {
       history.push("/auth/login");
+    } else {
+      const user_id = user.data.uid;
+      const data = {
+        user_id: user_id,
+        course_id: courseId,
+      };
+      axios
+        .post(`https://cerebrum-v1.herokuapp.com/api/payment/confirm/`, data)
+        .then((res) => {
+          setBuy(false);
+        })
+        .catch((err) => {
+          console.log(err.response.data.success);
+          setBuy(true);
+        });
+      console.log(data);
     }
-    const user_id = user.data.uid;
-    const data = {
-      user_id: user_id,
-      course_id: courseId,
-    };
-
-    console.log(data);
-    axios
-      .post(`https://cerebrum-v1.herokuapp.com/api/payment/confirm/`, data)
-      .then((res) => {
-        setBuy(false);
-      })
-      .catch((err) => {
-        console.log(err.response.data.success);
-        setBuy(true);
-      });
   }, []);
+
+  // console.log(course);
   //
   return (
     <div>
@@ -110,16 +109,16 @@ const BuyCourse = () => {
                 </div>
                 <div className='mt-5'>
                   <small className='btn btn-warning text-light'>
-                    {course.price > 0
-                      ? `N ${course.price}`
-                      : (course.price = "FREE")}
+                    {course.price.lifeTime > 0
+                      ? `N ${course.price.lifeTime}`
+                      : (course.price.lifeTime = "FREE")}
                   </small>
                 </div>
               </div>
             </div>
           </div>
           <div className='d-flex justify-content-end'>
-            {course.price > 0 && buy ? (
+            {course.price.lifeTime > 0 && buy ? (
               <button
                 className='btn btn-primary pull-right'
                 onClick={handleBuy}
