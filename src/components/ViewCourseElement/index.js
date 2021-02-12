@@ -9,7 +9,7 @@ function ViewCourseElement(props) {
     <div
       data-video-url={props["data-video-url"]}
       onClick={props.onClick}
-      className='aside-video'
+      className="aside-video"
     >
       <div data-video-url={props["data-video-url"]}>
         <ReactPlayer
@@ -18,15 +18,17 @@ function ViewCourseElement(props) {
           playing={false}
           controls={false}
           playIcon={<button>Play</button>}
-          width='150px'
-          height='100px'
+          width="150px"
+          height="100px"
         />
       </div>
       <div>
-        <h3 data-video-url={props["data-video-url"]}>The Story of Art</h3>
-        <p data-video-url={props["data-video-url"]}>Module 1: Basics</p>
+        <h3 data-video-url={props["data-video-url"]}>{props.courseName}</h3>
+        <p
+          data-video-url={props["data-video-url"]}
+        >{`${props.moduleName}: ${props.lessonName}`}</p>
       </div>
-      <span data-video-url={props["data-video-url"]}></span>
+      {/* <span data-video-url={props["data-video-url"]}></span> */}
     </div>
   );
 }

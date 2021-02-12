@@ -64,10 +64,10 @@ const TDashboard = () => {
     }
   }, []);
 
-  useEffect(async () => {
+  useEffect(() => {
     const learner = JSON.parse(localStorage.getItem("userDetails"));
     // console.log(user)
-    await axios
+    axios
       .get(`https://cerebrum-v1.herokuapp.com/api/payment/${learner.data.uid}`)
       .then((res) => {
         console.log(res.data.data);
@@ -150,28 +150,30 @@ const TDashboard = () => {
           {/* LEARNERS COURSE */}
           {role === "learner" ? (
             <div className="col-md-6 p-4 card shadow mb-sm-5">
-              <div className="row align-items-center gx-5">
-                <div className="col-md-5">
-                  <img
-                    src={lcourse.course_id.image_url}
-                    alt="course Image"
-                    className="image-fluid"
-                  />
+              {lcourse.course_id && (
+                <div className="row align-items-center gx-5">
+                  <div className="col-md-5">
+                    <img
+                      src={lcourse.course_id.image_url}
+                      alt="course Image"
+                      className="image-fluid"
+                    />
+                  </div>
+                  <div className="col-md-5 offset-2">
+                    <h5 className="font-bold">{lcourse.course_id.name}</h5>
+                    <p>By {user.lastName}</p>
+                    {/* <p>{lcourse.course_id.description}</p> */}
+                    <p>
+                      <button
+                        className="btn-warning text-light"
+                        onClick={sendToCourse}
+                      >
+                        Continue Course
+                      </button>
+                    </p>
+                  </div>
                 </div>
-                <div className="col-md-5 offset-2">
-                  <h5 className="font-bold">{lcourse.course_id.name}</h5>
-                  <p>By {user.lastName}</p>
-                  <p>{lcourse.course_id.description}</p>
-                  <p>
-                    <button
-                      className="btn-warning text-light"
-                      onClick={sendToCourse}
-                    >
-                      Continue Course
-                    </button>
-                  </p>
-                </div>
-              </div>
+              )}
             </div>
           ) : (
             //   TUTORS COURSE
