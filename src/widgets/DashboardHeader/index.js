@@ -67,9 +67,15 @@ function DashboardHeader() {
                   }
                 }}
               >
-                <option value="dashboard">Dashboard</option>
-                <option value="settings">Settings</option>
-                <option value="logout">Logout</option>
+                <option value="dashboard" className="toggle-options">
+                  Dashboard
+                </option>
+                <option value="settings" className="toggle-options">
+                  Settings
+                </option>
+                <option value="logout" className="toggle-options">
+                  Logout
+                </option>
               </select>
             </span>
           </div>

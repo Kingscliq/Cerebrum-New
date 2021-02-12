@@ -41,6 +41,13 @@
   font-size: 0.98rem;
   width: 18px;
 }
+#dash-toogler option {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+.toggle-options {
+  margin: 10px;
+}
 /* 
 @media all and (max-width: 800px) {
   .dash-nav-items input {

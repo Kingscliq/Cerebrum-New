@@ -178,7 +178,7 @@ const TDashboard = () => {
           ) : (
             //   TUTORS COURSE
             <div className="col-md-6 card py-5 shadow">
-              {role === "tutor" ? (
+              {courses.length > 0 ? (
                 <>
                   {/* IF COURSE IS AVAILABLE */}
                   <div className="row align-items-center">
@@ -198,7 +198,7 @@ const TDashboard = () => {
                 <>
                   {/* IF COURSE IS NOT AVAILABLE */}
                   <div className="d-flex align-items-center justify-content-center mt-5">
-                    <p>No Courses Uploaded Yet</p>
+                    <p>Number of Courses Uploaded</p>
                   </div>
                 </>
               )}
@@ -222,7 +222,9 @@ const TDashboard = () => {
                           >
                             {courses.length}
                           </h1>
-                          <p className="text-center">No of Course Uploaded</p>
+                          <p className="text-center">
+                            Number Of Courses Uploaded
+                          </p>
                         </div>
                       </div>
                       <div className="col-md-6 col-sm-12">
@@ -258,7 +260,7 @@ const TDashboard = () => {
                                 0
                               </h1>
                               <p className="text-center">
-                                No of Student Registered
+                                Number Of Students Registered
                               </p>
                             </>
                           )}
@@ -290,12 +292,12 @@ const TDashboard = () => {
                                 {lcourseCount}
                               </h1>
                               <p className="text-center">
-                                No Course Enrolled Yet
+                                Number Of Courses Enrolled
                               </p>
                             </>
                           ) : (
                             <p className="text-center">
-                              No Course Enrolled Yet
+                              Number Of Courses Enrolled
                             </p>
                           )}
                         </div>
@@ -319,7 +321,9 @@ const TDashboard = () => {
                           >
                             0
                           </h1>
-                          <p className="text-center">No Course Completed Yet</p>
+                          <p className="text-center">
+                            Number Of Courses Completed
+                          </p>
                         </div>
                       </div>
                       <div className="col-md-6 col-sm-12">
