@@ -17,28 +17,28 @@ import ellipsesvg2 from "./ellipsesvg2.svg";
 import ActiveCircle from "./active-circle.png";
 import Circle from "./circle.png";
 import dashboardImage from "./dashboardimage.png";
-import landingPage1 from "./landingpage1.jpg";
+import landingPage1 from "./landingpage1.png";
 import landingPage2 from "./landingpage2.png";
 import landingPage3 from "./landingpage3.png";
 
 export {
-	signupImage,
-	forgotPasswordImg,
-	verifyImage,
-	loaderImage,
-	loginImg,
-	logo2,
-	logo,
-	dashAvater,
-	dashboardImage,
-	ActiveCircle,
-	Circle,
-	dummyVideoImage,
-	dashImg,
-	dashboardImg,
-	ellipsesvg1,
-	ellipsesvg2,
-	landingPage1,
-	landingPage2,
-	landingPage3,
+  signupImage,
+  forgotPasswordImg,
+  verifyImage,
+  loaderImage,
+  loginImg,
+  logo2,
+  logo,
+  dashAvater,
+  dashboardImage,
+  ActiveCircle,
+  Circle,
+  dummyVideoImage,
+  dashImg,
+  dashboardImg,
+  ellipsesvg1,
+  ellipsesvg2,
+  landingPage1,
+  landingPage2,
+  landingPage3,
 };

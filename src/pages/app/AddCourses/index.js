@@ -78,6 +78,7 @@ function AddCourses() {
     } else {
       let currentInput = event.target.name;
       setForm3({ ...form3, [currentInput]: event.target.value });
+      setLessonMessage(false);
     }
   };
   useEffect(() => getCategories(setCategories), []);
