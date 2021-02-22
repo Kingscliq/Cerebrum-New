@@ -26,12 +26,13 @@ import { Search } from "../pages/app/Search";
 import { About } from "../pages/app/About";
 import { Faq } from "../pages/app/Faq";
 import Support from "../pages/app/Support";
+import { ComingSoon } from "../pages/app/ComingSoon";
 
 function App() {
   return (
     <div className="App">
       <Switch>
-        <Route path="/" exact component={LandingPage} />
+        {/* <Route path="/" exact component={LandingPage} />
         <Route path="/auth/login" component={Login} />
         <Route path="/auth/signup" exact component={SignUp} />
         <Route path="/auth/verifyemail" component={VerifyEmail} />
@@ -59,7 +60,8 @@ function App() {
         <Route path="/search" component={Search} />
         <Route path="/about" component={About} />
         <Route path="/faq" component={Faq} />
-        <Route path="/support" component={Support} />
+        <Route path="/support" component={Support} /> */}
+        <Route path="/" exact component={ComingSoon} />
       </Switch>
     </div>
   );
