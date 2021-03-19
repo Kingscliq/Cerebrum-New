@@ -32,7 +32,7 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route path="/" exact component={LandingPage} />
+        {/* <Route path="/" exact component={LandingPage} />
         <Route path="/auth/login" component={Login} />
         <Route path="/auth/signup" exact component={SignUp} />
         <Route path="/auth/verifyemail" component={VerifyEmail} />
@@ -60,8 +60,8 @@ function App() {
         <Route path="/search" component={Search} />
         <Route path="/about" component={About} />
         <Route path="/faq" component={Faq} />
-        <Route path="/support" component={Support} />
-        {/* <Route path="/" exact component={ComingSoon} /> */}
+        <Route path="/support" component={Support} /> */}
+        <Route path="/" exact component={ComingSoon} />
       </Switch>
     </div>
   );
