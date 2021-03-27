@@ -68,7 +68,7 @@ export const signIn = (
     })
     .catch((err) => {
       console.log("err", err.response);
-      if (err.response.status === 400) {
+      if (!err.response) {
         setError(err.response.data.message);
         console.log(err.response.data.message);
         setSuccess(null);
@@ -84,8 +84,6 @@ export const signIn = (
       ) {
         window.open(`/auth/verifyemail?email=${data.email}`, "_self");
       }
-      // console.log(err.response.message);
-      // console.log(err.response.data.message);
 
       setLoadState(false);
     });

@@ -17,7 +17,7 @@ import "./TDashboard.css";
 import axios from "axios";
 
 // Api Call to get Authorized User
-const TDashboard = () => {
+const SDashboard = () => {
   const history = useHistory();
   const [user, setUser] = useState([]);
   const [role, setRole] = useState();
@@ -87,4 +87,4 @@ const TDashboard = () => {
 
   return <div> Hello Tutors Dashboard</div>;
 };
-export { TDashboard };
+export { SDashboard };

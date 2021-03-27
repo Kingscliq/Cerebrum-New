@@ -74,9 +74,6 @@ const BuyCourse = () => {
           setBuy(true);
         });
     }
-    // console.log(user);
-
-    // console.log(data);
   }, []);
 
   useEffect(() => {
