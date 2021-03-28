@@ -13,7 +13,7 @@ import {
 import { CourseList } from "../../../components/CourseList";
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
-import "./TDashboard.css";
+import "./SDashboard.css";
 import axios from "axios";
 
 // Api Call to get Authorized User
@@ -85,6 +85,6 @@ const SDashboard = () => {
     window.location.assign(`/learner/viewcourse/?id=${lcourse.course_id._id}`);
   };
 
-  return <div> Hello Tutors Dashboard</div>;
+  return <div> Hello Student Dashboard</div>;
 };
 export { SDashboard };

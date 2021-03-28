@@ -35,7 +35,7 @@ import React, { useState, createContext } from "react";
 
 const initialState = {
   name: "Kingsley",
-  description: "Knowledge for everyone by everyone",
+  description: "for everyone by everyone",
 };
 
 export const Context = createContext();

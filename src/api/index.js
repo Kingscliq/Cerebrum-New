@@ -55,13 +55,18 @@ export const signIn = (
     .post("https://cerebrum-v1.herokuapp.com/api/auth/sign-in", data)
     .then((res) => {
       console.log(res.data);
+      const role = res.data.data.role;
 
       const userDetails = JSON.stringify(res.data);
       localStorage.setItem("userDetails", userDetails);
       setLoadState(false);
 
       if (!localStorage.getItem("current")) {
-        history.push("/dashboard");
+        if (role === "tutor") {
+          history.push("/tutor/dashboard");
+        } else {
+          history.push("/student/dashboard");
+        }
       } else {
         window.location.assign(localStorage.getItem("current"));
       }
@@ -82,7 +87,7 @@ export const signIn = (
         err.response.data.message ===
         "Email not verified, kindly check your email for verification link"
       ) {
-        window.open(`/auth/verifyemail?email=${data.email}`, "_self");
+        history.push(`/auth/verifyemail?email=${data.email}`);
       }
 
       setLoadState(false);

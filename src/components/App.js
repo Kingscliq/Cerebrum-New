@@ -26,6 +26,7 @@ import { Search } from "../pages/app/Search";
 import { About } from "../pages/app/About";
 import { Faq } from "../pages/app/Faq";
 import Support from "../pages/app/Support";
+import { SDashboard } from "../pages/app/SDashboard";
 import Store from "../Store";
 // import { ComingSoon } from "../pages/app/ComingSoon";
 
@@ -41,7 +42,8 @@ function App() {
         <Route path='/auth/logout' component={Logout} />
         <Route path='/auth/forgotpassword' component={ForgotPassWord} />
         <Route path='/auth/reset-password' component={ResetPassword} />
-        <Route exact path='/dashboard' component={TDashboard} />
+        <Route exact path='/tutor/dashboard' component={TDashboard} />
+        <Route exact path='/student/dashboard' component={SDashboard} />
         <Route path='/dashboard/tutor/addcourse' exact component={AddCourses} />
         <Route path='/buycourse' component={BuyCourse} />
         <Route path='/courses' component={Courses} />
