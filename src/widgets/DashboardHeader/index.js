@@ -45,15 +45,32 @@ function DashboardHeader() {
             <FaRegBell />
           </span>
           <div className="dash-user-icon d-flex">
-            <img
-              src={dashAvater}
-              alt="dash-avatar"
-              className="dashimage"
-              height="30"
-              width="30"
-            />
             <span id="dash-toggle">
-              <RiArrowDownSLine />
+              <img
+                src={dashAvater}
+                alt="dash-avatar"
+                className="dashimage"
+                height="30"
+                width="30"
+              />
+              <select
+                name="dash-toogler"
+                id="dash-toogler"
+                onChange={(e) => {
+                  let buttonSpecial = e.target.value;
+                  if (buttonSpecial == "dashboard") {
+                    history.push("/dashboard");
+                  } else if (buttonSpecial == "settings") {
+                    history.push("/user/editprofile");
+                  } else if (buttonSpecial == "logout") {
+                    history.push("/logout");
+                  }
+                }}
+              >
+                <option value="dashboard">Dashboard</option>
+                <option value="settings">Settings</option>
+                <option value="logout">Logout</option>
+              </select>
             </span>
           </div>
         </div>

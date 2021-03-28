@@ -8,7 +8,7 @@ function Faq() {
     <>
       <Header />
       <main className="faq-section">
-        <section className="bg-primary py-5 mb-5">
+        <section className="py-5 mb-5">
           <h1 className="py-5 text-center font-weight-bold">FAQ</h1>
         </section>
         <section className="container py-5">

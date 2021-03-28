@@ -16,7 +16,7 @@ export const signUpReg = (e, state, setLoadState, setError, setSuccess) => {
 
       setLoadState(false);
       window.open(
-        `auth/verifyemail?email=${currentState.email}&name=${currentState.firstName}`,
+        `verifyemail?email=${currentState.email}&name=${currentState.firstName}`,
         "_self"
       );
     })
@@ -34,7 +34,7 @@ export const getCategories = (stateFunction) => {
   });
 };
 
-/// Login Api
+/// Login Api for Auth
 export const signIn = (
   e,
   user,

@@ -1,0 +1,7 @@
+.about-section section:first-of-type {
+  background: var(--primary-color);
+}
+.about-section section:first-of-type h1 {
+  color: #ffffff;
+  font-weight: 700;
+}

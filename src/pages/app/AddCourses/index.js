@@ -311,7 +311,6 @@ function AddCourses() {
                             setLoadingBtn(false);
                             setLoading(true);
                             setLessonMessage(true);
-                            setForm3({});
                           })
                           .catch((err) => console.log(form1, form2, form3));
                       }}
@@ -332,7 +331,6 @@ function AddCourses() {
                         type="file"
                         name="img"
                         disabled={loadingBtn}
-                        value={form3.img}
                         onChange={handleChange3}
                       />
                       <label>Lesson Description</label>
