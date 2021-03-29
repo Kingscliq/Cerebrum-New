@@ -32,29 +32,31 @@ import { Context } from "../Store";
 // import { ComingSoon } from "../pages/app/ComingSoon";
 
 // Protected Route Component
-const loggedIn = true;
-const ProtectedRoute = ({ Layout, Component, path }, ...rest) => (
-  <Route
-    {...rest}
-    path={path}
-    render={(props) =>
-      loggedIn === true ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{
-            pathname: "/auth/login",
-            state: { from: props.location },
-          }}
-        />
-      )
-    }
-  />
-);
 
-function App() {
+const ProtectedRoute = ({Component, path }, ...rest) => {
   // import the Global State which is context
   const [state, setState] = useContext(Context);
+  return (
+    <Route
+      {...rest}
+      path={path}
+      render={(props) =>
+        state.loggedIn === true ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/auth/login",
+              state: { from: props.location },
+            }}
+          />
+        )
+      }
+    />
+  );
+};
+
+function App() {
   return (
     <Switch>
       {/* UNPROTECTED  ROUTES */}
