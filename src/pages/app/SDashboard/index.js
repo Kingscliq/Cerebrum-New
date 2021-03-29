@@ -15,7 +15,7 @@ import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
 import "./SDashboard.css";
 import axios from "axios";
-
+import { authenticate } from "../../../api";
 // Api Call to get Authorized User
 const SDashboard = () => {
   const history = useHistory();
@@ -27,35 +27,36 @@ const SDashboard = () => {
   const [data, setData] = useState();
   const [lcourse, setLcourse] = useState({});
   const [lcourseCount, setLcourseCount] = useState();
-
   // Get login details from Local Storage
   useEffect(() => {
-    const data = localStorage.getItem("userDetails");
-    if (!data) {
-      history.push("/auth/login");
-    }
-    const userData = JSON.parse(data);
-    const token = userData.data.token;
-    const config = {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    };
-    const userId = userData.data.uid;
-    axios
-      .get(`https://cerebrum-v1.herokuapp.com/api/user/${userId}`, config)
-      .then((res) => {
-        console.log("res value", res.data);
-        setUser(res.data.data);
-        setRole(res.data.data.role);
-      })
-      .catch((err) => {
-        history.push("/auth/login");
-      });
+    // const data = localStorage.getItem("userDetails");
+    // if (!data) {
+    //   history.push("/auth/login");
+    // }
+    // const userData = JSON.parse(data);
+    // const token = userData.data.token;
+    // const config = {
+    //   headers: {
+    //     Authorization: "Bearer " + token,
+    //   },
+    // };
+    // const userId = userData.data.uid;
+    // axios
+    //   .get(`https://cerebrum-v1.herokuapp.com/api/user/${userId}`, config)
+    //   .then((res) => {
+    //     console.log("res value", res.data);
+    //     setUser(res.data.data);
+    //     setRole(res.data.data.role);
+    //   })
+    //   .catch((err) => {
+    //     history.push("/auth/login");
+    //   });
+
+    authenticate(user, setUser, role, setRole, history);
   }, []);
 
   useEffect(async () => {
-    if (user.role === "tutor") {
+    if (user.role === "learner") {
       await axios
         .get(`https://cerebrum-v1.herokuapp.com/api/tutor/course/${user._id}`)
         .then((res) => {

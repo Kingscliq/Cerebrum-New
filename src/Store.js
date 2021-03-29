@@ -36,6 +36,7 @@ import React, { useState, createContext } from "react";
 const initialState = {
   name: "Kingsley",
   description: "for everyone by everyone",
+  loggedIn: false,
 };
 
 export const Context = createContext();
