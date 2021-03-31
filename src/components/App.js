@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { LandingPage } from "../pages/app/LandingPage";
 import { ForgotPassWord } from "../pages/auth/ForgotPassword";
@@ -28,32 +28,20 @@ import { Faq } from "../pages/app/Faq";
 import Support from "../pages/app/Support";
 import { SDashboard } from "../pages/app/SDashboard";
 import { Context } from "../Store";
-import { RiTruckLine } from "react-icons/ri";
 
 // import { ComingSoon } from "../pages/app/ComingSoon";
 
 // Protected Route Component
 
-const ProtectedRoute = ({ Component, path }, ...rest) => {
+const ProtectedRoute = ({Component, path }, ...rest) => {
   // import the Global State which is context
   const [state, setState] = useContext(Context);
-  console.log(state, path);
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  const isAuthenticated = () => {
-    const token = localStorage.getItem("userToken");
-    if (!token) setLoggedIn(false);
-    setLoggedIn(true);
-  };
-  isAuthenticated();
-
-  console.log(loggedIn);
   return (
     <Route
       {...rest}
       path={path}
       render={(props) =>
-        loggedIn ? (
+        state.loggedIn === true ? (
           <Component {...props} />
         ) : (
           <Redirect
@@ -84,10 +72,10 @@ function App() {
       <Route path='/about' component={About} />
       <Route path='/faq' component={Faq} />
       <Route path='/support' component={Support} />
-      <Route path='/logout' Component={Logout} />
 
       {/* PROTECTED ROUTES */}
-      {/* <ProtectedRoute exact path='/tutor/dashboard' Component={TDashboard} /> */}
+      <ProtectedRoute path='/auth/logout' Component={Logout} />
+      <ProtectedRoute exact path='/tutor/dashboard' Component={TDashboard} />
       <ProtectedRoute exact path='/student/dashboard' Component={SDashboard} />
       <ProtectedRoute
         path='/dashboard/tutor/addcourse'
@@ -112,6 +100,7 @@ function App() {
         path='/user/editprofile'
         Component={TutorProfileSettings}
       />
+      <ProtectedRoute path='/logout' Component={Logout} />
       <ProtectedRoute path='/learner/viewcourse' Component={ViewCourse} />
       <ProtectedRoute path='/tutoraddcourse' Component={TutorAddCourse} />
       <ProtectedRoute path='/course/categories' Component={ViewCategories} />

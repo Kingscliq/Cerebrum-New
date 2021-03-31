@@ -2,7 +2,7 @@
 
 // Tutors Dashboard
 import { Link, Redirect, useHistory } from "react-router-dom";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import {
   dashAvater,
   dashboardImg,
@@ -16,7 +16,6 @@ import { Footer } from "../../../widgets/Footer";
 import "./SDashboard.css";
 import axios from "axios";
 import { authenticate } from "../../../api";
-import { Context } from "../../../Store";
 // Api Call to get Authorized User
 const SDashboard = () => {
   const history = useHistory();
@@ -28,34 +27,33 @@ const SDashboard = () => {
   const [data, setData] = useState();
   const [lcourse, setLcourse] = useState({});
   const [lcourseCount, setLcourseCount] = useState();
-  const [state, setState] = useContext(Context);
   // Get login details from Local Storage
   useEffect(() => {
-    const data = localStorage.getItem("userDetails");
-    if (!data) {
-      history.push("/auth/login");
-    }
-    const userData = JSON.parse(data);
-    const token = userData.data.token;
-    const config = {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    };
-    const userId = userData.data.uid;
-    axios
-      .get(`https://cerebrum-v1.herokuapp.com/api/user/${userId}`, config)
-      .then((res) => {
-        console.log("res value", res.data);
-        setUser(res.data.data);
-        setRole(res.data.data.role);
-      })
-      .catch((err) => {
-        history.push("/auth/login");
-      });
-  }, []);
+    // const data = localStorage.getItem("userDetails");
+    // if (!data) {
+    //   history.push("/auth/login");
+    // }
+    // const userData = JSON.parse(data);
+    // const token = userData.data.token;
+    // const config = {
+    //   headers: {
+    //     Authorization: "Bearer " + token,
+    //   },
+    // };
+    // const userId = userData.data.uid;
+    // axios
+    //   .get(`https://cerebrum-v1.herokuapp.com/api/user/${userId}`, config)
+    //   .then((res) => {
+    //     console.log("res value", res.data);
+    //     setUser(res.data.data);
+    //     setRole(res.data.data.role);
+    //   })
+    //   .catch((err) => {
+    //     history.push("/auth/login");
+    //   });
 
-  // authenticate(user, setUser, role, setRole, history, state, setState);
+    authenticate(user, setUser, role, setRole, history);
+  }, []);
 
   useEffect(async () => {
     if (user.role === "learner") {
@@ -88,10 +86,6 @@ const SDashboard = () => {
     window.location.assign(`/learner/viewcourse/?id=${lcourse.course_id._id}`);
   };
 
-  return role === "learner" ? (
-    <div> Hello Student Dashboard</div>
-  ) : (
-    <Redirect to='/tutor/dashboard' />
-  );
+  return <div> Hello Student Dashboard</div>;
 };
 export { SDashboard };

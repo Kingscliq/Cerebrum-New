@@ -40,7 +40,7 @@ function LandingPage() {
               data-aos='fade-zoom-in'
               data-aos-delay='300'
             >
-              Knowledge <br /> <span>for everyone by everyone</span>
+              Knowledge <br /> <span>{state.description}</span>
             </h1>
             <p className='my-4'>
               Cerebrum offers quality online learning that is flexible and

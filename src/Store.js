@@ -2,7 +2,7 @@
 
 // /** @format */
 
-// import React, { createContext, useEffect, useState, useContext, useReducer } from "react";
+// import React, { createContext, useEffect, useState, useContext } from "react";
 
 // const AuthContext = createContext({});
 
@@ -34,7 +34,8 @@
 import React, { useState, createContext } from "react";
 
 const initialState = {
-  name: "kingsley",
+  name: "Kingsley",
+  description: "for everyone by everyone",
   loggedIn: false,
 };
 
@@ -43,9 +44,7 @@ export const Context = createContext();
 const Store = ({ children }) => {
   const [state, setState] = useState(initialState);
   return (
-    <Context.Provider value={[initialState.loggedIn]}>
-      {children}
-    </Context.Provider>
+    <Context.Provider value={[state, setState]}>{children}</Context.Provider>
   );
 };
 
