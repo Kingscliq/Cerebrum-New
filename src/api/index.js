@@ -60,6 +60,8 @@ export const signIn = (
 
       const userDetails = JSON.stringify(res.data);
       localStorage.setItem("userDetails", userDetails);
+      console.log(userDetails);
+      localStorage.setItem("TOKEN", res.data.data.token);
       setLoadState(false);
 
       if (!localStorage.getItem("current")) {

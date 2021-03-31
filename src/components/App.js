@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { LandingPage } from "../pages/app/LandingPage";
 import { ForgotPassWord } from "../pages/auth/ForgotPassword";
@@ -33,15 +33,27 @@ import { Context } from "../Store";
 
 // Protected Route Component
 
-const ProtectedRoute = ({Component, path }, ...rest) => {
+const ProtectedRoute = ({ Component, path }, ...rest) => {
   // import the Global State which is context
   const [state, setState] = useContext(Context);
+
+  // const [loggedIn, setLoggedIn] = useState(false);
+
+  // useEffect(() => {
+  //   isAuthenticated();
+  // }, []);
+  const isAuthenticated = () => {
+    const token = localStorage.getItem("TOKEN");
+    if (!token) return false;
+    return true;
+  };
+
   return (
     <Route
       {...rest}
       path={path}
       render={(props) =>
-        state.loggedIn === true ? (
+        isAuthenticated() === true ? (
           <Component {...props} />
         ) : (
           <Redirect

@@ -29,30 +29,29 @@ const SDashboard = () => {
   const [lcourseCount, setLcourseCount] = useState();
   // Get login details from Local Storage
   useEffect(() => {
-    // const data = localStorage.getItem("userDetails");
-    // if (!data) {
-    //   history.push("/auth/login");
-    // }
-    // const userData = JSON.parse(data);
-    // const token = userData.data.token;
-    // const config = {
-    //   headers: {
-    //     Authorization: "Bearer " + token,
-    //   },
-    // };
-    // const userId = userData.data.uid;
-    // axios
-    //   .get(`https://cerebrum-v1.herokuapp.com/api/user/${userId}`, config)
-    //   .then((res) => {
-    //     console.log("res value", res.data);
-    //     setUser(res.data.data);
-    //     setRole(res.data.data.role);
-    //   })
-    //   .catch((err) => {
-    //     history.push("/auth/login");
-    //   });
-
-    authenticate(user, setUser, role, setRole, history);
+    const data = localStorage.getItem("userDetails");
+    if (!data) {
+      history.push("/auth/login");
+    }
+    const userData = JSON.parse(data);
+    const token = userData.data.token;
+    const config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    const userId = userData.data.uid;
+    axios
+      .get(`https://cerebrum-v1.herokuapp.com/api/user/${userId}`, config)
+      .then((res) => {
+        console.log("res value", res.data);
+        setUser(res.data.data);
+        setRole(res.data.data.role);
+        localStorage.setItem("TOKEN", token);
+      })
+      .catch((err) => {
+        history.push("/auth/login");
+      });
   }, []);
 
   useEffect(async () => {
