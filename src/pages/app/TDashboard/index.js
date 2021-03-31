@@ -2,7 +2,7 @@
 
 // Tutors Dashboard
 import { Link, Redirect, useHistory } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   dashAvater,
   dashboardImg,
@@ -15,6 +15,8 @@ import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
 import "./TDashboard.css";
 import axios from "axios";
+import { Context } from "../../../Store";
+import { authenticate } from "../../../api";
 
 // Api Call to get Authorized User
 const TDashboard = () => {
@@ -27,6 +29,7 @@ const TDashboard = () => {
   const [data, setData] = useState();
   const [lcourse, setLcourse] = useState({});
   const [lcourseCount, setLcourseCount] = useState();
+  const [state, setState] = useContext(Context);
 
   // Get login details from Local Storage
   useEffect(() => {
@@ -46,13 +49,17 @@ const TDashboard = () => {
       .get(`https://cerebrum-v1.herokuapp.com/api/user/${userId}`, config)
       .then((res) => {
         console.log("res value", res.data);
-        setUser(res.data.data);
-        setRole(res.data.data.role);
+        console.log(userData.data.token);
+        localStorage.setItem("userToken", userData.data.token);
+        // setUser(res.data.data);
+        // setRole(res.data.data.role);
       })
       .catch((err) => {
+        console.log("login failed");
         history.push("/auth/login");
       });
   }, []);
+  // authenticate(user, setUser, role, setRole, history, state, setState);
 
   useEffect(async () => {
     if (user.role === "tutor") {
@@ -85,6 +92,10 @@ const TDashboard = () => {
     window.location.assign(`/learner/viewcourse/?id=${lcourse.course_id._id}`);
   };
 
-  return <div> Hello Tutors Dashboard</div>;
+  return role === "tutor" ? (
+    <div> Hello Tutors Dashboard</div>
+  ) : (
+    <Redirect to='/student/dashboard' />
+  );
 };
 export { TDashboard };

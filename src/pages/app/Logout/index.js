@@ -1,13 +1,21 @@
 /** @format */
 
 import React, { useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
 const Logout = () => {
-  useEffect(() => {
+  const history = useHistory();
+  // useEffect(() => {
+  //   localStorage.clear();
+  // }, []);
+
+  const clear = () => {
     localStorage.clear();
-  });
-  return <Redirect to='/auth/login' />;
+  };
+
+  // localStorage.clear();
+  // history.push("/auth/login");
+  return clear && <Redirect to='/auth/login' />;
 };
 
 export { Logout };

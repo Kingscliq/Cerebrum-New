@@ -2,6 +2,8 @@
 
 import axios from "axios";
 import { Link, Redirect, useHistory } from "react-router-dom";
+import { Context } from "../Store";
+import React, { useContext } from "react";
 
 export const signUpReg = (e, state, setLoadState, setError, setSuccess) => {
   e.preventDefault();
@@ -62,15 +64,15 @@ export const signIn = (
       localStorage.setItem("userDetails", userDetails);
       setLoadState(false);
 
-      if (!localStorage.getItem("current")) {
-        if (role === "tutor") {
-          history.push("/tutor/dashboard");
-        } else {
-          history.push("/student/dashboard");
-        }
-      } else {
-        window.location.assign(localStorage.getItem("current"));
-      }
+      // if (!localStorage.getItem("current")) {
+      //   if (role === "tutor") {
+      //     history.push("/tutor/dashboard");
+      //   } else {
+      //     history.push("/student/dashboard");
+      //   }
+      // } else {
+      //   history(localStorage.getItem("current"));
+      // }
     })
     .catch((err) => {
       console.log("err", err.response);
@@ -96,30 +98,49 @@ export const signIn = (
 };
 
 // Authorise User
-export const authenticate = (user, setUser, role, setRole, history) => {
-  const data = localStorage.getItem("userDetails");
-  if (!data) {
-    history.push("/auth/login");
-  }
-  const userData = JSON.parse(data);
-  const token = userData.data.token;
-  const config = {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  };
-  const userId = userData.data.uid;
-  axios
-    .get(`https://cerebrum-v1.herokuapp.com/api/user/${userId}`, config)
-    .then((res) => {
-      console.log("res value", res.data);
-      setUser(res.data.data);
-      setRole(res.data.data.role);
-    })
-    .catch((err) => {
-      history.push("/auth/login");
-    });
-};
+// export const authenticate = (
+//   user,
+//   setUser,
+//   role,
+//   setRole,
+//   history,
+//   state,
+//   setState
+// ) => {
+//   const data = localStorage.getItem("userDetails");
+//   if (!data) {
+//     history.push("/auth/login");
+//   }
+//   const userData = JSON.parse(data);
+//   const token = userData.data.token;
+//   const config = {
+//     headers: {
+//       Authorization: "Bearer " + token,
+//     },
+//   };
+//   const userId = userData.data.uid;
+//   axios
+//     .get(`https://cerebrum-v1.herokuapp.com/api/user/${userId}`, config)
+//     .then((res) => {
+//       console.log("res value", res.data);
+//       console.log(userData.data.token);
+//       localStorage.setItem("userToken", userData.data.token);
+//       // setUser(res.data.data);
+//       // setRole(res.data.data.role);
+
+//       switch (res.data.data.role) {
+//         case "tutor":
+//           history.push("/tutor/dashboard");
+//         case "learner":
+//           history.push("/student/dashboard");
+//       }
+//     })
+//     .catch((err) => {
+//       console.log("login failed");
+//       history.push("/auth/login");
+//     });
+// };
+
 //Watch Course Api
 export const getLessons = (courses, setCourses, course_id) => {
   const data = courses;
