@@ -22,8 +22,6 @@ function TutorProfileSettings() {
 		confirmPassword: "",
 	});
 
-	const [payment, setPayment] = useState({});
-
 	//select option
 	const [toggle, setToggle] = useState({ clicked: false });
 	const [onLoad, setOnLoad] = useState(false);
@@ -66,7 +64,7 @@ function TutorProfileSettings() {
 				return <ChangePassword password={password} setPassword={setPassword} handleChange={handleChange} />;
 
 			case "three":
-				return <Paymentinformation payment={payment} handleChange={handleChange} />;
+				return <Paymentinformation handleChange={handleChange} />;
 
 			default:
 		}
