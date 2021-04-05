@@ -8,6 +8,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import App from "./components/App";
 import Store from "./Store";
+import axios from "axios";
+
+axios.defaults.baseURL = "https://cerebrum-v1.herokuapp.com/api";
 
 ReactDOM.render(
   <React.StrictMode>

@@ -8,6 +8,8 @@ import { ViewCourseElement } from "../../../components/ViewCourseElement";
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
 import "./ViewCourse.css";
+import { Comments } from "../../../components/Comments";
+import CommentList from "../../../components/CommentList";
 
 const url_string = window.location.href;
 const url = new URL(url_string);
@@ -22,13 +24,26 @@ function ViewCourse() {
   const [courseDesc, setCourseDesc] = useState("");
   const [courseTitle, setCourseTitle] = useState("");
   const [tutor, setTutor] = useState("");
-
+  const [comments, setComments] = useState([]);
+  const [comment, setComment] = useState("");
   const handleClick = (e) => {
     e.preventDefault();
     let url = e.target.getAttribute("data-video-url");
     setCurrentVideo(url);
   };
+  // Handle Comment Change
+  const handleCommentChange = (e) => {
+    setComment(e.target.value);
+  };
+  // Handle Comment Submit
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+    // addComment(comment, setComment, course_id, setLoading, loading);
+    setComments((comments) => [...comments, comment]);
+    console.log(comments);
+  };
 
+  // Handle Toggle
   const handleToggle = (e) => {
     e.preventDefault();
     let textValue = e.target.innerText;
@@ -77,16 +92,16 @@ function ViewCourse() {
   return (
     <>
       <DashboardHeader />
-      <main className="viewcourse-section container my-5">
+      <main className='viewcourse-section container my-5'>
         <h1>{courseTitle}</h1>
         <p>{tutor}</p>
-        <section className="row">
-          <section className="col-7">
+        <section className='row'>
+          <section className='col-7'>
             <div>
               <ReactPlayer url={currentVideo} controls />
             </div>
-            <div className="toggle-container my-3">
-              <div className="toggle-btns">
+            <div className='toggle-container my-3'>
+              <div className='toggle-btns'>
                 <button
                   onClick={handleToggle}
                   className={`w-50 py-3 ${
@@ -104,32 +119,41 @@ function ViewCourse() {
                   Review
                 </button>
               </div>
-              <div className="toggle-items p-3">
+              <div className='toggle-items p-3'>
                 {sectionToggle === "About Course" ? (
                   <>
-                    <h2 className="mt-3">About This Course</h2>
+                    <h2 className='mt-3'>About This Course</h2>
                     <p>{courseDesc}</p>
                   </>
                 ) : (
                   <>
                     <textarea
-                      className="mt-3 w-100"
-                      placeholder="Drop your review here"
-                      rows="10"
-                      cols="50"
+                      className='mt-3 w-100'
+                      placeholder='Drop your review here'
+                      rows='10'
+                      cols='50'
                     ></textarea>
-                    <div className="review-btns d-flex justify-content-end my-3">
-                      <button className="btn btn-outline-primary">
+
+                    <div className='review-btns d-flex justify-content-end my-3'>
+                      <button className='btn btn-outline-primary'>
                         Cancel
                       </button>
-                      <button className="btn btn-primary">Send</button>
+                      <button className='btn btn-primary'>Send</button>
                     </div>
+
+                    <Comments
+                      comments={comments}
+                      comment={comment}
+                      handleCommentSubmit={handleCommentSubmit}
+                      handleCommentChange={handleCommentChange}
+                    />
                   </>
                 )}
               </div>
             </div>
           </section>
-          <aside className="col-5">
+
+          <aside className='col-5'>
             {course.map((lesson) => {
               return (
                 <ViewCourseElement
@@ -143,7 +167,10 @@ function ViewCourse() {
             })}
           </aside>
         </section>
+        <h1>Comments</h1>
+        <CommentList comments={comments} />
       </main>
+
       <Footer />
     </>
   );
