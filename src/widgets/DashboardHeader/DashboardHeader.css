@@ -1,53 +1,53 @@
-/**
- * /* .dash-nav-items {
- *   margin-top: 9px;
- * }
- *
- * @format
- */
-
 .dash {
-  background: #ffffff;
+	background: #ffffff;
 }
 
 .dash-nav-items > * {
-  margin: 0 10px;
-  color: #b1acac;
+	margin: 0 10px;
+	color: #b1acac;
 }
 
 .dash-nav-items input {
-  padding: 0.5px !important;
+	padding: 0.5px !important;
 }
 
 .dash-nav-items h5 {
-  font-size: 0.99rem;
-  font-weight: 600;
+	font-size: 0.99rem;
+	font-weight: 600;
 }
 
 .dash-nav-items #dash-bell {
-  font-size: 1.59rem;
+	font-size: 1.59rem;
 }
 
 .dash-nav-items #dash-toggle {
-  font-size: 1.299rem;
+	font-size: 1.299rem;
 }
 .dashimage {
-  border-radius: 50%;
+	border-radius: 50%;
 }
 
 #dash-toogler {
-  border: none;
-  outline: none;
-  font-size: 0.98rem;
-  width: 18px;
+	border: none;
+	outline: none;
+	font-size: 0.98rem;
+	color: #b1acac;
+	text-align: center;
 }
+
+#dash-toogler .toggle-options-menu {
+	text-align: center;
+	color: green;
+}
+
 #dash-toogler option {
-  font-size: 1.2rem;
-  font-weight: 400;
+	font-size: 1.2rem;
+	font-weight: 400;
 }
 .toggle-options {
-  margin: 10px;
+	margin: 10px;
 }
+
 /* 
 @media all and (max-width: 800px) {
   .dash-nav-items input {

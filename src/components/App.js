@@ -28,6 +28,7 @@ import { Faq } from "../pages/app/Faq";
 import Support from "../pages/app/Support";
 import { SDashboard } from "../pages/app/SDashboard";
 import { Context } from "../Store";
+import { Comments } from "../components/Comments";
 
 // import { ComingSoon } from "../pages/app/ComingSoon";
 
@@ -84,6 +85,7 @@ function App() {
       <Route path='/about' component={About} />
       <Route path='/faq' component={Faq} />
       <Route path='/support' component={Support} />
+      <Route path='/comments' component={Comments} />
 
       {/* PROTECTED ROUTES */}
       <ProtectedRoute path='/auth/logout' Component={Logout} />

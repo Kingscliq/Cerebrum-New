@@ -2,12 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
 import ReactPlayer from "react-player/lazy";
 import { ViewCourseElement } from "../../../components/ViewCourseElement";
 import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
 import "./ViewCourse.css";
+import { Comments } from "../../../components/Comments";
+import CommentList from "../../../components/CommentList";
+import { getLessons } from "../../../api";
+import { paymentConfirmation } from "../../../api/paymentConfirmation";
 
 const url_string = window.location.href;
 const url = new URL(url_string);
@@ -16,12 +19,14 @@ function ViewCourse() {
 	const history = useHistory();
 	const [currentVideo, setCurrentVideo] = useState("");
 	const [sectionToggle, setSectionToggle] = useState("About Course");
-	const [courseId, setCourseId] = useState(url.searchParams.get("id"));
 	const [watchCourse, setWatchCourse] = useState();
 	const [course, setCourse] = useState([]);
 	const [courseDesc, setCourseDesc] = useState("");
 	const [courseTitle, setCourseTitle] = useState("");
 	const [tutor, setTutor] = useState("");
+	const [comments, setComments] = useState([]);
+	const [comment, setComment] = useState("");
+	const courseId = url.searchParams.get("id");
 
 	const handleClick = (e) => {
 		e.preventDefault();
@@ -29,7 +34,19 @@ function ViewCourse() {
 		setCurrentVideo(url);
 		console.log(url);
 	};
+	// Handle Comment Change
+	const handleCommentChange = (e) => {
+		setComment(e.target.value);
+	};
+	// Handle Comment Submit
+	const handleCommentSubmit = (e) => {
+		e.preventDefault();
+		// addComment(comment, setComment, course_id, setLoading, loading);
+		setComments((comments) => [...comments, comment]);
+		console.log(comments);
+	};
 
+	// Handle Toggle
 	const handleToggle = (e) => {
 		e.preventDefault();
 		let textValue = e.target.innerText;
@@ -37,16 +54,14 @@ function ViewCourse() {
 	};
 
 	useEffect(() => {
-		axios(`https://cerebrum-v1.herokuapp.com/api/course/view/${courseId}`)
-			.then((res) => {
-				console.log(res.data);
-				setCourse(res.data.data);
-				setCurrentVideo(res.data.data[0].video_url);
-				setCourseDesc(res.data.data[0].course_id.description);
-				setCourseTitle(res.data.data[0].course_id.name);
-				setTutor(`${res.data.data[0].course_id.tutor_id.firstName} ${res.data.data[0].course_id.tutor_id.lastName}`);
-			})
-			.catch((err) => console.log(err.response));
+		getLessons(courseId).then((dataGotten) => {
+			console.log(dataGotten);
+			setCourse(dataGotten);
+			setCurrentVideo(dataGotten[0].video_url);
+			setCourseDesc(dataGotten[0].course_id.description);
+			setCourseTitle(dataGotten[0].course_id.name);
+			setTutor(`${dataGotten[0].course_id.tutor_id.firstName} ${dataGotten[0].course_id.tutor_id.lastName}`);
+		});
 	}, []);
 
 	useEffect(() => {
@@ -58,19 +73,13 @@ function ViewCourse() {
 		};
 
 		console.log(data);
-		axios
-			.post(`https://cerebrum-v1.herokuapp.com/api/payment/confirm/`, data)
-			.then((res) => {
-				if (res.data.success === true) {
-					console.log(" you are qualified");
-					setWatchCourse(true);
-				}
-			})
-			.catch((err) => {
-				console.log(err.response.data.success);
-				history.push(`/buycourse?id=${courseId}`);
-				setWatchCourse(false);
-			});
+		paymentConfirmation(data, history, courseId, setWatchCourse).then((res) => {
+			if (res.success === true) {
+				console.log(" you are qualified");
+				setWatchCourse(true);
+				console.log(watchCourse);
+			}
+		});
 	}, []);
 
 	return (
@@ -102,15 +111,24 @@ function ViewCourse() {
 								) : (
 									<>
 										<textarea className="mt-3 w-100" placeholder="Drop your review here" rows="10" cols="50"></textarea>
+
 										<div className="review-btns d-flex justify-content-end my-3">
 											<button className="btn btn-outline-primary">Cancel</button>
 											<button className="btn btn-primary">Send</button>
 										</div>
+
+										<Comments
+											comments={comments}
+											comment={comment}
+											handleCommentSubmit={handleCommentSubmit}
+											handleCommentChange={handleCommentChange}
+										/>
 									</>
 								)}
 							</div>
 						</div>
 					</section>
+
 					<aside className="col-5">
 						{course.map((lesson) => {
 							return (
@@ -125,7 +143,10 @@ function ViewCourse() {
 						})}
 					</aside>
 				</section>
+				<h1>Comments</h1>
+				<CommentList comments={comments} />
 			</main>
+
 			<Footer />
 		</>
 	);
