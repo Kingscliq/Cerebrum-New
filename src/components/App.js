@@ -1,7 +1,7 @@
 /** @format */
 
-import React, { useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import React, { useState, useContext, useEffect } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { LandingPage } from "../pages/app/LandingPage";
 import { ForgotPassWord } from "../pages/auth/ForgotPassword";
 import { Login } from "../pages/auth/Login";
@@ -27,46 +27,99 @@ import { About } from "../pages/app/About";
 import { Faq } from "../pages/app/Faq";
 import Support from "../pages/app/Support";
 import { SDashboard } from "../pages/app/SDashboard";
-import Store from "../Store";
+import { Context } from "../Store";
+
 // import { ComingSoon } from "../pages/app/ComingSoon";
+
+// Protected Route Component
+
+const ProtectedRoute = ({ Component, path }, ...rest) => {
+  // import the Global State which is context
+  const [state, setState] = useContext(Context);
+
+  // const [loggedIn, setLoggedIn] = useState(false);
+
+  // useEffect(() => {
+  //   isAuthenticated();
+  // }, []);
+  const isAuthenticated = () => {
+    const token = localStorage.getItem("TOKEN");
+    if (!token) return false;
+    return true;
+  };
+
+  return (
+    <Route
+      {...rest}
+      path={path}
+      render={(props) =>
+        isAuthenticated() === true ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/auth/login",
+              state: { from: props.location },
+            }}
+          />
+        )
+      }
+    />
+  );
+};
 
 function App() {
   return (
-    <Store>
-      <Switch>
-        <Route path='/' exact component={LandingPage} />
-        <Route path='/auth/login' component={Login} />
-        <Route path='/auth/signup' exact component={SignUp} />
-        <Route path='/auth/verifyemail' component={VerifyEmail} />
-        <Route path='/auth/verify-email' component={EmailVerify} />
-        <Route path='/auth/logout' component={Logout} />
-        <Route path='/auth/forgotpassword' component={ForgotPassWord} />
-        <Route path='/auth/reset-password' component={ResetPassword} />
-        <Route exact path='/tutor/dashboard' component={TDashboard} />
-        <Route exact path='/student/dashboard' component={SDashboard} />
-        <Route path='/dashboard/tutor/addcourse' exact component={AddCourses} />
-        <Route path='/buycourse' component={BuyCourse} />
-        <Route path='/courses' component={Courses} />
-        <Route path='/reset-password' component={ResetPassword} />
-        <Route path='/user/course/paymentoption' component={PaymentOption} />
-        <Route
-          path='/user/course/payment/success'
-          component={PaymentSuccessful}
-        />
-        <Route path='/user/course/payment/fail' component={PaymentFailed} />
-        <Route path='/user/editprofile' component={TutorProfileSettings} />
-        <Route path='/logout' component={Logout} />
-        <Route path='/learner/viewcourse' component={ViewCourse} />
-        <Route path='/tutoraddcourse' component={TutorAddCourse} />
-        <Route path='/course/categories' component={ViewCategories} />
-        <Route path='/search/:id' component={Search} />
-        <Route path='/search' component={Search} />
-        <Route path='/about' component={About} />
-        <Route path='/faq' component={Faq} />
-        <Route path='/support' component={Support} />
-        {/* <Route path='/' exact component={ComingSoon} /> */}
-      </Switch>
-    </Store>
+    <Switch>
+      {/* UNPROTECTED  ROUTES */}
+
+      <Route path='/' exact component={LandingPage} />
+      <Route path='/auth/login' component={Login} />
+      <Route path='/auth/signup' exact component={SignUp} />
+      <Route path='/auth/verifyemail' component={VerifyEmail} />
+      <Route path='/auth/verify-email' component={EmailVerify} />
+      <Route path='/auth/forgotpassword' component={ForgotPassWord} />
+      <Route path='/auth/reset-password' component={ResetPassword} />
+
+      <Route path='/about' component={About} />
+      <Route path='/faq' component={Faq} />
+      <Route path='/support' component={Support} />
+
+      {/* PROTECTED ROUTES */}
+      <ProtectedRoute path='/auth/logout' Component={Logout} />
+      <ProtectedRoute exact path='/tutor/dashboard' Component={TDashboard} />
+      <ProtectedRoute exact path='/student/dashboard' Component={SDashboard} />
+      <ProtectedRoute
+        path='/dashboard/tutor/addcourse'
+        exact
+        Component={AddCourses}
+      />
+      <ProtectedRoute path='/buycourse' Component={BuyCourse} />
+      <ProtectedRoute path='/courses' Component={Courses} />
+      <ProtectedRoute
+        path='/user/course/paymentoption'
+        Component={PaymentOption}
+      />
+      <ProtectedRoute
+        path='/user/course/payment/success'
+        Component={PaymentSuccessful}
+      />
+      <ProtectedRoute
+        path='/user/course/payment/fail'
+        Component={PaymentFailed}
+      />
+      <ProtectedRoute
+        path='/user/editprofile'
+        Component={TutorProfileSettings}
+      />
+      <ProtectedRoute path='/logout' Component={Logout} />
+      <ProtectedRoute path='/learner/viewcourse' Component={ViewCourse} />
+      <ProtectedRoute path='/tutoraddcourse' Component={TutorAddCourse} />
+      <ProtectedRoute path='/course/categories' Component={ViewCategories} />
+      <ProtectedRoute path='/search/:id' Component={Search} />
+      <ProtectedRoute path='/search' Component={Search} />
+      {/* <Route path='/' exact component={ComingSoon} /> */}
+    </Switch>
   );
 }
 

@@ -15,7 +15,7 @@ import { DashboardHeader } from "../../../widgets/DashboardHeader";
 import { Footer } from "../../../widgets/Footer";
 import "./SDashboard.css";
 import axios from "axios";
-
+import { authenticate } from "../../../api";
 // Api Call to get Authorized User
 const SDashboard = () => {
   const history = useHistory();
@@ -27,7 +27,6 @@ const SDashboard = () => {
   const [data, setData] = useState();
   const [lcourse, setLcourse] = useState({});
   const [lcourseCount, setLcourseCount] = useState();
-
   // Get login details from Local Storage
   useEffect(() => {
     const data = localStorage.getItem("userDetails");
@@ -48,6 +47,7 @@ const SDashboard = () => {
         console.log("res value", res.data);
         setUser(res.data.data);
         setRole(res.data.data.role);
+        localStorage.setItem("TOKEN", token);
       })
       .catch((err) => {
         history.push("/auth/login");
@@ -55,7 +55,7 @@ const SDashboard = () => {
   }, []);
 
   useEffect(async () => {
-    if (user.role === "tutor") {
+    if (user.role === "learner") {
       await axios
         .get(`https://cerebrum-v1.herokuapp.com/api/tutor/course/${user._id}`)
         .then((res) => {
