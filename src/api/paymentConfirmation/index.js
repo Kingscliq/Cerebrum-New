@@ -1,6 +1,6 @@
 import axios from "axios";
 
-//All Courses Api
+//View Course Api
 const paymentConfirmation = async (data, history, courseId, setWatchCourse) => {
 	try {
 		let runRequest = await axios.post(`/payment/confirm/`, data);
