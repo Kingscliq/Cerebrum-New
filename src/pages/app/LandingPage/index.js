@@ -1,22 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { getAllCourses } from "../../../api";
+import React, { useState, useEffect } from 'react';
+import { getAllCourses } from '../../../api';
 import {
   landingPage1,
   landingPage2,
   landingPage3,
-} from "../../../assets/images";
-import { Button } from "../../../components/Button";
-import { Footer } from "../../../widgets/Footer";
-import { Header } from "../../../widgets/Header/Index";
-import "./LandingPage.css";
-import Aos from "aos";
-import "aos/dist/aos.css";
+} from '../../../assets/images';
+import { Button } from '../../../components/Button';
+import { Footer } from '../../../widgets/Footer';
+import { Header } from '../../../widgets/Header/Index';
+import './LandingPage.css';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
+import { Link } from 'react-router-dom';
 
 function LandingPage() {
   const [allCourse, setAllCourse] = useState([]);
 
   useEffect(() => {
-    getAllCourses().then((res) => {
+    getAllCourses().then(res => {
       setAllCourse(res.slice(0, 4));
       console.log(allCourse);
     });
@@ -41,7 +42,7 @@ function LandingPage() {
             <p className="my-4">
               Cerebrum offers quality online learning that is flexible and
               inclusive for tutors and learners, which gives them a feeling of
-              self-accomplishment.{" "}
+              self-accomplishment.{' '}
             </p>
             <Button
               className="btn btn-primary my-5 py-3 border-2"
@@ -121,7 +122,7 @@ function LandingPage() {
         <section className="landing-page-e my-4">
           <h3>Trending Courses</h3>
           <div className="d-flex">
-            {allCourse.map((course) => (
+            {allCourse.map(course => (
               <div
                 key={course._id}
                 className="bg-white all-courses-div d-flex flex-column border m-2 position-relative"
@@ -137,7 +138,7 @@ function LandingPage() {
                 <p className="badge position-absolute courses-price-badge p-2">
                   {course.price.lifeTime > 0
                     ? `N ${course.price.lifeTime}`
-                    : (course.price.lifeTime = "FREE")}
+                    : (course.price.lifeTime = 'FREE')}
                 </p>
                 <div className="w-100">
                   <div
@@ -150,19 +151,19 @@ function LandingPage() {
                       src={
                         course.tutor_id !== undefined
                           ? course.tutor_id.image_url
-                          : ""
+                          : ''
                       }
                       height="45px"
                       width="45px"
                       alt="tutor pic"
                     />
                   </div>
-                  <a
+                  <Link
                     className="all-courses-link"
-                    href={`/buycourse/?id=${course._id}`}
+                    to={`/buycourse/?id=${course._id}`}
                   >
                     <p className="fw-bold signup-p mx-4 mt-3">{course.name}</p>
-                  </a>
+                  </Link>
                 </div>
               </div>
             ))}
